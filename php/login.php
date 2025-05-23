@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['rol'] = $user['rol'];
                 
                 // Redirigir a estudiantes.php
-                header("Location: estudiantes/estudiantes.php");
+                header("Location: inicio/inicio.php");
                 exit();
             } else {
                 // Mostrar mensaje de error si las credenciales son incorrectas o el rol no es administrador

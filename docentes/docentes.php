@@ -1,6 +1,6 @@
 <?php
 // Incluir la clase de conexión
-require 'php/conexion.php';
+require '../php/conexion.php';
 
 // Clase para manejar los datos de los docentes
 class Docentes {
@@ -112,7 +112,7 @@ $profesores = $docentes->obtenerDocentes();
   <div class="container">
     <div class="leftSide">
       <p><strong>Menú</strong></p>
-      <button class="btn" onclick="mostrarDatos()">Mostrar Datos</button>
+      <button class="btn" onclick="mostrarDatos()">Mostrar Datos</button> <br>
     </div>
     <div class="mainContent" id="contenido">
       <?php
