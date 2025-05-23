@@ -1,6 +1,6 @@
 <?php
-// Incluir la clase de conexión
-require 'php/conexion.php';
+// Ruta relativa al archivo conexion.php
+require '../php/conexion.php';
 
 // Función para obtener los estudiantes de la base de datos
 function obtenerEstudiantes() {
