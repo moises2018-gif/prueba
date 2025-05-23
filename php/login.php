@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'php/conexion.php'; // Asegúrate de que la ruta sea correcta
+require '../php/conexion.php'; // Asegúrate de que la ruta sea correcta
 
 $error = ''; // Variable para almacenar mensajes de error
 
