@@ -1,3 +1,32 @@
+<?php
+// Incluir la clase de conexión
+require 'php/conexion.php';
+
+// Función para obtener los estudiantes de la base de datos
+function obtenerEstudiantes() {
+    $conn = new Cconexion();
+    $db = $conn->ConexionBD();
+
+    if ($db) {
+        try {
+            $stmt = $db->prepare("SELECT id, id_usuario, nombre, discapacidad, nivel, porcentaje FROM estudiantes");
+            $stmt->execute();
+            $estudiantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $estudiantes;
+        } catch (PDOException $e) {
+            echo "Error al obtener los datos: " . $e->getMessage();
+            return [];
+        }
+    } else {
+        echo "Error de conexión a la base de datos.";
+        return [];
+    }
+}
+
+// Obtener los datos de los estudiantes
+$estudiantes = obtenerEstudiantes();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,45 +108,29 @@
       <button class="btn" onclick="mostrarDatos()">Mostrar Datos</button>
     </div>
     <div class="mainContent" id="contenido">
-      <p>Haz clic en "Mostrar Datos" para visualizar la información.</p>
+      <?php
+      if (!empty($estudiantes)) {
+          echo '<h2>Lista de Estudiantes</h2>';
+          echo '<table>';
+          echo '<tr><th>ID</th><th>ID Usuario</th><th>Nombre</th><th>Discapacidad</th><th>Nivel</th><th>Porcentaje</th></tr>';
+
+          foreach ($estudiantes as $est) {
+              echo '<tr>';
+              echo '<td>' . htmlspecialchars($est['id']) . '</td>';
+              echo '<td>' . htmlspecialchars($est['id_usuario']) . '</td>';
+              echo '<td>' . htmlspecialchars($est['nombre']) . '</td>';
+              echo '<td>' . htmlspecialchars($est['discapacidad']) . '</td>';
+              echo '<td>' . htmlspecialchars($est['nivel']) . '</td>';
+              echo '<td>' . htmlspecialchars($est['porcentaje']) . '</td>';
+              echo '</tr>';
+          }
+
+          echo '</table>';
+      } else {
+          echo '<p>No hay datos disponibles.</p>';
+      }
+      ?>
     </div>
   </div>
-
-  <script>
-    function mostrarDatos() {
-      const datos = [
-        { nombre: "Ana Pérez", carrera: "Ingeniería", discapacidad: "Visual", porcentaje: "40%", nivel: "Licenciatura" },
-        { nombre: "Carlos Ruiz", carrera: "Psicología", discapacidad: "Auditiva", porcentaje: "60%", nivel: "Maestría" },
-        { nombre: "Lucía Torres", carrera: "Educación", discapacidad: "Motora", porcentaje: "50%", nivel: "Licenciatura" },
-        { nombre: "David Gómez", carrera: "Derecho", discapacidad: "Intelectual", porcentaje: "70%", nivel: "Doctorado" },
-        { nombre: "María López", carrera: "Administración", discapacidad: "Visual", porcentaje: "35%", nivel: "Licenciatura" }
-      ];
-
-      let html = `
-        <h2>Lista de Estudiantes</h2>
-        <table>
-          <tr>
-            <th>Nombre</th>
-            <th>Carrera</th>
-            <th>Tipo de Discapacidad</th>
-            <th>Porcentaje</th>
-            <th>Nivel Académico</th>
-          </tr>`;
-
-      datos.forEach(est => {
-        html += `
-          <tr>
-            <td>${est.nombre}</td>
-            <td>${est.carrera}</td>
-            <td>${est.discapacidad}</td>
-            <td>${est.porcentaje}</td>
-            <td>${est.nivel}</td>
-          </tr>`;
-      });
-
-      html += `</table>`;
-      document.getElementById("contenido").innerHTML = html;
-    }
-  </script>
 </body>
 </html>

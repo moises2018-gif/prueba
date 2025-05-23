@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($db) {
         try {
             // Preparar la consulta SQL para buscar el usuario por nombre y verificar la contraseña y el rol
-            $stmt = $db->prepare("SELECT * FROM usuarios WHERE nombre = :nombre AND password = :password AND rol = 'administrador'");
+            $stmt = $db->prepare("SELECT * FROM usuarios WHERE nombre = :nombre AND password = :password AND rol = 'admin'");
             $stmt->execute([
                 'nombre' => $username,
                 'password' => $password
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header("Location: estudiantes/estudiantes.php");
                 exit();
             } else {
-                // Mostrar mensaje de error si las credenciales son incorrectas o el rol no es administrador
+                // Mostrar mensaje de error si las credenciales son incorrectas o el rol no es admin
                 $error = "<div style='color: red; text-align: center; margin-top: 20px;'>Nombre de usuario, contraseña o rol incorrectos.</div>";
             }
         } catch (PDOException $e) {
