@@ -101,11 +101,11 @@ $estudiantes = obtenerEstudiantes();
   </style>
 </head>
 <body>
-  <div class="header">Sistema de Datos</div>
+  <div class="header">Sistema de Datos de Estudiantes</div>
   <div class="container">
     <div class="leftSide">
       <p><strong>Menú</strong></p>
-      <button class="btn" onclick="mostrarDatos()">Mostrar Datos</button>
+      <button class="btn" onclick="mostrarDatos()"></button>
     </div>
     <div class="mainContent" id="contenido">
       <?php

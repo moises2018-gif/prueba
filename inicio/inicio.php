@@ -5,13 +5,13 @@ session_start();
 function logout() {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: login.php"); // Redirect to login.php
     exit();
 }
 
 // Verificar si se ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login.php"); // Redirect to login.php if not logged in
     exit();
 }
 
@@ -97,11 +97,12 @@ class Estudiantes {
       color: white;
       text-decoration: none;
       display: block;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem; /* Increased spacing */
+      padding: 0.75rem 0; /* Additional padding for better appearance */
     }
     .sidebar a:hover {
       background-color: #343a40;
-      padding: 0.5rem;
+      padding: 0.75rem;
       border-radius: 5px;
     }
     .social-icon {
@@ -196,12 +197,11 @@ class Estudiantes {
     <nav class="col-md-2 d-flex flex-column sidebar">
       <h4 class="mb-4">UG</h4>
       <div class="mb-3">
-        <strong>MOISES DAVID OCHOA NARANJO</strong>
-        <div class="text-success">● en línea</div>
+        <strong>Administrador</strong>
       </div>
-      <a href="#" class="nav-link">Inicio</a>
+      <a href="" class="nav-link">Inicio</a>
       <div class="menu">
-        <button class="menu-button">Estudiantes</button>
+        <button class="nav-link">Estudiantes</button>
         <div class="submenu">
           <a href="estudiantes.php">Visualización</a>
           <a href="asignacion.php">Asignación</a>
@@ -209,9 +209,6 @@ class Estudiantes {
       </div>
       <a href="docentes.php" class="nav-link">Docentes</a>
       <a href="#" class="nav-link">Consultas Generales</a>
-      <div class="mt-auto">
-        <button class="btn btn-danger w-100">Cerrar sesión</button>
-      </div>
     </nav>
 
     <!-- Main Content -->
@@ -225,27 +222,7 @@ class Estudiantes {
       </div>
 
       <div class="card w-50">
-        <div class="card-header">
-          Redes Sociales UG
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" class="social-icon me-2">Facebook</div>
-            <span>📘</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-icon me-2">Youtube</div>
-            <span>▶️</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon me-2">Instagram</div>
-            <span>📷</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div><img src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png" class="social-icon me-2">X</div>
-            <span>❌</span>
-          </li>
-        </ul>
+        <!-- Additional content can be added here -->
       </div>
     </main>
   </div>

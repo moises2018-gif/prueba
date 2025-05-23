@@ -112,7 +112,7 @@ $profesores = $docentes->obtenerDocentes();
   <div class="container">
     <div class="leftSide">
       <p><strong>Menú</strong></p>
-      <button class="btn" onclick="mostrarDatos()">Mostrar Datos</button> <br>
+      <button class="btn" onclick="mostrarDatos()"></button> <br>
     </div>
     <div class="mainContent" id="contenido">
       <?php
