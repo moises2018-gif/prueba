@@ -1,8 +1,8 @@
 <?php
 session_start();
-require 'php/conexion.php'; // Asegúrate de que la ruta sea correcta
+require 'php/conexion.php';
 
-$error = ''; // Variable para almacenar mensajes de error
+$error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'] ?? '';
@@ -13,34 +13,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($db) {
         try {
-            // Preparar la consulta SQL para buscar el usuario por nombre y verificar la contraseña y el rol
-            $stmt = $db->prepare("SELECT * FROM usuarios WHERE nombre = :nombre AND password = :password AND rol = 'admin'");
-            $stmt->execute([
-                'nombre' => $username,
-                'password' => $password
-            ]);
+            // Preparar la consulta SQL para buscar el usuario por nombre
+            $stmt = $db->prepare("SELECT * FROM usuarios WHERE nombre = :nombre");
+            $stmt->execute(['nombre' => $username]);
             $user = $stmt->fetch();
 
             if ($user) {
-                // Iniciar sesión
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['nombre'];
-                $_SESSION['rol'] = $user['rol'];
-                
-                // Redirigir al dashboard
-                header("Location: inicio/inicio.php");
-                exit();
+                // Verificar la contraseña hasheada
+                if (password_verify($password, $user['password'])) {
+                    // Verificar el rol
+                    if ($user['rol'] == 'admin') {
+                        // Iniciar sesión
+                        $_SESSION['user_id'] = $user['id'];
+                        $_SESSION['username'] = $user['nombre'];
+                        $_SESSION['rol'] = $user['rol'];
+                        
+                        // Regenerar el ID de sesión para mayor seguridad
+                        session_regenerate_id(true);
+
+                        // Redirigir al dashboard
+                        header("Location: inicio/inicio.php");
+                        exit();
+                    } else {
+                        $error = "Rol incorrecto. Solo los administradores pueden iniciar sesión.";
+                    }
+                } else {
+                    $error = "Contraseña incorrecta.";
+                }
             } else {
-                // Mostrar mensaje de error si las credenciales son incorrectas o el rol no es admin
-                $error = "<div style='color: red; text-align: center; margin-top: 20px;'>Nombre de usuario, contraseña o rol incorrectos.</div>";
+                $error = "Nombre de usuario incorrecto.";
             }
         } catch (PDOException $e) {
-            // Mostrar mensaje de error si hay un problema con la consulta
-            $error = "<div style='color: red; text-align: center; margin-top: 20px;'>Error: " . $e->getMessage() . "</div>";
+            $error = "Error: " . $e->getMessage();
         }
     } else {
-        // Mostrar mensaje de error si no se puede conectar a la base de datos
-        $error = "<div style='color: red; text-align: center; margin-top: 20px;'>Error de conexión a la base de datos.</div>";
+        $error = "Error de conexión a la base de datos.";
     }
 }
 ?>
@@ -62,9 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Login</h2>
         
         <?php 
-        // Mostrar errores si existen
         if (!empty($error)) {
-            echo $error;
+            echo "<div style='color: red; text-align: center; margin-top: 20px;'>$error</div>";
         }
         ?>
         
