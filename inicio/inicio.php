@@ -183,7 +183,7 @@ class Materias {
         if ($this->conn) {
             try {
                 $stmt = $this->conn->prepare("
-                    SELECT id_materia, nombre_materia, creditos
+                    SELECT id_materia, nombre_materia, creditos, id_semestre, nivel
                     FROM materias
                 ");
                 $stmt->execute();
@@ -261,6 +261,7 @@ class Usuarios {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -286,6 +287,12 @@ class Usuarios {
       font-weight: bold;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    .header .logo {
+      width: 50px;
+      height: 50px;
     }
 
     .header .logout {
@@ -362,6 +369,7 @@ class Usuarios {
 </head>
 <body>
   <div class="header">
+    <img src="../img/logo.png" alt="Logo" class="logo">
     <div>Sistema de Datos</div>
     <div>
       <button class="logout-btn" onclick="location.href='../php/logout.php'">Cerrar Sesión</button>
@@ -386,7 +394,6 @@ class Usuarios {
       <p>Seleccione una opción en el menú lateral.</p>
     </div>
   </div>
-
   <script>
     function mostrarEstudiantes() {
       fetch('../php/estudiantes.php')
