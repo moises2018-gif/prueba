@@ -1,7 +1,7 @@
 <?php
 require 'conexion.php';
 
-class Materias {
+class Semestres {
     private $conn;
 
     public function __construct() {
@@ -9,16 +9,16 @@ class Materias {
         $this->conn = $conexion->ConexionBD();
     }
 
-    public function obtenerMaterias() {
+    public function obtenerSemestres() {
         if ($this->conn) {
             try {
                 $stmt = $this->conn->prepare("
-                    SELECT id_materia, nombre_materia, creditos, id_semestre
-                    FROM materias
+                    SELECT id_semestre, nombre
+                    FROM semestres
                 ");
                 $stmt->execute();
-                $materias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $materias;
+                $semestres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $semestres;
             } catch (PDOException $e) {
                 echo "Error al obtener los datos: " . $e->getMessage();
                 return [];
@@ -30,9 +30,9 @@ class Materias {
     }
 }
 
-$materias = new Materias();
-$materiasData = $materias->obtenerMaterias();
+$semestres = new Semestres();
+$semestresData = $semestres->obtenerSemestres();
 
 header('Content-Type: application/json');
-echo json_encode($materiasData);
+echo json_encode($semestresData);
 ?>

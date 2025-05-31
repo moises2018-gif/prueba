@@ -1,0 +1,74 @@
+erDiagram
+    ESTUDIANTES {
+        int id_estudiante PK "Identificador único"
+        varchar nombres "Nombres completos"
+        enum discapacidad "Visual, Auditiva, Física, Intelectual, Psicosocial"
+        decimal porcentaje_discapacidad "Porcentaje de discapacidad"
+        int nivel_academico "Semestre actual"
+        int no_vez "Número de repeticiones"
+        int creditos "Créditos acumulados"
+        date fecha_registro "Fecha de registro"
+    }
+
+    DOCENTES {
+        int id_docente PK "Identificador único"
+        varchar nombres "Nombres completos"
+        varchar carrera "Carrera profesional"
+    }
+
+    EXPERIENCIADOCENTE {
+        int id_experiencia PK "Identificador único"
+        int id_docente FK "Referencia a Docentes"
+        enum tipo_discapacidad "Visual, Auditiva, Física, Intelectual, Psicosocial"
+        int años_experiencia "Años de experiencia"
+    }
+
+    MATERIAS {
+        int id_materia PK "Identificador único"
+        varchar nombre_materia "Nombre de la materia"
+        int creditos "Créditos de la materia"
+        int id_semestre FK "Referencia a Semestres"
+    }
+
+    SEMESTRES {
+        int id_semestre PK "Identificador único"
+        varchar nombre "Nombre del semestre"
+    }
+
+    CURSOS {
+        int id_curso PK "Identificador único"
+        int id_materia FK "Referencia a Materias"
+        int id_docente FK "Referencia a Docentes"
+        int cupo "Cupo máximo"
+    }
+
+    TURNOS {
+        int id_turno PK "Identificador único"
+        enum nombre_turno "Matutino, Vespertino, Nocturno"
+    }
+
+    HORARIOS {
+        int id_horario PK "Identificador único"
+        int id_curso FK "Referencia a Cursos"
+        int id_turno FK "Referencia a Turnos"
+        enum dia_semana "Lunes a Domingo"
+        time hora_inicio "Hora de inicio"
+        time hora_fin "Hora de fin"
+    }
+
+    INSCRIPCIONES {
+        int id_inscripcion PK "Identificador único"
+        int id_estudiante FK "Referencia a Estudiantes"
+        int id_curso FK "Referencia a Cursos"
+        date fecha_inscripcion "Fecha de inscripción"
+    }
+
+    %% Relaciones
+    DOCENTES ||--o{ EXPERIENCIADOCENTE : "tiene"
+    DOCENTES ||--o{ CURSOS : "imparte"
+    MATERIAS ||--o{ CURSOS : "se_dicta_en"
+    MATERIAS }o--|| SEMESTRES : "pertenece_a"
+    CURSOS ||--o{ HORARIOS : "tiene"
+    TURNOS ||--o{ HORARIOS : "define"
+    CURSOS ||--o{ INSCRIPCIONES : "recibe"
+    ESTUDIANTES ||--o{ INSCRIPCIONES : "realiza"
