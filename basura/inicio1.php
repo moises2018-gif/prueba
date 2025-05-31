@@ -5,18 +5,18 @@ session_start();
 function logout() {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
 // Verificar si se ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
 // Incluir la clase de conexión
-require 'php/conexion.php';
+require '../php/conexion.php';
 
 // Clase para manejar los datos de los docentes
 class Docentes {
@@ -176,7 +176,7 @@ class Estudiantes {
   <div class="header">
     <div>Sistema de Datos</div>
     <div>
-      <button class="logout" onclick="logout()">Logout</button>
+      <button class="logout-btn" onclick="location.href='../php/logout.php'">Cerrar Sesión</button>
     </div>
   </div>
   <div class="container">
@@ -195,7 +195,7 @@ class Estudiantes {
 
   <script>
     function mostrarEstudiantes() {
-      fetch('php/estudiantes.php')
+      fetch('../estudiantes/estudiantes.php')
         .then(response => response.json())
         .then(data => {
           let html = `
@@ -232,7 +232,7 @@ class Estudiantes {
     }
 
     function mostrarDocentes() {
-      fetch('php/docentes.php')
+      fetch('../docentes/docentes.php')
         .then(response => response.json())
         .then(data => {
           let html = `

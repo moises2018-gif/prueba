@@ -76,9 +76,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         <form action="" method="POST">
             <input type="text" name="username" placeholder="usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+
+            <div style="position: relative;">
+                <input type="password" name="password" id="password" placeholder="Contraseña" required style="padding-right: 40px;">
+                <span onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px;">
+                    👁️
+                </span>
+            </div>
+
             <input type="submit" value="Login">
         </form>
     </div>
+
+    <script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+    }
+    </script>
 </body>
 </html>
