@@ -1,0 +1,69 @@
+erDiagram
+    ASIGNACIONES {
+        int id PK "Identificador único"
+        int estudiante_id FK "Referencia a Estudiantes"
+        int docente_id FK "Referencia a Docentes"
+        int materia_id FK "Referencia a Materias"
+        varchar estudiante_nombre "Nombre del estudiante"
+        varchar docente_nombre "Nombre del docente"
+        varchar materia_nombre "Nombre de la materia"
+    }
+
+    COMPARACIONES {
+        int id PK "Identificador único"
+        int criterio1_id FK "Referencia a Criterios"
+        int criterio2_id FK "Referencia a Criterios"
+        float valor "Valor de la comparación"
+    }
+
+    CRITERIOS {
+        int id PK "Identificador único"
+        varchar nombre "Nombre del criterio"
+        text descripcion "Descripción del criterio"
+    }
+
+    DOCENTES {
+        int id PK "Identificador único"
+        varchar nombre "Nombre del docente"
+        varchar apellido "Apellido del docente"
+        int seminarios_visual "Seminarios de discapacidad visual"
+        int seminarios_auditiva "Seminarios de discapacidad auditiva"
+        int seminarios_psicosocial "Seminarios de discapacidad psicosocial"
+        int seminarios_fisica "Seminarios de discapacidad física"
+        int seminarios_intelectual "Seminarios de discapacidad intelectual"
+    }
+
+    DOCENTES_MATERIAS {
+        int docente_id FK "Referencia a Docentes"
+        int materia_id FK "Referencia a Materias"
+        varchar docente_nombre "Nombre del docente"
+        varchar docente_apellido "Apellido del docente"
+        varchar materia_nombre "Nombre de la materia"
+    }
+
+    ESTUDIANTES {
+        int id PK "Identificador único"
+        varchar nombre "Nombre del estudiante"
+        varchar apellido "Apellido del estudiante"
+        enum tipo_discapacidad "Tipo de discapacidad"
+        int porcentaje_discapacidad "Porcentaje de discapacidad"
+    }
+
+    MATERIAS {
+        int id PK "Identificador único"
+        varchar nombre "Nombre de la materia"
+        text descripcion "Descripción de la materia"
+    }
+
+    RESULTADOS {
+        int id PK "Identificador único"
+        int criterio_id FK "Referencia a Criterios"
+        float peso "Peso del criterio"
+    }
+
+    ASIGNACIONES ||--o{ ESTUDIANTES : "asigna"
+    ASIGNACIONES ||--o{ DOCENTES : "asigna"
+    ASIGNACIONES ||--o{ MATERIAS : "asigna"
+    COMPARACIONES ||--o{ CRITERIOS : "compara"
+    DOCENTES_MATERIAS ||--o{ DOCENTES : "dicta"
+    DOCENTES_MATERIAS ||--o{ MATERIAS : "dicta"
