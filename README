@@ -1,0 +1,30 @@
+# Sistema AHP - Asignación de Docentes NEE
+
+Sistema modular para asignar docentes a estudiantes con necesidades educativas especiales (NEE) usando AHP.
+
+## Requisitos
+- PHP 7.4+
+- MySQL 5.7+
+- Servidor web (XAMPP, WAMP)
+- Chart.js (incluido vía CDN)
+
+## Instalación
+1. Configura un servidor web con PHP y MySQL.
+2. Crea la base de datos `asignacion_docente` y ejecuta el script SQL proporcionado.
+3. Copia los archivos al directorio raíz del servidor (e.g., `htdocs`).
+4. Asegúrate de que el usuario `moises` con contraseña `moises` tenga acceso a la base de datos.
+5. Navega a `http://localhost/index.php`.
+
+## Estructura
+- `css/`: Estilos CSS.
+- `js/`: Scripts JavaScript.
+- `includes/`: Componentes comunes (header, nav, footer, conexión).
+- `pages/`: Pantallas principales (dashboard, docentes, estudiantes, asignación, reportes).
+- `procesar/`: Scripts para procesar formularios.
+
+## Funcionalidades
+- **Dashboard**: Estadísticas, criterios AHP, gráfica de pesos.
+- **Gestión Docentes**: Registrar y listar docentes.
+- **Gestión Estudiantes**: Registrar estudiantes con NEE.
+- **Asignación AHP**: Ranking de docentes y asignaciones.
+- **Reportes**: Resumen de subcriterios y asignaciones.
