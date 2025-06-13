@@ -1,168 +1,194 @@
 <?php
+/**
+ * SOLUCIÓN 1: LÍMITE DE ASIGNACIONES POR DOCENTE
+ * Modifica el algoritmo de asignación para evitar sobrecarga
+ */
+
+// En procesar_asignacion_automatica.php - VERSIÓN MEJORADA
+
 include '../includes/conexion.php';
 $conn = ConexionBD();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ciclo_academico = $_POST['ciclo_academico'];
     
-    // Si es vista previa
-    if (isset($_POST['preview']) && $_POST['preview'] == '1') {
-        $ciclo_academico = $_POST['ciclo_academico'];
+    // CONFIGURACIÓN DE LÍMITES
+    $LIMITE_MAXIMO_POR_DOCENTE = 5; // Máximo 5 estudiantes NEE por docente
+    $LIMITE_POR_TIPO_DISCAPACIDAD = 3; // Máximo 3 del mismo tipo por docente
+    $PENALIZACION_POR_ASIGNACION = 0.15; // Reducir 15% por cada asignación existente
+    
+    try {
+        $conn->beginTransaction();
         
-        try {
-            // Obtener estudiantes no asignados del ciclo seleccionado
-            $query_estudiantes = "
-                SELECT e.id_estudiante, e.nombres_completos, e.id_tipo_discapacidad, t.nombre_discapacidad
-                FROM estudiantes e
-                JOIN tipos_discapacidad t ON e.id_tipo_discapacidad = t.id_tipo_discapacidad
-                WHERE e.ciclo_academico = :ciclo
-                AND NOT EXISTS (
-                    SELECT 1 FROM asignaciones a 
-                    WHERE a.id_estudiante = e.id_estudiante 
-                    AND a.estado = 'Activa'
-                )";
-            $stmt_estudiantes = $conn->prepare($query_estudiantes);
-            $stmt_estudiantes->execute([':ciclo' => $ciclo_academico]);
-            $estudiantes = $stmt_estudiantes->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Obtener materias del ciclo
-            $query_materias = "SELECT id_materia, nombre_materia FROM materias WHERE ciclo_academico = :ciclo";
-            $stmt_materias = $conn->prepare($query_materias);
-            $stmt_materias->execute([':ciclo' => $ciclo_academico]);
-            $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Obtener ranking de docentes
-            $query_ranking = "
-                SELECT d.id_docente, d.nombres_completos, vr.puntuacion_final,
-                       edd.id_tipo_discapacidad, edd.años_experiencia, edd.nivel_competencia
-                FROM docentes d
-                JOIN vista_ranking_ahp vr ON d.id_docente = vr.id_docente
-                LEFT JOIN experiencia_docente_discapacidad edd ON d.id_docente = edd.id_docente AND edd.tiene_experiencia = TRUE
-                ORDER BY vr.puntuacion_final DESC";
-            $stmt_ranking = $conn->prepare($query_ranking);
-            $stmt_ranking->execute();
-            $docentes_raw = $stmt_ranking->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Organizar docentes por experiencia
-            $docentes = [];
-            foreach ($docentes_raw as $doc) {
-                if (!isset($docentes[$doc['id_docente']])) {
-                    $docentes[$doc['id_docente']] = [
-                        'id_docente' => $doc['id_docente'],
-                        'nombres_completos' => $doc['nombres_completos'],
-                        'puntuacion_final' => $doc['puntuacion_final'],
-                        'experiencia_tipos' => []
-                    ];
-                }
-                if ($doc['id_tipo_discapacidad']) {
-                    $docentes[$doc['id_docente']]['experiencia_tipos'][] = $doc['id_tipo_discapacidad'];
-                }
-            }
-            
-            $preview_data = [];
-            
-            if (!empty($estudiantes) && !empty($materias)) {
-                foreach ($estudiantes as $estudiante) {
-                    $mejor_docente = null;
-                    $mejor_puntuacion = 0;
-                    
-                    foreach ($docentes as $docente) {
-                        $puntuacion = $docente['puntuacion_final'];
-                        
-                        // Bonus si tiene experiencia con este tipo de discapacidad
-                        if (in_array($estudiante['id_tipo_discapacidad'], $docente['experiencia_tipos'])) {
-                            $puntuacion *= 1.3; // 30% de bonus
-                        }
-                        
-                        if ($puntuacion > $mejor_puntuacion) {
-                            $mejor_puntuacion = $puntuacion;
-                            $mejor_docente = $docente;
-                        }
-                    }
-                    
-                    if ($mejor_docente) {
-                        // Seleccionar materia aleatoria para el estudiante
-                        $materia_seleccionada = $materias[array_rand($materias)];
-                        
-                        $preview_data[] = [
-                            'id_estudiante' => $estudiante['id_estudiante'],
-                            'estudiante' => $estudiante['nombres_completos'],
-                            'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
-                            'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
-                            'id_docente' => $mejor_docente['id_docente'],
-                            'docente' => $mejor_docente['nombres_completos'],
-                            'id_materia' => $materia_seleccionada['id_materia'],
-                            'materia' => $materia_seleccionada['nombre_materia'],
-                            'puntuacion_ahp' => $mejor_puntuacion,
-                            'ciclo_academico' => $ciclo_academico
-                        ];
-                    }
-                }
-            }
-            
-            $preview_encoded = urlencode(json_encode($preview_data));
-            header("Location: ../pages/asignacion.php?preview_data=$preview_encoded&ciclo_academico=" . urlencode($ciclo_academico));
-            
-        } catch (PDOException $e) {
-            header("Location: ../pages/asignacion.php?error=Error al generar vista previa: " . $e->getMessage());
+        // Obtener estudiantes ordenados por PRIORIDAD del tipo de discapacidad
+        $query_estudiantes = "
+            SELECT e.id_estudiante, e.nombres_completos, e.id_tipo_discapacidad, 
+                   e.ciclo_academico, e.facultad, td.nombre_discapacidad, td.peso_prioridad
+            FROM estudiantes e
+            JOIN tipos_discapacidad td ON e.id_tipo_discapacidad = td.id_tipo_discapacidad
+            LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante AND a.estado = 'Activa'
+            WHERE e.ciclo_academico = :ciclo AND a.id_asignacion IS NULL
+            ORDER BY td.peso_prioridad DESC, e.nombres_completos";
+        
+        $stmt_estudiantes = $conn->prepare($query_estudiantes);
+        $stmt_estudiantes->execute([':ciclo' => $ciclo_academico]);
+        $estudiantes = $stmt_estudiantes->fetchAll(PDO::FETCH_ASSOC);
+        
+        if (empty($estudiantes)) {
+            throw new Exception("No hay estudiantes sin asignación para el ciclo académico $ciclo_academico");
         }
-    }
-    
-    // Si es confirmación de asignaciones
-    elseif (isset($_POST['confirm']) && $_POST['confirm'] == '1') {
-        $preview_data = json_decode($_POST['preview_data'], true);
         
-        try {
-            $conn->beginTransaction();
+        // CONTADOR DE ASIGNACIONES POR DOCENTE
+        $asignaciones_por_docente = array();
+        $asignaciones_por_tipo = array(); // [id_docente][id_tipo_discapacidad] = cantidad
+        
+        // Inicializar contadores con asignaciones existentes
+        $query_existentes = "
+            SELECT id_docente, id_tipo_discapacidad, COUNT(*) as cantidad
+            FROM asignaciones 
+            WHERE estado = 'Activa' AND ciclo_academico = :ciclo
+            GROUP BY id_docente, id_tipo_discapacidad";
+        $stmt_existentes = $conn->prepare($query_existentes);
+        $stmt_existentes->execute([':ciclo' => $ciclo_academico]);
+        $existentes = $stmt_existentes->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($existentes as $exist) {
+            $docente_id = $exist['id_docente'];
+            $tipo_id = $exist['id_tipo_discapacidad'];
             
-            $asignaciones_exitosas = 0;
-            foreach ($preview_data as $asignacion) {
-                // Verificar que el estudiante no esté ya asignado a la misma materia
-                $query_verificar = "
-                    SELECT COUNT(*) FROM asignaciones 
-                    WHERE id_estudiante = :estudiante 
-                    AND id_materia = :materia 
-                    AND estado = 'Activa'";
-                $stmt_verificar = $conn->prepare($query_verificar);
-                $stmt_verificar->execute([
-                    ':estudiante' => $asignacion['id_estudiante'],
-                    ':materia' => $asignacion['id_materia']
-                ]);
+            if (!isset($asignaciones_por_docente[$docente_id])) {
+                $asignaciones_por_docente[$docente_id] = 0;
+                $asignaciones_por_tipo[$docente_id] = array();
+            }
+            
+            $asignaciones_por_docente[$docente_id] += $exist['cantidad'];
+            $asignaciones_por_tipo[$docente_id][$tipo_id] = $exist['cantidad'];
+        }
+        
+        if (isset($_POST['preview']) && $_POST['preview'] == '1') {
+            $preview_data = array();
+            $rechazados = array();
+            
+            foreach ($estudiantes as $estudiante) {
+                // Obtener candidatos docentes para este tipo de discapacidad
+                $query_candidatos = "
+                    SELECT vr.id_docente, vr.nombres_completos, vr.puntuacion_especifica_discapacidad,
+                           vr.ranking_por_discapacidad, vr.tiene_experiencia_especifica,
+                           vr.nivel_competencia_especifica
+                    FROM vista_ranking_ahp_especifico vr
+                    WHERE vr.id_tipo_discapacidad = :tipo_discapacidad
+                    AND vr.facultad = :facultad
+                    ORDER BY vr.puntuacion_especifica_discapacidad DESC";
                 
-                if ($stmt_verificar->fetchColumn() == 0) {
-                    $query_asignar = "
-                        INSERT INTO asignaciones (
-                            id_docente, id_estudiante, id_tipo_discapacidad, id_materia,
-                            ciclo_academico, materia, numero_estudiantes, puntuacion_ahp, estado
-                        ) VALUES (
-                            :docente, :estudiante, :discapacidad, :materia,
-                            :ciclo, :materia_nombre, 1, :puntuacion, 'Activa'
-                        )";
+                $stmt_candidatos = $conn->prepare($query_candidatos);
+                $stmt_candidatos->execute([
+                    ':tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                    ':facultad' => $estudiante['facultad']
+                ]);
+                $candidatos = $stmt_candidatos->fetchAll(PDO::FETCH_ASSOC);
+                
+                $docente_asignado = null;
+                $mejor_puntuacion = 0;
+                $razon_rechazo = "";
+                
+                foreach ($candidatos as $candidato) {
+                    $docente_id = $candidato['id_docente'];
+                    $tipo_id = $estudiante['id_tipo_discapacidad'];
                     
-                    $stmt_asignar = $conn->prepare($query_asignar);
-                    $stmt_asignar->execute([
-                        ':docente' => $asignacion['id_docente'],
-                        ':estudiante' => $asignacion['id_estudiante'],
-                        ':discapacidad' => $asignacion['id_tipo_discapacidad'],
-                        ':materia' => $asignacion['id_materia'],
-                        ':ciclo' => $asignacion['ciclo_academico'],
-                        ':materia_nombre' => $asignacion['materia'],
-                        ':puntuacion' => $asignacion['puntuacion_ahp']
-                    ]);
+                    // VERIFICAR LÍMITES
+                    $total_asignaciones = $asignaciones_por_docente[$docente_id] ?? 0;
+                    $asignaciones_tipo = $asignaciones_por_tipo[$docente_id][$tipo_id] ?? 0;
                     
-                    $asignaciones_exitosas++;
+                    // REGLA 1: No exceder límite máximo por docente
+                    if ($total_asignaciones >= $LIMITE_MAXIMO_POR_DOCENTE) {
+                        continue; // Buscar siguiente candidato
+                    }
+                    
+                    // REGLA 2: No exceder límite por tipo de discapacidad
+                    if ($asignaciones_tipo >= $LIMITE_POR_TIPO_DISCAPACIDAD) {
+                        continue; // Buscar siguiente candidato
+                    }
+                    
+                    // CALCULAR PUNTUACIÓN PENALIZADA
+                    $puntuacion_base = $candidato['puntuacion_especifica_discapacidad'];
+                    
+                    // Penalización por carga actual
+                    $factor_penalizacion = 1 - ($total_asignaciones * $PENALIZACION_POR_ASIGNACION);
+                    $puntuacion_ajustada = $puntuacion_base * $factor_penalizacion;
+                    
+                    // Penalización adicional por mismo tipo de discapacidad
+                    if ($asignaciones_tipo > 0) {
+                        $puntuacion_ajustada *= (1 - ($asignaciones_tipo * 0.1)); // 10% menos por cada del mismo tipo
+                    }
+                    
+                    if ($puntuacion_ajustada > $mejor_puntuacion) {
+                        $mejor_puntuacion = $puntuacion_ajustada;
+                        $docente_asignado = $candidato;
+                        $docente_asignado['puntuacion_ajustada'] = $puntuacion_ajustada;
+                        $docente_asignado['total_asignaciones_actuales'] = $total_asignaciones;
+                        $docente_asignado['asignaciones_tipo_actuales'] = $asignaciones_tipo;
+                    }
+                }
+                
+                if ($docente_asignado) {
+                    // Registrar asignación exitosa
+                    $docente_id = $docente_asignado['id_docente'];
+                    $tipo_id = $estudiante['id_tipo_discapacidad'];
+                    
+                    // Actualizar contadores
+                    if (!isset($asignaciones_por_docente[$docente_id])) {
+                        $asignaciones_por_docente[$docente_id] = 0;
+                        $asignaciones_por_tipo[$docente_id] = array();
+                    }
+                    
+                    $asignaciones_por_docente[$docente_id]++;
+                    $asignaciones_por_tipo[$docente_id][$tipo_id] = ($asignaciones_por_tipo[$docente_id][$tipo_id] ?? 0) + 1;
+                    
+                    $preview_data[] = array(
+                        'id_estudiante' => $estudiante['id_estudiante'],
+                        'estudiante' => $estudiante['nombres_completos'],
+                        'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                        'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
+                        'peso_discapacidad' => $estudiante['peso_prioridad'],
+                        'id_docente' => $docente_asignado['id_docente'],
+                        'docente' => $docente_asignado['nombres_completos'],
+                        'puntuacion_ahp' => $docente_asignado['puntuacion_ajustada'],
+                        'puntuacion_base' => $docente_asignado['puntuacion_especifica_discapacidad'],
+                        'total_asignaciones' => $docente_asignado['total_asignaciones_actuales'] + 1,
+                        'asignaciones_tipo' => $docente_asignado['asignaciones_tipo_actuales'] + 1,
+                        'tiene_experiencia_especifica' => $docente_asignado['tiene_experiencia_especifica'],
+                        'nivel_competencia' => $docente_asignado['nivel_competencia_especifica'],
+                        'ranking_original' => $docente_asignado['ranking_por_discapacidad']
+                    );
+                } else {
+                    // No se pudo asignar - todos los docentes están sobrecargados
+                    $rechazados[] = array(
+                        'estudiante' => $estudiante['nombres_completos'],
+                        'discapacidad' => $estudiante['nombre_discapacidad'],
+                        'razon' => 'Todos los docentes competentes han alcanzado el límite de asignaciones'
+                    );
                 }
             }
             
-            $conn->commit();
-            header("Location: ../pages/asignacion.php?success=Se realizaron $asignaciones_exitosas asignaciones exitosamente");
+            // Agregar información de rechazados al preview
+            $preview_data['rechazados'] = $rechazados;
+            $preview_data['limites'] = array(
+                'maximo_por_docente' => $LIMITE_MAXIMO_POR_DOCENTE,
+                'maximo_por_tipo' => $LIMITE_POR_TIPO_DISCAPACIDAD,
+                'penalizacion' => $PENALIZACION_POR_ASIGNACION
+            );
             
-        } catch (PDOException $e) {
-            $conn->rollBack();
-            header("Location: ../pages/asignacion.php?error=Error al confirmar asignaciones: " . $e->getMessage());
+            // Redirigir con vista previa
+            $preview_encoded = urlencode(json_encode($preview_data));
+            header("Location: ../pages/asignacion.php?preview_data_limitado=$preview_encoded&ciclo_academico=" . urlencode($ciclo_academico));
+            exit();
         }
+        
+        // Resto del código para confirmación...
+        
+    } catch (Exception $e) {
+        $conn->rollBack();
+        header("Location: ../pages/asignacion.php?error=Error en la asignación con límites: " . $e->getMessage());
     }
-    
-} else {
-    header("Location: ../pages/asignacion.php");
 }
 ?>

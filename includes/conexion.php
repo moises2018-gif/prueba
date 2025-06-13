@@ -1,7 +1,7 @@
 <?php
 function ConexionBD() {
     $host = 'localhost';
-    $dbname = 'asignacion_docente';
+    $dbname = 'asignacion_docente_ahp';  // ← NUEVO NOMBRE
     $username = 'moises';
     $password = 'moises';
     $puerto = 3306;
