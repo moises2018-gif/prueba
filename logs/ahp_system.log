@@ -1,0 +1,6 @@
+[2025-06-13 04:11:45] [INFO] AsignacionAHPOptimizada inicializada | Contexto: {"max_estudiantes_por_docente":7,"max_por_tipo_discapacidad":3,"penalizacion_carga":0.15,"bonus_experiencia_especifica":0.2}
+[2025-06-13 04:11:45] [INFO] Procesando asignación automática | Contexto: {"ciclo":"2025-1","usuario_ip":"::1","timestamp":"2025-06-13 04:11:45"}
+[2025-06-13 04:11:45] [INFO] Generando vista previa para ciclo: 2025-1
+[2025-06-13 04:11:45] [INFO] Iniciando asignación para ciclo: 2025-1 | Contexto: {"preview":true}
+[2025-06-13 04:11:45] [ERROR] Error en asignación | Contexto: {"mensaje":"SQLSTATE[HY093]: Invalid parameter number","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\classes\\AsignacionAHPOptimizada.php","linea":157}
+[2025-06-13 04:11:45] [ERROR] Error en procesamiento de asignación | Contexto: {"mensaje":"SQLSTATE[HY093]: Invalid parameter number","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\classes\\AsignacionAHPOptimizada.php","linea":157,"ciclo":"2025-1","post_data":{"ciclo_academico":"2025-1","preview":"1"}}

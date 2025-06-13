@@ -1,0 +1,2 @@
+[2025-06-13 04:11:45] [ERROR] Error en asignación | Contexto: {"mensaje":"SQLSTATE[HY093]: Invalid parameter number","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\classes\\AsignacionAHPOptimizada.php","linea":157}
+[2025-06-13 04:11:45] [ERROR] Error en procesamiento de asignación | Contexto: {"mensaje":"SQLSTATE[HY093]: Invalid parameter number","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\classes\\AsignacionAHPOptimizada.php","linea":157,"ciclo":"2025-1","post_data":{"ciclo_academico":"2025-1","preview":"1"}}

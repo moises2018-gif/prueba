@@ -1,0 +1,25 @@
+[13-Jun-2025 03:57:53 America/Guayaquil] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:219
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(219): PDOStatement->execute(Array)
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 219
+[13-Jun-2025 04:00:20 America/Guayaquil] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:219
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(219): PDOStatement->execute(Array)
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 219
+[13-Jun-2025 04:02:40 America/Guayaquil] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:464
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(464): PDOStatement->execute(Array)
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 464
+[13-Jun-2025 04:12:12 America/Guayaquil] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:464
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(464): PDOStatement->execute(Array)
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 464
+[13-Jun-2025 04:13:34 America/Guayaquil] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:464
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(464): PDOStatement->execute(Array)
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 464
