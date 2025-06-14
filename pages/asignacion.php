@@ -1,5 +1,6 @@
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/nav.php'; ?>
+
 <div id="asignacion" class="tab-content" style="display: block;">
     <h2>Asignación Automática de Docentes - AHP Optimizado</h2>
     
