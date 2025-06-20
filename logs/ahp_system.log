@@ -46,3 +46,19 @@
 [2025-06-13 13:34:44] [INFO] Iniciando asignación para ciclo: 2025-1 | Contexto: {"preview":false}
 [2025-06-13 13:34:44] [ERROR] Error en asignación | Contexto: {"mensaje":"SQLSTATE[HY093]: Invalid parameter number","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\classes\\AsignacionAHPOptimizada.php","linea":157}
 [2025-06-13 13:34:44] [ERROR] Error en procesamiento | Contexto: {"mensaje":"Datos de vista previa inválidos.","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\procesar\\procesar_asignacion_automatica.php","linea":171}
+[2025-06-14 04:58:20] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 04:58:20] [INFO] Usando método AHP Tradicional
+[2025-06-14 04:58:20] [ERROR] Error en procesamiento automático | Contexto: {"mensaje":"No se generaron asignaciones en la vista previa tradicional","archivo":"C:\\Users\\CNT\\Desktop\\prueba - copia\\procesar\\procesar_asignacion_automatica.php","linea":125,"ciclo":"2025-1","metodo":"tradicional"}
+[2025-06-14 04:58:40] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 04:58:40] [INFO] Usando método AHP Tradicional
+[2025-06-14 04:58:41] [INFO] Vista previa tradicional generada exitosamente | Contexto: {"total_asignaciones":12}
+[2025-06-14 04:58:55] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 04:58:55] [INFO] Usando método AHP Tradicional
+[2025-06-14 09:54:02] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 09:54:02] [INFO] Usando método AHP Tradicional
+[2025-06-14 09:54:03] [INFO] Vista previa tradicional generada exitosamente | Contexto: {"total_asignaciones":12}
+[2025-06-14 09:54:17] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 09:54:17] [INFO] Usando método AHP Tradicional
+[2025-06-14 09:54:48] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-14 09:54:48] [INFO] Usando método AHP Tradicional
+[2025-06-14 09:54:49] [INFO] Vista previa tradicional generada exitosamente | Contexto: {"total_asignaciones":1}

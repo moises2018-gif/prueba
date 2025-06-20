@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2025 a las 19:16:08
+-- Tiempo de generación: 14-06-2025 a las 11:40:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -172,13 +172,18 @@ CREATE TABLE `asignaciones` (
 --
 
 INSERT INTO `asignaciones` (`id_asignacion`, `id_docente`, `id_tipo_discapacidad`, `ciclo_academico`, `materia`, `numero_estudiantes`, `puntuacion_ahp`, `estado`, `fecha_asignacion`, `id_estudiante`, `id_materia`) VALUES
-(1, 8, 1, '2025-1', 'Base de Datos', 1, 1.066, 'Activa', '2025-06-13 07:34:38', 1, 6),
-(2, 8, 3, '2025-1', 'Base de Datos', 1, 1.055, 'Activa', '2025-06-13 07:34:38', 3, 6),
-(3, 8, 4, '2025-1', 'Matemáticas Discretas', 1, 0.914, 'Activa', '2025-06-13 07:34:38', 19, 1),
-(4, 8, 4, '2025-1', 'Química', 1, 0.914, 'Activa', '2025-06-13 07:34:38', 4, 8),
-(5, 8, 2, '2025-1', 'Programación I', 1, 0.900, 'Activa', '2025-06-13 07:34:38', 2, 2),
-(6, 8, 5, '2025-1', 'Química', 1, 0.895, 'Activa', '2025-06-13 07:34:38', 5, 8),
-(7, 8, 5, '2025-1', 'Química', 1, 0.895, 'Activa', '2025-06-13 07:34:38', 20, 8);
+(1, 8, 1, '2025-1', 'Estadística', 1, 1.025, 'Activa', '2025-06-13 23:30:53', 1, 7),
+(2, 1, 3, '2025-1', 'Cálculo Integral', 1, 1.025, 'Activa', '2025-06-13 23:30:53', 13, 10),
+(3, 7, 3, '2025-1', 'Química', 1, 0.960, 'Activa', '2025-06-13 23:30:53', 8, 8),
+(4, 5, 3, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Activa', '2025-06-13 23:30:53', 3, 5),
+(5, 2, 4, '2025-1', 'Programación II', 1, 0.784, 'Activa', '2025-06-13 23:30:53', 9, 9),
+(6, 9, 4, '2025-1', 'Cálculo Integral', 1, 0.784, 'Activa', '2025-06-13 23:30:53', 19, 10),
+(7, 4, 4, '2025-1', 'Álgebra Lineal', 1, 0.526, 'Activa', '2025-06-13 23:30:53', 4, 5),
+(8, 3, 4, '2025-1', 'Base de Datos', 1, 0.472, 'Activa', '2025-06-13 23:30:53', 14, 6),
+(9, 6, 2, '2025-1', 'Cálculo Diferencial', 1, 0.402, 'Activa', '2025-06-13 23:30:53', 2, 4),
+(10, 8, 5, '2025-1', 'Estadística', 1, 0.891, 'Activa', '2025-06-13 23:30:53', 10, 7),
+(11, 1, 5, '2025-1', 'Base de Datos', 1, 0.891, 'Activa', '2025-06-13 23:30:53', 5, 6),
+(12, 9, 5, '2025-1', 'Álgebra Lineal', 1, 0.844, 'Activa', '2025-06-13 23:30:53', 20, 5);
 
 -- --------------------------------------------------------
 
@@ -251,11 +256,11 @@ CREATE TABLE `criterios_ahp` (
 --
 
 INSERT INTO `criterios_ahp` (`id_criterio`, `nombre_criterio`, `codigo_criterio`, `peso_criterio`, `descripcion`, `created_at`) VALUES
-(1, 'Formación Específica en Inclusión', 'FSI', 0.280, 'Capacitaciones y formación específica en NEE', '2025-06-13 07:04:30'),
-(2, 'Experiencia Práctica con NEE', 'EPR', 0.320, 'Años de experiencia trabajando con estudiantes NEE - CRITERIO MÁS IMPORTANTE', '2025-06-13 07:04:30'),
-(3, 'Adaptaciones Metodológicas Implementadas', 'AMI', 0.160, 'Modificaciones realizadas en la metodología de enseñanza', '2025-06-13 07:04:30'),
-(4, 'Años de Experiencia Docente General', 'AED', 0.130, 'Experiencia total como docente', '2025-06-13 07:04:30'),
-(5, 'Nivel de Formación Académica', 'NFA', 0.110, 'Títulos de tercer y cuarto nivel', '2025-06-13 07:04:30');
+(1, 'Formación Específica en Inclusión', 'FSI', 0.280, 'Capacitaciones y formación específica en NEE', '2025-06-13 18:22:03'),
+(2, 'Experiencia Práctica con NEE', 'EPR', 0.320, 'Años de experiencia trabajando con estudiantes NEE - CRITERIO MÁS IMPORTANTE', '2025-06-13 18:22:03'),
+(3, 'Adaptaciones Metodológicas Implementadas', 'AMI', 0.160, 'Modificaciones realizadas en la metodología de enseñanza', '2025-06-13 18:22:03'),
+(4, 'Años de Experiencia Docente General', 'AED', 0.130, 'Experiencia total como docente', '2025-06-13 18:22:03'),
+(5, 'Nivel de Formación Académica', 'NFA', 0.110, 'Títulos de tercer y cuarto nivel', '2025-06-13 18:22:03');
 
 -- --------------------------------------------------------
 
@@ -284,15 +289,15 @@ CREATE TABLE `docentes` (
 --
 
 INSERT INTO `docentes` (`id_docente`, `nombres_completos`, `facultad`, `modalidad_enseñanza`, `años_experiencia_docente`, `titulo_tercer_nivel`, `titulo_cuarto_nivel`, `formacion_inclusion`, `estudiantes_nee_promedio`, `capacitaciones_nee`, `experiencia_nee_años`, `created_at`, `updated_at`) VALUES
-(1, 'JACOME MORALES GLADYS CRISTINA', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', 'Más de 10 años', 'Ingeniero en Computación', 'Doctor en Ciencias Pedagógicas', 1, '1 a 5 estudiantes', 5, 8, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(2, 'ALFONSO ANÍBAL GUIJARRO RODRÍGUEZ', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero sistemas computacionales', 'Master en ciberseguridad, Master en administración de empresas', 1, '1 a 5 estudiantes', 3, 6, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(3, 'Edison Luis Cruz Navarrete', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Virtual', '6 a 10 años', 'Ingeniero en software', NULL, 0, '1 a 5 estudiantes', 0, 4, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(4, 'Tatiana Mabel Alcivar Maldonado', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '1 a 5 años', 'Ing en contabilidad y Auditoría', 'Master en administración de empresas', 0, '1 a 5 estudiantes', 1, 2, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(5, 'Alex Roberto Collantes Farah', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero en Sistemas Computacionales', 'Master en administración de empresas', 1, '6 a 10 estudiantes', 4, 7, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(6, 'Myriam Garcia', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Virtual', '1 a 5 años', 'Ingeniero en Computación', NULL, 0, '1 a 5 estudiantes', 0, 1, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(7, 'Carlos Mendoza Silva', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '6 a 10 años', 'Ingeniero en Software', 'Master en Educación Especial', 1, '1 a 5 estudiantes', 6, 5, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(8, 'Ana Patricia Loor Cedeño', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero en Sistemas', 'Doctor en Educación Inclusiva', 1, '1 a 5 estudiantes', 8, 9, '2025-06-13 07:04:31', '2025-06-13 07:04:31'),
-(9, 'MARÍA FERNANDA CASTRO MORALES', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Licenciada en Psicología Educativa', 'Master en Educación Especial y Inclusiva', 1, '6 a 10 estudiantes', 4, 6, '2025-06-13 07:06:03', '2025-06-13 07:06:03');
+(1, 'JACOME MORALES GLADYS CRISTINA', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', 'Más de 10 años', 'Ingeniero en Computación', 'Doctor en Ciencias Pedagógicas', 1, '1 a 5 estudiantes', 5, 8, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(2, 'ALFONSO ANÍBAL GUIJARRO RODRÍGUEZ', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero sistemas computacionales', 'Master en ciberseguridad, Master en administración de empresas', 1, '1 a 5 estudiantes', 3, 6, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(3, 'Edison Luis Cruz Navarrete', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Virtual', '6 a 10 años', 'Ingeniero en software', NULL, 0, '1 a 5 estudiantes', 0, 4, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(4, 'Tatiana Mabel Alcivar Maldonado', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '1 a 5 años', 'Ing en contabilidad y Auditoría', 'Master en administración de empresas', 0, '1 a 5 estudiantes', 1, 2, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(5, 'Alex Roberto Collantes Farah', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero en Sistemas Computacionales', 'Master en administración de empresas', 1, '6 a 10 estudiantes', 4, 7, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(6, 'Myriam Garcia', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Virtual', '1 a 5 años', 'Ingeniero en Computación', NULL, 0, '1 a 5 estudiantes', 0, 1, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(7, 'Carlos Mendoza Silva', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '6 a 10 años', 'Ingeniero en Software', 'Master en Educación Especial', 1, '1 a 5 estudiantes', 6, 5, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(8, 'Ana Patricia Loor Cedeño', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Ingeniero en Sistemas', 'Doctor en Educación Inclusiva', 1, '1 a 5 estudiantes', 8, 9, '2025-06-13 18:22:04', '2025-06-13 18:22:04'),
+(9, 'MARÍA FERNANDA CASTRO MORALES', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', 'Más de 10 años', 'Licenciada en Psicología Educativa', 'Master en Educación Especial y Inclusiva', 1, '6 a 10 estudiantes', 4, 6, '2025-06-13 18:22:04', '2025-06-13 18:22:04');
 
 --
 -- Disparadores `docentes`
@@ -355,6 +360,30 @@ CREATE TRIGGER `trigger_nuevo_docente` AFTER INSERT ON `docentes` FOR EACH ROW B
     -- Física (ID=5)
     (NEW.id_docente, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger');
     
+    -- Insertar límites de asignación automáticamente
+    INSERT INTO limites_asignacion (
+        id_docente, 
+        maximo_estudiantes_nee, 
+        maximo_por_tipo_discapacidad, 
+        observaciones
+    ) VALUES (
+        NEW.id_docente,
+        -- Límites basados en formación y experiencia
+        CASE 
+            WHEN NEW.formacion_inclusion = 1 AND NEW.experiencia_nee_años >= 5 THEN 7
+            WHEN NEW.formacion_inclusion = 1 THEN 5
+            WHEN NEW.experiencia_nee_años >= 3 THEN 4
+            ELSE 3 
+        END,
+        CASE 
+            WHEN NEW.formacion_inclusion = 1 AND NEW.experiencia_nee_años >= 5 THEN 3
+            WHEN NEW.formacion_inclusion = 1 THEN 3
+            ELSE 2 
+        END,
+        CONCAT('Límites automáticos basados en perfil: formación=', 
+               NEW.formacion_inclusion, ', experiencia=', NEW.experiencia_nee_años, ' años')
+    );
+    
 END
 $$
 DELIMITER ;
@@ -379,26 +408,26 @@ CREATE TABLE `estudiantes` (
 --
 
 INSERT INTO `estudiantes` (`id_estudiante`, `nombres_completos`, `id_tipo_discapacidad`, `ciclo_academico`, `facultad`, `created_at`) VALUES
-(1, 'Ana María López García', 1, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(2, 'Carlos Andrés Pérez Rojas', 2, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(3, 'Sofía Alejandra Gómez Martínez', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(4, 'Juan Pablo Morales Vargas', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(5, 'Lucía Fernanda Torres Cruz', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(6, 'Diego Armando Sánchez Díaz', 1, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 07:04:32'),
-(7, 'Valeria Isabel Ramírez Ortiz', 2, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 07:04:32'),
-(8, 'Miguel Ángel Castro Paredes', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(9, 'Camila Estefanía Ruiz Salazar', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(10, 'Andrés Felipe Mendoza López', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(11, 'Laura Daniela Chávez Morales', 1, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 07:04:32'),
-(12, 'Gabriel Esteban Flores Gómez', 2, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 07:04:32'),
-(13, 'Mariana Sofía Herrera Vásquez', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(14, 'Sebastián Alejandro Ortiz Peña', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(15, 'Paula Valentina Rojas Castro', 5, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 07:04:32'),
-(16, 'Julián David Vargas Sánchez', 1, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 07:04:32'),
-(17, 'Catalina María Díaz Torres', 2, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 07:04:32'),
-(18, 'Felipe Nicolás Martínez Cruz', 3, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 07:04:32'),
-(19, 'Isabella Fernanda Salazar Ramírez', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32'),
-(20, 'Tomás Ignacio Paredes Gómez', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 07:04:32');
+(1, 'Ana María López García', 1, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(2, 'Carlos Andrés Pérez Rojas', 2, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(3, 'Sofía Alejandra Gómez Martínez', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(4, 'Juan Pablo Morales Vargas', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(5, 'Lucía Fernanda Torres Cruz', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(6, 'Diego Armando Sánchez Díaz', 1, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 18:22:04'),
+(7, 'Valeria Isabel Ramírez Ortiz', 2, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 18:22:04'),
+(8, 'Miguel Ángel Castro Paredes', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(9, 'Camila Estefanía Ruiz Salazar', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(10, 'Andrés Felipe Mendoza López', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(11, 'Laura Daniela Chávez Morales', 1, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 18:22:04'),
+(12, 'Gabriel Esteban Flores Gómez', 2, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 18:22:04'),
+(13, 'Mariana Sofía Herrera Vásquez', 3, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(14, 'Sebastián Alejandro Ortiz Peña', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(15, 'Paula Valentina Rojas Castro', 5, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 18:22:04'),
+(16, 'Julián David Vargas Sánchez', 1, '2025-1', 'FACULTAD DE CIENCIAS SOCIALES Y HUMANAS', '2025-06-13 18:22:04'),
+(17, 'Catalina María Díaz Torres', 2, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 18:22:04'),
+(18, 'Felipe Nicolás Martínez Cruz', 3, '2025-1', 'FACULTAD DE INGENIERÍA', '2025-06-13 18:22:04'),
+(19, 'Isabella Fernanda Salazar Ramírez', 4, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04'),
+(20, 'Tomás Ignacio Paredes Gómez', 5, '2025-1', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-06-13 18:22:04');
 
 -- --------------------------------------------------------
 
@@ -436,9 +465,9 @@ CREATE TABLE `experiencia_docente_discapacidad` (
 --
 
 INSERT INTO `experiencia_docente_discapacidad` (`id_experiencia`, `id_docente`, `id_tipo_discapacidad`, `tiene_experiencia`, `años_experiencia`, `nivel_competencia`, `observaciones`) VALUES
-(1, 1, 1, 1, 5, 'Avanzado', 'Actualizado manualmente el 2025-06-13 07:04:32'),
+(1, 1, 1, 1, 5, 'Avanzado', 'Actualizado manualmente'),
 (2, 1, 2, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
-(3, 1, 3, 1, 6, 'Experto', 'Actualizado manualmente el 2025-06-13 07:04:32'),
+(3, 1, 3, 1, 6, 'Experto', 'Actualizado manualmente'),
 (4, 1, 4, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (5, 1, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (6, 2, 1, 1, 3, 'Avanzado', 'Generado automáticamente por trigger'),
@@ -468,12 +497,12 @@ INSERT INTO `experiencia_docente_discapacidad` (`id_experiencia`, `id_docente`, 
 (30, 6, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (31, 7, 1, 1, 3, 'Avanzado', 'Generado automáticamente por trigger'),
 (32, 7, 2, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
-(33, 7, 3, 1, 5, 'Experto', 'Actualizado manualmente el 2025-06-13 07:04:32'),
+(33, 7, 3, 1, 5, 'Experto', 'Actualizado manualmente'),
 (34, 7, 4, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (35, 7, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
-(36, 8, 1, 1, 7, 'Experto', 'Actualizado manualmente el 2025-06-13 07:04:32'),
+(36, 8, 1, 1, 7, 'Experto', 'Actualizado manualmente'),
 (37, 8, 2, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
-(38, 8, 3, 1, 8, 'Experto', 'Actualizado manualmente el 2025-06-13 07:04:32'),
+(38, 8, 3, 1, 8, 'Experto', 'Actualizado manualmente'),
 (39, 8, 4, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (40, 8, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (41, 9, 1, 1, 3, 'Avanzado', 'Generado automáticamente por trigger'),
@@ -503,15 +532,15 @@ CREATE TABLE `limites_asignacion` (
 --
 
 INSERT INTO `limites_asignacion` (`id_limite`, `id_docente`, `maximo_estudiantes_nee`, `maximo_por_tipo_discapacidad`, `disponible_ciclo`, `observaciones`, `created_at`) VALUES
-(1, 1, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=8 años', '2025-06-13 07:43:13'),
-(2, 2, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=6 años', '2025-06-13 07:43:13'),
-(3, 3, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=4 años', '2025-06-13 07:43:13'),
-(4, 4, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=2 años', '2025-06-13 07:43:13'),
-(5, 5, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=7 años', '2025-06-13 07:43:13'),
-(6, 6, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=1 años', '2025-06-13 07:43:13'),
-(7, 7, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=5 años', '2025-06-13 07:43:13'),
-(8, 8, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=9 años', '2025-06-13 07:43:13'),
-(9, 9, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=6 años', '2025-06-13 07:43:13');
+(1, 1, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=8 años', '2025-06-13 18:22:05'),
+(2, 2, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=6 años', '2025-06-13 18:22:05'),
+(3, 3, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=4 años', '2025-06-13 18:22:05'),
+(4, 4, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=2 años', '2025-06-13 18:22:05'),
+(5, 5, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=7 años', '2025-06-13 18:22:05'),
+(6, 6, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=1 años', '2025-06-13 18:22:05'),
+(7, 7, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=5 años', '2025-06-13 18:22:05'),
+(8, 8, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=9 años', '2025-06-13 18:22:05'),
+(9, 9, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=6 años', '2025-06-13 18:22:05');
 
 -- --------------------------------------------------------
 
@@ -532,20 +561,16 @@ CREATE TABLE `materias` (
 --
 
 INSERT INTO `materias` (`id_materia`, `nombre_materia`, `facultad`, `ciclo_academico`, `created_at`) VALUES
-(1, 'Matemáticas Discretas', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(2, 'Programación I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(3, 'Física I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(4, 'Cálculo Diferencial', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(5, 'Álgebra Lineal', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(6, 'Base de Datos', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(7, 'Estadística', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(8, 'Química', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(9, 'Programación II', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(10, 'Cálculo Integral', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(11, 'Estructuras de Datos', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(12, 'Sistemas Operativos', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(13, 'Redes de Computadoras', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31'),
-(14, 'Ingeniería de Software', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 07:04:31');
+(1, 'Matemáticas Discretas', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(2, 'Programación I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(3, 'Física I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(4, 'Cálculo Diferencial', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(5, 'Álgebra Lineal', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(6, 'Base de Datos', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(7, 'Estadística', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(8, 'Química', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(9, 'Programación II', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04'),
+(10, 'Cálculo Integral', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-13 18:22:04');
 
 -- --------------------------------------------------------
 
@@ -567,31 +592,31 @@ CREATE TABLE `pesos_criterios_discapacidad` (
 --
 
 INSERT INTO `pesos_criterios_discapacidad` (`id_peso`, `id_tipo_discapacidad`, `id_criterio`, `peso_especifico`, `descripcion_peso`, `created_at`) VALUES
-(1, 1, 1, 0.260, 'FSI para Psicosocial: 26%', '2025-06-13 07:04:30'),
-(2, 1, 2, 0.500, 'EPR para Psicosocial: 50% - CRÍTICO para manejo emocional', '2025-06-13 07:04:30'),
-(3, 1, 3, 0.130, 'AMI para Psicosocial: 13%', '2025-06-13 07:04:30'),
-(4, 1, 4, 0.070, 'AED para Psicosocial: 7%', '2025-06-13 07:04:30'),
-(5, 1, 5, 0.030, 'NFA para Psicosocial: 3%', '2025-06-13 07:04:30'),
-(6, 2, 1, 0.080, 'FSI para Auditiva: 8%', '2025-06-13 07:04:30'),
-(7, 2, 2, 0.420, 'EPR para Auditiva: 42% - Experiencia práctica fundamental', '2025-06-13 07:04:30'),
-(8, 2, 3, 0.090, 'AMI para Auditiva: 9%', '2025-06-13 07:04:30'),
-(9, 2, 4, 0.270, 'AED para Auditiva: 27%', '2025-06-13 07:04:30'),
-(10, 2, 5, 0.130, 'NFA para Auditiva: 13%', '2025-06-13 07:04:30'),
-(11, 3, 1, 0.460, 'FSI para Intelectual: 46% - Formación especializada fundamental', '2025-06-13 07:04:30'),
-(12, 3, 2, 0.200, 'EPR para Intelectual: 20%', '2025-06-13 07:04:30'),
-(13, 3, 3, 0.200, 'AMI para Intelectual: 20% - Adaptaciones curriculares necesarias', '2025-06-13 07:04:30'),
-(14, 3, 4, 0.090, 'AED para Intelectual: 9%', '2025-06-13 07:04:30'),
-(15, 3, 5, 0.040, 'NFA para Intelectual: 4%', '2025-06-13 07:04:30'),
-(16, 4, 1, 0.170, 'FSI para Visual: 17%', '2025-06-13 07:04:30'),
-(17, 4, 2, 0.060, 'EPR para Visual: 6%', '2025-06-13 07:04:30'),
-(18, 4, 3, 0.110, 'AMI para Visual: 11%', '2025-06-13 07:04:30'),
-(19, 4, 4, 0.250, 'AED para Visual: 25%', '2025-06-13 07:04:30'),
-(20, 4, 5, 0.410, 'NFA para Visual: 41% - Formación técnica crucial', '2025-06-13 07:04:30'),
-(21, 5, 1, 0.160, 'FSI para Física: 16%', '2025-06-13 07:04:30'),
-(22, 5, 2, 0.060, 'EPR para Física: 6%', '2025-06-13 07:04:30'),
-(23, 5, 3, 0.440, 'AMI para Física: 44% - Adaptaciones metodológicas críticas', '2025-06-13 07:04:30'),
-(24, 5, 4, 0.260, 'AED para Física: 26%', '2025-06-13 07:04:30'),
-(25, 5, 5, 0.070, 'NFA para Física: 7%', '2025-06-13 07:04:30');
+(1, 1, 1, 0.260, 'FSI para Psicosocial: 26%', '2025-06-13 18:22:04'),
+(2, 1, 2, 0.500, 'EPR para Psicosocial: 50% - CRÍTICO para manejo emocional', '2025-06-13 18:22:04'),
+(3, 1, 3, 0.130, 'AMI para Psicosocial: 13%', '2025-06-13 18:22:04'),
+(4, 1, 4, 0.070, 'AED para Psicosocial: 7%', '2025-06-13 18:22:04'),
+(5, 1, 5, 0.030, 'NFA para Psicosocial: 3%', '2025-06-13 18:22:04'),
+(6, 2, 1, 0.080, 'FSI para Auditiva: 8%', '2025-06-13 18:22:04'),
+(7, 2, 2, 0.420, 'EPR para Auditiva: 42% - Experiencia práctica fundamental', '2025-06-13 18:22:04'),
+(8, 2, 3, 0.090, 'AMI para Auditiva: 9%', '2025-06-13 18:22:04'),
+(9, 2, 4, 0.270, 'AED para Auditiva: 27%', '2025-06-13 18:22:04'),
+(10, 2, 5, 0.130, 'NFA para Auditiva: 13%', '2025-06-13 18:22:04'),
+(11, 3, 1, 0.460, 'FSI para Intelectual: 46% - Formación especializada fundamental', '2025-06-13 18:22:04'),
+(12, 3, 2, 0.200, 'EPR para Intelectual: 20%', '2025-06-13 18:22:04'),
+(13, 3, 3, 0.200, 'AMI para Intelectual: 20% - Adaptaciones curriculares necesarias', '2025-06-13 18:22:04'),
+(14, 3, 4, 0.090, 'AED para Intelectual: 9%', '2025-06-13 18:22:04'),
+(15, 3, 5, 0.040, 'NFA para Intelectual: 4%', '2025-06-13 18:22:04'),
+(16, 4, 1, 0.170, 'FSI para Visual: 17%', '2025-06-13 18:22:04'),
+(17, 4, 2, 0.060, 'EPR para Visual: 6%', '2025-06-13 18:22:04'),
+(18, 4, 3, 0.110, 'AMI para Visual: 11%', '2025-06-13 18:22:04'),
+(19, 4, 4, 0.250, 'AED para Visual: 25%', '2025-06-13 18:22:04'),
+(20, 4, 5, 0.410, 'NFA para Visual: 41% - Formación técnica crucial', '2025-06-13 18:22:04'),
+(21, 5, 1, 0.160, 'FSI para Física: 16%', '2025-06-13 18:22:04'),
+(22, 5, 2, 0.060, 'EPR para Física: 6%', '2025-06-13 18:22:04'),
+(23, 5, 3, 0.440, 'AMI para Física: 44% - Adaptaciones metodológicas críticas', '2025-06-13 18:22:04'),
+(24, 5, 4, 0.260, 'AED para Física: 26%', '2025-06-13 18:22:04'),
+(25, 5, 5, 0.070, 'NFA para Física: 7%', '2025-06-13 18:22:04');
 
 -- --------------------------------------------------------
 
@@ -612,11 +637,11 @@ CREATE TABLE `tipos_discapacidad` (
 --
 
 INSERT INTO `tipos_discapacidad` (`id_tipo_discapacidad`, `nombre_discapacidad`, `peso_prioridad`, `descripcion`, `created_at`) VALUES
-(1, 'Psicosocial', 0.400, 'Discapacidad relacionada con aspectos psicológicos y sociales - MAYOR PRIORIDAD', '2025-06-13 07:04:30'),
-(2, 'Auditiva', 0.100, 'Discapacidad relacionada con la audición', '2025-06-13 07:04:30'),
-(3, 'Intelectual', 0.300, 'Discapacidad relacionada con el desarrollo intelectual - SEGUNDA PRIORIDAD', '2025-06-13 07:04:30'),
-(4, 'Visual', 0.150, 'Discapacidad relacionada con la visión', '2025-06-13 07:04:30'),
-(5, 'Física', 0.050, 'Discapacidad relacionada con la movilidad física - MENOR PRIORIDAD', '2025-06-13 07:04:30');
+(1, 'Psicosocial', 0.400, 'Discapacidad relacionada con aspectos psicológicos y sociales - MAYOR PRIORIDAD', '2025-06-13 18:22:03'),
+(2, 'Auditiva', 0.100, 'Discapacidad relacionada con la audición', '2025-06-13 18:22:03'),
+(3, 'Intelectual', 0.300, 'Discapacidad relacionada con el desarrollo intelectual - SEGUNDA PRIORIDAD', '2025-06-13 18:22:03'),
+(4, 'Visual', 0.150, 'Discapacidad relacionada con la visión', '2025-06-13 18:22:03'),
+(5, 'Física', 0.050, 'Discapacidad relacionada con la movilidad física - MENOR PRIORIDAD', '2025-06-13 18:22:03');
 
 -- --------------------------------------------------------
 
@@ -758,7 +783,8 @@ ALTER TABLE `asignaciones`
   ADD KEY `id_docente` (`id_docente`),
   ADD KEY `id_tipo_discapacidad` (`id_tipo_discapacidad`),
   ADD KEY `id_estudiante` (`id_estudiante`),
-  ADD KEY `id_materia` (`id_materia`);
+  ADD KEY `id_materia` (`id_materia`),
+  ADD KEY `idx_asignaciones_ciclo_estado` (`ciclo_academico`,`estado`);
 
 --
 -- Indices de la tabla `asignaciones_historial`
@@ -794,7 +820,8 @@ ALTER TABLE `docentes`
 --
 ALTER TABLE `estudiantes`
   ADD PRIMARY KEY (`id_estudiante`),
-  ADD KEY `id_tipo_discapacidad` (`id_tipo_discapacidad`);
+  ADD KEY `id_tipo_discapacidad` (`id_tipo_discapacidad`),
+  ADD KEY `idx_estudiantes_ciclo_facultad` (`ciclo_academico`,`facultad`);
 
 --
 -- Indices de la tabla `evaluaciones_ahp`
@@ -853,7 +880,7 @@ ALTER TABLE `adaptaciones_metodologicas`
 -- AUTO_INCREMENT de la tabla `asignaciones`
 --
 ALTER TABLE `asignaciones`
-  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `asignaciones_historial`
@@ -907,7 +934,7 @@ ALTER TABLE `limites_asignacion`
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pesos_criterios_discapacidad`

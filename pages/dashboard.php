@@ -161,26 +161,173 @@
 }
 
 .dashboard-nav-link {
-    color: white;
+    color: #2c3e50;
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
     font-size: 14px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
 }
 
 .dashboard-nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.9);
     transform: translateY(-2px);
-    color: white;
+    color: #2c3e50;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 /* Secciones con anclas */
 .dashboard-section {
     margin-bottom: 40px;
     scroll-margin-top: 100px;
+}
+
+/* Info boxes especiales */
+.info-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.info-box h3 {
+    color: #28a745 !important;
+    margin-bottom: 15px;
+}
+
+.info-box h4 {
+    color: #ffd700 !important;
+    margin-bottom: 10px;
+}
+
+.info-box ul li {
+    color: #2c3e50 !important;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.info-box p {
+    color: #2c3e50 !important;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.info-box strong {
+    color: #155724 !important;
+}
+
+/* Grid para criterios */
+.criterios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.criterio-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Grid para distribución */
+.distribucion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Advertencia especial */
+.warning-box {
+    background: rgba(231, 76, 60, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.warning-box h4 {
+    color: #e74c3c !important;
+}
+
+.warning-box p {
+    color: #2c3e50 !important;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+/* Success box */
+.success-box {
+    background: rgba(40, 167, 69, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.success-box h4 {
+    color: #28a745 !important;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #2c3e50 !important;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Tarjetas de distribución especiales */
+.distribucion-card {
+    color: #ffffff !important;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.distribucion-card h4 {
+    color: #ffffff !important;
+    margin-bottom: 15px;
+}
+
+.distribucion-card p {
+    color: #ffffff !important;
+    margin: 5px 0;
+}
+
+.distribucion-card strong {
+    color: #ffffff !important;
+}
+
+.prioridad-label {
+    color: #ffd700 !important;
+    font-size: 0.9em;
+}
+
+/* Estados de verificación */
+.estado-ok {
+    color: #28a745 !important;
+}
+
+.estado-error {
+    color: #dc3545 !important;
+}
+
+.estado-warning {
+    color: #ffc107 !important;
 }
 
 /* Responsive mejoras */
@@ -207,6 +354,14 @@
         font-size: 12px;
         padding: 6px 12px;
     }
+    
+    .criterios-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .distribucion-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Animaciones suaves */
@@ -218,6 +373,58 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Estilos adicionales para los gráficos */
+#subcriteriosChart, #criteriosPrincipalesChart {
+    height: 300px !important;
+    max-height: 300px;
+}
+
+/* Mejoras de gráficos */
+.chart-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.chart-container h4 {
+    color: #2c3e50 !important;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.charts-grid {
+    display: flex;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.chart-item {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Lista de verificación */
+.verification-list {
+    color: #2c3e50 !important;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.verification-list li {
+    margin: 8px 0;
+}
+
+.verification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
 </style>
 
 <div class="dashboard-container" id="dashboardContainer">
@@ -227,9 +434,7 @@
             <a href="#inicio" class="dashboard-nav-link">🏠 Inicio</a>
             <a href="#estadisticas" class="dashboard-nav-link">📊 Estadísticas</a>
             <a href="#distribucion" class="dashboard-nav-link">📈 Distribución</a>
-            <a href="#ranking" class="dashboard-nav-link">🏆 Ranking</a>
             <a href="#graficos" class="dashboard-nav-link">📉 Gráficos</a>
-            <a href="#verificacion" class="dashboard-nav-link">✅ Verificación</a>
         </div>
     </div>
 
@@ -238,12 +443,12 @@
         <section id="inicio" class="dashboard-section fade-in">
             <h2>Dashboard</h2>
             
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-                <h3 style="color: #28a745; margin-bottom: 15px;">🎉 Sistema AHP Optimizado con Triggers Automáticos</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
-                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px;">
-                        <h4 style="color: #ffd700;">📊 Criterios Principales (Tipos de Discapacidad)</h4>
-                        <ul style="color: white; margin: 10px 0; font-size: 14px;">
+            <div class="info-box">
+                <h3>🎉 Sistema AHP Optimizado con Triggers Automáticos</h3>
+                <div class="criterios-grid">
+                    <div class="criterio-box">
+                        <h4>📊 Criterios Principales (Tipos de Discapacidad)</h4>
+                        <ul>
                             <li><strong>Psicosocial:</strong> 40% (Máxima prioridad)</li>
                             <li><strong>Intelectual:</strong> 30% (Segunda prioridad)</li>
                             <li><strong>Visual:</strong> 15% (Tercera prioridad)</li>
@@ -251,9 +456,9 @@
                             <li><strong>Física:</strong> 5% (Quinta prioridad)</li>
                         </ul>
                     </div>
-                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px;">
-                        <h4 style="color: #ffd700;">🎯 Subcriterios Globales</h4>
-                        <ul style="color: white; margin: 10px 0; font-size: 14px;">
+                    <div class="criterio-box">
+                        <h4>🎯 Subcriterios Globales</h4>
+                        <ul>
                             <li><strong>EPR:</strong> 32% (Experiencia Práctica - MÁS IMPORTANTE)</li>
                             <li><strong>FSI:</strong> 28% (Formación Específica)</li>
                             <li><strong>AMI:</strong> 16% (Adaptaciones Metodológicas)</li>
@@ -262,12 +467,12 @@
                         </ul>
                     </div>
                 </div>
-                <div style="background: rgba(40, 167, 69, 0.2); padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <h4 style="color: #28a745; margin-bottom: 10px;">🔧 Triggers Automáticos Activos</h4>
-                    <p style="color: white; margin: 0; font-size: 14px;">
-                        ✅ <strong>Solo necesitas hacer INSERT en tabla docentes</strong> - Los triggers crean automáticamente todos los registros relacionados<br>
-                        ✅ <strong>Valores inteligentes por defecto</strong> - Docentes con formación obtienen mejores puntuaciones automáticamente<br>
-                        ✅ <strong>Sistema AHP siempre funcional</strong> - Imposible tener datos incompletos
+                <div class="success-box">
+                    <h4>🔧 Triggers Automáticos Activos</h4>
+                    <p>
+                        <strong>Solo necesitas hacer INSERT en tabla docentes</strong> - Los triggers crean automáticamente todos los registros relacionados<br>
+                        <strong>Valores inteligentes por defecto</strong> - Docentes con formación obtienen mejores puntuaciones automáticamente<br>
+                        <strong>Sistema AHP siempre funcional</strong> - Imposible tener datos incompletos
                     </p>
                 </div>
             </div>
@@ -351,11 +556,9 @@
                 <div class="ahp-card">
                     <h3>Total Docentes Evaluados</h3>
                     <p style="font-size: 2em; margin: 10px 0;"><?php echo $total_docentes; ?></p>
-                    <p>Con metodología AHP corregida</p>
                     <?php if ($triggers_activos): ?>
-                        <small style="color: #90EE90;">✅ Triggers activos</small>
+                        <small class="estado-ok">✅ Triggers activos</small>
                     <?php else: ?>
-                        <small style="color: #FFB6C1;">⚠️ Verificar triggers</small>
                     <?php endif; ?>
                 </div>
                 
@@ -386,9 +589,9 @@
         <!-- SECCIÓN DISTRIBUCIÓN -->
         <section id="distribucion" class="dashboard-section fade-in">
             <h3>📈 Distribución por Tipo de Discapacidad (Criterios Principales AHP)</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div class="distribucion-grid">
                 <?php foreach ($distribucion as $dist): ?>
-                    <div class="ahp-card" style="background: linear-gradient(135deg, 
+                    <div class="distribucion-card" style="background: linear-gradient(135deg, 
                         <?php 
                         echo $dist['peso_prioridad'] >= 0.3 ? '#e74c3c, #c0392b' :  
                             ($dist['peso_prioridad'] >= 0.15 ? '#f39c12, #e67e22' :  
@@ -397,7 +600,7 @@
                         <h4><?php echo htmlspecialchars($dist['nombre_discapacidad']); ?></h4>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
                             <span style="font-size: 1.8em; font-weight: bold;"><?php echo number_format($dist['peso_prioridad'] * 100, 1); ?>%</span>
-                            <span style="color: #ffd700; font-size: 0.9em;">
+                            <span class="prioridad-label">
                                 <?php 
                                 echo $dist['peso_prioridad'] >= 0.3 ? 'ALTA PRIORIDAD' : 
                                     ($dist['peso_prioridad'] >= 0.15 ? 'MEDIA PRIORIDAD' : 'BAJA PRIORIDAD');
@@ -417,64 +620,26 @@
             </div>
         </section>
 
-        
         <!-- SECCIÓN GRÁFICOS -->
         <section id="graficos" class="dashboard-section fade-in">
             <h3>📉 Análisis Visual</h3>
-            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
-                    <h4>Pesos de Subcriterios (Orden Corregido)</h4>
-                    <canvas id="subcriteriosChart"></canvas>
+            <div class="charts-grid">
+                <div class="chart-item">
+                    <div class="chart-container">
+                        <h4>Pesos de Subcriterios (Orden Corregido)</h4>
+                        <canvas id="subcriteriosChart"></canvas>
+                    </div>
                 </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <h4>Pesos de Criterios Principales</h4>
-                    <canvas id="criteriosPrincipalesChart"></canvas>
+                <div class="chart-item">
+                    <div class="chart-container">
+                        <h4>Pesos de Criterios Principales</h4>
+                        <canvas id="criteriosPrincipalesChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN VERIFICACIÓN -->
-        <section id="verificacion" class="dashboard-section fade-in">
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin-top: 30px;">
-                <h3 style="color: #ffd700;">✅ Verificación del Sistema AHP</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 15px;">
-                    <div>
-                        <h4 style="color: #28a745;">✅ Estado del Sistema:</h4>
-                        <ul style="color: white; line-height: 1.6;">
-                            <li>Pesos de criterios principales: <?php 
-                                $suma_principales = array_sum(array_column($tipos_discapacidad, 'peso_prioridad'));
-                                echo abs($suma_principales - 1.0) < 0.001 ? '✅ ' . number_format($suma_principales, 3) : '❌ ' . number_format($suma_principales, 3);
-                            ?></li>
-                            <li>Pesos de subcriterios: <?php 
-                                $suma_sub = array_sum(array_column($criterios, 'peso_criterio'));
-                                echo abs($suma_sub - 1.0) < 0.001 ? '✅ ' . number_format($suma_sub, 3) : '❌ ' . number_format($suma_sub, 3);
-                            ?></li>
-                            <li>Triggers automáticos: <?php echo $triggers_activos ? '✅ Funcionando' : '❌ No detectados'; ?></li>
-                            <li>Registros automáticos: <?php echo $triggers_stats['adaptaciones_creadas'] > 0 ? '✅ Creándose correctamente' : '⚠️ Verificar funcionamiento'; ?></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 style="color: #17a2b8;">🔧 Funcionalidades Activas:</h4>
-                        <ul style="color: white; line-height: 1.6;">
-                            <li>✅ Inserción simplificada de docentes</li>
-                            <li>✅ Cálculo AHP específico por discapacidad</li>
-                            <li>✅ Bonificaciones por experiencia específica</li>
-                            <li>✅ Procedimientos auxiliares disponibles</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <?php if (!$triggers_activos): ?>
-                <div style="background: rgba(231, 76, 60, 0.2); padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <h4 style="color: #e74c3c;">⚠️ Advertencia: Triggers No Detectados</h4>
-                    <p style="color: white; margin: 0;">
-                        Los triggers automáticos no están funcionando. Para activarlos, ejecuta el script de base de datos completo nuevamente.
-                        Sin triggers, necesitarás crear manualmente los registros en las tablas relacionadas.
-                    </p>
-                </div>
-                <?php endif; ?>
-            </div>
-        </section>
+
 
         <?php } else { ?>
             <div class="alert alert-error">No se pudo conectar a la base de datos.</div>
@@ -542,8 +707,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Highlight del enlace activo
-                document.querySelectorAll('.dashboard-nav-link').forEach(l => l.style.background = 'rgba(255, 255, 255, 0.1)');
-                this.style.background = 'rgba(255, 255, 255, 0.3)';
+                document.querySelectorAll('.dashboard-nav-link').forEach(l => l.style.background = 'rgba(255, 255, 255, 0.8)');
+                this.style.background = 'rgba(255, 255, 255, 0.9)';
             }
         });
     });
@@ -599,12 +764,12 @@ new Chart(ctxSub, {
             title: { 
                 display: true, 
                 text: 'EPR (32%) > FSI (28%) > AMI (16%) > AED (13%) > NFA (11%)',
-                color: 'white',
+                color: '#2c3e50',
                 font: { size: 14 }
             },
             legend: {
                 position: 'bottom',
-                labels: { color: 'white' }
+                labels: { color: '#2c3e50' }
             },
             tooltip: {
                 callbacks: {
@@ -643,29 +808,29 @@ new Chart(ctxPrin, {
                 title: { 
                     display: true, 
                     text: 'Peso AHP',
-                    color: 'white'
+                    color: '#2c3e50'
                 },
-                ticks: { color: 'white' },
-                grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                ticks: { color: '#2c3e50' },
+                grid: { color: 'rgba(44, 62, 80, 0.1)' }
             },
             x: { 
                 title: { 
                     display: true, 
                     text: 'Tipos de Discapacidad',
-                    color: 'white'
+                    color: '#2c3e50'
                 },
                 ticks: { 
-                    color: 'white',
+                    color: '#2c3e50',
                     maxRotation: 45
                 },
-                grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                grid: { color: 'rgba(44, 62, 80, 0.1)' }
             }
         },
         plugins: { 
             title: { 
                 display: true, 
                 text: 'Psicosocial (40%) > Intelectual (30%) > Visual (15%) > Auditiva (10%) > Física (5%)',
-                color: 'white',
+                color: '#2c3e50',
                 font: { size: 14 }
             },
             legend: {
@@ -746,108 +911,5 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
-
-<style>
-/* Estilos adicionales para los gráficos */
-#subcriteriosChart, #criteriosPrincipalesChart {
-    height: 300px !important;
-    max-height: 300px;
-}
-
-/* Mejorar la tabla en dispositivos móviles */
-@media (max-width: 768px) {
-    .tabla-scroll {
-        max-height: 300px;
-    }
-    
-    .table-fixed-header th,
-    .table-fixed-header td {
-        font-size: 12px;
-        padding: 8px 6px;
-    }
-    
-    .ahp-results {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    
-    .dashboard-nav {
-        position: static;
-    }
-    
-    .dashboard-nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .dashboard-nav-link {
-        width: 100%;
-        text-align: center;
-        margin: 2px 0;
-    }
-}
-
-/* Animaciones adicionales */
-.ahp-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
-    transition: all 0.3s ease;
-}
-
-.progress-bar {
-    position: relative;
-    overflow: hidden;
-}
-
-.progress-fill {
-    transition: width 1.5s ease-in-out;
-    position: relative;
-}
-
-.progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Indicador visual de sección activa */
-.dashboard-section.active {
-    border-left: 4px solid #667eea;
-    padding-left: 16px;
-    transition: all 0.3s ease;
-}
-
-/* Mejoras para accesibilidad */
-.dashboard-nav-link:focus,
-.scroll-to-top:focus {
-    outline: 2px solid #667eea;
-    outline-offset: 2px;
-}
-
-/* Tooltip personalizado */
-[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 1000;
-}
-</style>
 
 <?php include '../includes/footer.php'; ?>

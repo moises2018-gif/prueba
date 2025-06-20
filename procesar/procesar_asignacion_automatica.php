@@ -1,296 +1,372 @@
 <?php
 /**
- * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA - VERSIÓN FINAL CORREGIDA
+ * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA UNIFICADO
  * Archivo: procesar/procesar_asignacion_automatica.php
  * 
- * CORRIGE: Error "Datos de vista previa inválidos"
+ * Soporta tanto método tradicional como híbrido
  */
 
-// Solo cargar conexión básica
-require_once '../includes/conexion.php';
+include '../includes/conexion.php';
+require_once '../includes/config.php';
 
-// Verificar método de solicitud
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: ../pages/asignacion.php?error=Método no permitido");
-    exit();
+// Cargar clases necesarias
+require_once '../classes/Logger.php';
+
+// Cargar clase híbrida solo si se necesita
+if (isset($_POST['metodo']) && $_POST['metodo'] === 'hibrido') {
+    require_once '../classes/AsignacionAHPHibrida.php';
 }
 
-// Verificar conexión
 $conn = ConexionBD();
-if (!$conn) {
-    header("Location: ../pages/asignacion.php?error=Error de conexión a la base de datos");
-    exit();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ciclo_academico'])) {
+    $ciclo_academico = $_POST['ciclo_academico'];
+    $metodo = $_POST['metodo'] ?? 'tradicional';
+    $logger = new Logger();
+    
+    try {
+        $logger->info('Iniciando procesamiento de asignación automática', [
+            'ciclo' => $ciclo_academico,
+            'metodo' => $metodo,
+            'ip' => $_SERVER['REMOTE_ADDR'] ?? 'desconocida'
+        ]);
+        
+        // MÉTODO HÍBRIDO
+        if ($metodo === 'hibrido') {
+            $logger->info('Usando método AHP Híbrido');
+            
+            $asignadorHibrido = new AsignacionAHPHibrida($conn);
+            
+            // VISTA PREVIA HÍBRIDA
+            if (isset($_POST['preview'])) {
+                $resultado = $asignadorHibrido->ejecutarAsignacionHibrida($ciclo_academico, true);
+                
+                if (!empty($resultado['asignaciones'])) {
+                    $preview_data = [];
+                    foreach ($resultado['asignaciones'] as $asignacion) {
+                        $preview_data[] = [
+                            'estudiante' => $asignacion['estudiante'],
+                            'docente' => $asignacion['docente'],
+                            'nombre_discapacidad' => $asignacion['nombre_discapacidad'],
+                            'peso_discapacidad' => $asignacion['peso_discapacidad'],
+                            'materia' => $asignacion['materia'],
+                            'puntuacion_ahp' => $asignacion['puntuacion_ahp'],
+                            'ranking_hibrido' => $asignacion['ranking_hibrido'],
+                            'intervalos_confianza' => $asignacion['intervalos_confianza'],
+                            'tiene_experiencia_especifica' => $asignacion['tiene_experiencia_especifica'],
+                            'nivel_competencia' => $asignacion['nivel_competencia']
+                        ];
+                    }
+                    
+                    $url_redirect = "../pages/asignacion.php?" . http_build_query([
+                        'preview_data' => urlencode(json_encode($preview_data)),
+                        'estadisticas' => urlencode(json_encode($resultado['estadisticas'])),
+                        'ciclo_academico' => $ciclo_academico,
+                        'metodo' => 'hibrido'
+                    ]);
+                    
+                    $logger->info('Vista previa híbrida generada exitosamente', [
+                        'total_asignaciones' => count($preview_data),
+                        'tiempo_ejecucion' => $resultado['tiempo_ejecucion']
+                    ]);
+                    
+                    header("Location: $url_redirect");
+                    exit;
+                } else {
+                    throw new Exception("No se generaron asignaciones en la vista previa híbrida");
+                }
+            }
+            
+            // CONFIRMAR ASIGNACIONES HÍBRIDAS
+            elseif (isset($_POST['confirm'])) {
+                $resultado = $asignadorHibrido->ejecutarAsignacionHibrida($ciclo_academico, false);
+                
+                if ($resultado['exito']) {
+                    $mensaje_exito = "🔬 Asignaciones híbridas completadas exitosamente!\n\n";
+                    $mensaje_exito .= "✅ Total asignaciones: {$resultado['total']}\n";
+                    $mensaje_exito .= "📊 Puntuación promedio: " . round($resultado['estadisticas']['puntuacion_promedio'], 4) . "\n";
+                    $mensaje_exito .= "🎓 Con experiencia específica: {$resultado['estadisticas']['con_experiencia_especifica']} ({$resultado['estadisticas']['porcentaje_experiencia']}%)\n";
+                    $mensaje_exito .= "📈 Intervalo confianza: [{$resultado['estadisticas']['intervalo_confianza_promedio']['inferior']}, {$resultado['estadisticas']['intervalo_confianza_promedio']['superior']}]\n";
+                    $mensaje_exito .= "⚡ Tiempo de ejecución: {$resultado['tiempo_ejecucion']}ms\n";
+                    $mensaje_exito .= "🔬 Método: AHP Híbrido (Tradicional + Difuso)";
+                    
+                    header("Location: ../pages/asignacion.php?success=" . urlencode($mensaje_exito));
+                    exit;
+                } else {
+                    throw new Exception("Error al confirmar asignaciones híbridas");
+                }
+            }
+        }
+        
+        // MÉTODO TRADICIONAL (CÓDIGO ORIGINAL MEJORADO)
+        else {
+            $logger->info('Usando método AHP Tradicional');
+            
+            // VISTA PREVIA TRADICIONAL
+            if (isset($_POST['preview'])) {
+                $resultado_tradicional = procesarMetodoTradicional($conn, $ciclo_academico, true);
+                
+                if (!empty($resultado_tradicional['asignaciones'])) {
+                    $preview_data = $resultado_tradicional['asignaciones'];
+                    
+                    $url_redirect = "../pages/asignacion.php?" . http_build_query([
+                        'preview_data' => urlencode(json_encode($preview_data)),
+                        'ciclo_academico' => $ciclo_academico,
+                        'metodo' => 'tradicional'
+                    ]);
+                    
+                    $logger->info('Vista previa tradicional generada exitosamente', [
+                        'total_asignaciones' => count($preview_data)
+                    ]);
+                    
+                    header("Location: $url_redirect");
+                    exit;
+                } else {
+                    throw new Exception("No se generaron asignaciones en la vista previa tradicional");
+                }
+            }
+            
+            // CONFIRMAR ASIGNACIONES TRADICIONALES
+            elseif (isset($_POST['confirm'])) {
+                $resultado_tradicional = procesarMetodoTradicional($conn, $ciclo_academico, false);
+                
+                if ($resultado_tradicional['exito']) {
+                    $mensaje_exito = "📊 Asignaciones tradicionales completadas exitosamente!\n\n";
+                    $mensaje_exito .= "✅ Total asignaciones: {$resultado_tradicional['total']}\n";
+                    $mensaje_exito .= "📈 Método: AHP Tradicional (valores exactos)";
+                    
+                    header("Location: ../pages/asignacion.php?success=" . urlencode($mensaje_exito));
+                    exit;
+                } else {
+                    throw new Exception("Error al confirmar asignaciones tradicionales");
+                }
+            }
+            
+            // DEFAULT: Generar vista previa tradicional
+            else {
+                $_POST['preview'] = 1;
+                $resultado_tradicional = procesarMetodoTradicional($conn, $ciclo_academico, true);
+                
+                if (!empty($resultado_tradicional['asignaciones'])) {
+                    $preview_data = $resultado_tradicional['asignaciones'];
+                    
+                    $url_redirect = "../pages/asignacion.php?" . http_build_query([
+                        'preview_data' => urlencode(json_encode($preview_data)),
+                        'ciclo_academico' => $ciclo_academico,
+                        'metodo' => 'tradicional'
+                    ]);
+                    
+                    header("Location: $url_redirect");
+                    exit;
+                }
+            }
+        }
+        
+    } catch (Exception $e) {
+        $logger->error('Error en procesamiento automático', [
+            'mensaje' => $e->getMessage(),
+            'archivo' => $e->getFile(),
+            'linea' => $e->getLine(),
+            'ciclo' => $ciclo_academico,
+            'metodo' => $metodo
+        ]);
+        
+        $error_message = "Error en asignación {$metodo}: " . $e->getMessage();
+        header("Location: ../pages/asignacion.php?error=" . urlencode($error_message));
+        exit;
+    }
+    
+} else {
+    // Petición inválida
+    header("Location: ../pages/asignacion.php?error=" . urlencode("Datos de formulario incompletos"));
+    exit;
 }
 
-// Obtener y validar ciclo académico
-$ciclo_academico = trim($_POST['ciclo_academico'] ?? '');
-if (empty($ciclo_academico)) {
-    header("Location: ../pages/asignacion.php?error=Ciclo académico requerido");
-    exit();
-}
-
-// Log básico para debugging
-error_log("AHP: Procesando asignación para ciclo: $ciclo_academico");
-
-try {
-    // MODO VISTA PREVIA
-    if (isset($_POST['preview']) && $_POST['preview'] == '1') {
+/**
+ * FUNCIÓN PARA PROCESAR MÉTODO TRADICIONAL
+ * Implementación mejorada del método original
+ */
+function procesarMetodoTradicional($conn, $ciclo_academico, $preview = false) {
+    $logger = new Logger();
+    
+    try {
+        if (!$preview) {
+            $conn->beginTransaction();
+        }
         
-        error_log("AHP: Generando vista previa");
-        
-        // Obtener estudiantes sin asignación para este ciclo
+        // Obtener estudiantes sin asignar del ciclo seleccionado
         $query_estudiantes = "
-            SELECT 
-                e.id_estudiante, 
-                e.nombres_completos, 
-                e.id_tipo_discapacidad, 
-                e.facultad, 
-                td.nombre_discapacidad, 
-                td.peso_prioridad,
-                m.id_materia, 
-                m.nombre_materia
+            SELECT e.id_estudiante, e.nombres_completos, e.facultad,
+                   t.id_tipo_discapacidad, t.nombre_discapacidad, t.peso_prioridad
             FROM estudiantes e
-            JOIN tipos_discapacidad td ON e.id_tipo_discapacidad = td.id_tipo_discapacidad
+            JOIN tipos_discapacidad t ON e.id_tipo_discapacidad = t.id_tipo_discapacidad
             LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante AND a.estado = 'Activa'
-            LEFT JOIN materias m ON e.facultad = m.facultad AND m.ciclo_academico = ?
-            WHERE e.ciclo_academico = ? 
-            AND a.id_asignacion IS NULL
-            AND m.id_materia IS NOT NULL
-            ORDER BY td.peso_prioridad DESC, e.nombres_completos
-            LIMIT 20";
+            WHERE e.ciclo_academico = :ciclo AND a.id_asignacion IS NULL
+            ORDER BY t.peso_prioridad DESC, e.nombres_completos";
         
         $stmt_estudiantes = $conn->prepare($query_estudiantes);
-        $stmt_estudiantes->execute([$ciclo_academico, $ciclo_academico]);
+        $stmt_estudiantes->execute([':ciclo' => $ciclo_academico]);
         $estudiantes = $stmt_estudiantes->fetchAll(PDO::FETCH_ASSOC);
         
-        error_log("AHP: Estudiantes encontrados: " . count($estudiantes));
-        
-        if (empty($estudiantes)) {
-            throw new Exception("No hay estudiantes sin asignación para el ciclo académico $ciclo_academico");
+        if (count($estudiantes) == 0) {
+            return ['exito' => false, 'mensaje' => 'No hay estudiantes sin asignar'];
         }
         
-        $preview_data = [];
+        // Obtener materias del ciclo
+        $query_materias = "SELECT DISTINCT id_materia, nombre_materia FROM materias WHERE ciclo_academico = :ciclo";
+        $stmt_materias = $conn->prepare($query_materias);
+        $stmt_materias->execute([':ciclo' => $ciclo_academico]);
+        $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
         
+        if (count($materias) == 0) {
+            // Usar materias generales si no hay específicas del ciclo
+            $query_materias_general = "SELECT DISTINCT id_materia, nombre_materia FROM materias LIMIT 10";
+            $stmt_materias_general = $conn->prepare($query_materias_general);
+            $stmt_materias_general->execute();
+            $materias = $stmt_materias_general->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        $asignaciones_exitosas = 0;
+        $asignaciones_preview = [];
+        $errores = [];
+        
+        // Para cada estudiante, encontrar el mejor docente usando método tradicional
         foreach ($estudiantes as $estudiante) {
-            
-            // Intentar usar vista AHP específica si existe
-            $query_docente_ahp = "
-                SELECT 
-                    id_docente,
-                    nombres_completos,
-                    puntuacion_especifica_discapacidad,
-                    ranking_por_discapacidad,
-                    tiene_experiencia_especifica,
-                    nivel_competencia_especifica
-                FROM vista_ranking_ahp_especifico 
-                WHERE id_tipo_discapacidad = ? 
-                AND facultad = ?
-                ORDER BY ranking_por_discapacidad ASC
-                LIMIT 1";
-            
-            $stmt_ahp = $conn->prepare($query_docente_ahp);
-            $stmt_ahp->execute([$estudiante['id_tipo_discapacidad'], $estudiante['facultad']]);
-            $mejor_docente_ahp = $stmt_ahp->fetch(PDO::FETCH_ASSOC);
-            
-            if ($mejor_docente_ahp) {
-                // Usar resultado AHP
-                $preview_data[] = [
-                    'id_estudiante' => $estudiante['id_estudiante'],
-                    'estudiante' => $estudiante['nombres_completos'],
-                    'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
-                    'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
-                    'peso_discapacidad' => $estudiante['peso_prioridad'],
-                    'id_docente' => $mejor_docente_ahp['id_docente'],
-                    'docente' => $mejor_docente_ahp['nombres_completos'],
-                    'id_materia' => $estudiante['id_materia'],
-                    'materia' => $estudiante['nombre_materia'],
-                    'puntuacion_ahp' => $mejor_docente_ahp['puntuacion_especifica_discapacidad'],
-                    'tiene_experiencia_especifica' => $mejor_docente_ahp['tiene_experiencia_especifica'],
-                    'nivel_competencia' => $mejor_docente_ahp['nivel_competencia_especifica'],
-                    'ranking_original' => $mejor_docente_ahp['ranking_por_discapacidad']
-                ];
-            } else {
-                // Fallback: usar ranking básico
-                $query_docente_basico = "
-                    SELECT 
-                        d.id_docente,
-                        d.nombres_completos,
-                        COALESCE(vr.puntuacion_final, 0.5) as puntuacion_final
-                    FROM docentes d
-                    LEFT JOIN vista_ranking_ahp vr ON d.id_docente = vr.id_docente
-                    WHERE d.facultad = ?
-                    ORDER BY vr.puntuacion_final DESC
-                    LIMIT 1";
+            try {
+                // Usar función de BD optimizada para recomendación equilibrada
+                $query_mejor_docente = "SELECT recomendar_docente_equilibrado(:tipo_discapacidad, :facultad) as resultado";
+                $stmt_mejor = $conn->prepare($query_mejor_docente);
+                $stmt_mejor->execute([
+                    ':tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                    ':facultad' => $estudiante['facultad']
+                ]);
                 
-                $stmt_basico = $conn->prepare($query_docente_basico);
-                $stmt_basico->execute([$estudiante['facultad']]);
-                $docente_basico = $stmt_basico->fetch(PDO::FETCH_ASSOC);
+                $resultado_json = $stmt_mejor->fetchColumn();
+                $resultado = json_decode($resultado_json, true);
                 
-                if ($docente_basico) {
-                    $preview_data[] = [
-                        'id_estudiante' => $estudiante['id_estudiante'],
+                $docente_id = null;
+                $puntuacion_ahp = 0;
+                $docente_nombre = '';
+                
+                if (!isset($resultado['error']) && isset($resultado['id_docente'])) {
+                    $docente_id = $resultado['id_docente'];
+                    $puntuacion_ahp = $resultado['puntuacion_ahp'];
+                    $docente_nombre = $resultado['nombre_docente'];
+                } else {
+                    // Fallback: consulta directa al ranking tradicional
+                    $query_docente_directo = "
+                        SELECT vra.id_docente, vra.nombres_completos, vra.puntuacion_especifica_discapacidad as puntuacion_ahp
+                        FROM vista_ranking_ahp_especifico vra
+                        JOIN vista_distribucion_carga vdc ON vra.id_docente = vdc.id_docente
+                        WHERE vra.id_tipo_discapacidad = :tipo_discapacidad
+                        AND vra.facultad = :facultad
+                        AND vdc.capacidad_restante > 0
+                        ORDER BY vra.puntuacion_especifica_discapacidad DESC
+                        LIMIT 1";
+                    
+                    $stmt_directo = $conn->prepare($query_docente_directo);
+                    $stmt_directo->execute([
+                        ':tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                        ':facultad' => $estudiante['facultad']
+                    ]);
+                    
+                    $docente_directo = $stmt_directo->fetch(PDO::FETCH_ASSOC);
+                    
+                    if ($docente_directo) {
+                        $docente_id = $docente_directo['id_docente'];
+                        $puntuacion_ahp = $docente_directo['puntuacion_ahp'];
+                        $docente_nombre = $docente_directo['nombres_completos'];
+                    }
+                }
+                
+                // Si encontramos un docente, procesar la asignación
+                if ($docente_id) {
+                    // Seleccionar una materia
+                    $materia = $materias[array_rand($materias)];
+                    
+                    // Obtener experiencia específica del docente
+                    $query_experiencia = "
+                        SELECT tiene_experiencia, nivel_competencia
+                        FROM experiencia_docente_discapacidad
+                        WHERE id_docente = :docente AND id_tipo_discapacidad = :tipo
+                    ";
+                    $stmt_exp = $conn->prepare($query_experiencia);
+                    $stmt_exp->execute([':docente' => $docente_id, ':tipo' => $estudiante['id_tipo_discapacidad']]);
+                    $experiencia = $stmt_exp->fetch(PDO::FETCH_ASSOC);
+                    
+                    $asignacion_data = [
                         'estudiante' => $estudiante['nombres_completos'],
-                        'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                        'docente' => $docente_nombre,
                         'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
                         'peso_discapacidad' => $estudiante['peso_prioridad'],
-                        'id_docente' => $docente_basico['id_docente'],
-                        'docente' => $docente_basico['nombres_completos'],
-                        'id_materia' => $estudiante['id_materia'],
-                        'materia' => $estudiante['nombre_materia'],
-                        'puntuacion_ahp' => $docente_basico['puntuacion_final'],
-                        'tiene_experiencia_especifica' => 0,
-                        'nivel_competencia' => 'Básico',
-                        'ranking_original' => 1
+                        'materia' => $materia['nombre_materia'],
+                        'puntuacion_ahp' => $puntuacion_ahp,
+                        'ranking_original' => 1, // Siempre es el mejor disponible
+                        'tiene_experiencia_especifica' => $experiencia['tiene_experiencia'] ?? false,
+                        'nivel_competencia' => $experiencia['nivel_competencia'] ?? 'Básico'
                     ];
+                    
+                    if ($preview) {
+                        $asignaciones_preview[] = $asignacion_data;
+                    } else {
+                        // Insertar la asignación real
+                        $query_asignar = "
+                            INSERT INTO asignaciones (
+                                id_docente, id_estudiante, id_tipo_discapacidad, 
+                                id_materia, ciclo_academico, materia, 
+                                numero_estudiantes, puntuacion_ahp, estado
+                            ) VALUES (
+                                :docente, :estudiante, :tipo_discapacidad,
+                                :materia_id, :ciclo, :materia_nombre,
+                                1, :puntuacion, 'Activa'
+                            )";
+                        
+                        $stmt_asignar = $conn->prepare($query_asignar);
+                        $stmt_asignar->execute([
+                            ':docente' => $docente_id,
+                            ':estudiante' => $estudiante['id_estudiante'],
+                            ':tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
+                            ':materia_id' => $materia['id_materia'],
+                            ':ciclo' => $ciclo_academico,
+                            ':materia_nombre' => $materia['nombre_materia'],
+                            ':puntuacion' => $puntuacion_ahp
+                        ]);
+                    }
+                    
+                    $asignaciones_exitosas++;
+                } else {
+                    $errores[] = "No se encontró docente disponible para " . $estudiante['nombres_completos'];
                 }
+                
+            } catch (Exception $e) {
+                $errores[] = "Error al asignar a " . $estudiante['nombres_completos'] . ": " . $e->getMessage();
             }
         }
         
-        error_log("AHP: Asignaciones generadas: " . count($preview_data));
-        
-        if (!empty($preview_data)) {
-            // Codificar datos para URL - MEJORADO
-            $preview_json = json_encode($preview_data, JSON_UNESCAPED_UNICODE);
-            if ($preview_json === false) {
-                throw new Exception("Error al codificar datos de vista previa: " . json_last_error_msg());
-            }
-            
-            $preview_encoded = urlencode($preview_json);
-            
-            // Verificar tamaño de URL
-            $url_length = strlen($preview_encoded);
-            error_log("AHP: Tamaño URL: $url_length caracteres");
-            
-            if ($url_length > 8000) {
-                // URL demasiado larga - usar solo primeros elementos
-                $preview_data_reduced = array_slice($preview_data, 0, 10);
-                $preview_encoded = urlencode(json_encode($preview_data_reduced, JSON_UNESCAPED_UNICODE));
-                error_log("AHP: URL reducida a: " . strlen($preview_encoded) . " caracteres");
-            }
-            
-            $url_params = [
-                'preview_data' => $preview_encoded,
-                'ciclo_academico' => urlencode($ciclo_academico),
-                'total_preview' => count($preview_data)
+        if ($preview) {
+            return [
+                'exito' => true,
+                'asignaciones' => $asignaciones_preview,
+                'total' => count($asignaciones_preview),
+                'errores' => $errores
             ];
-            
-            $redirect_url = "../pages/asignacion.php?" . http_build_query($url_params);
-            
-            error_log("AHP: Redirigiendo a vista previa");
-            header("Location: $redirect_url");
-            exit();
         } else {
-            throw new Exception("No se pudieron generar asignaciones para este ciclo académico. Verifique que existan docentes disponibles.");
-        }
-    }
-    
-    // MODO CONFIRMACIÓN
-    elseif (isset($_POST['confirm']) && $_POST['confirm'] == '1') {
-        
-        error_log("AHP: Confirmando asignaciones");
-        
-        // Validar datos de vista previa
-        $preview_data_raw = $_POST['preview_data'] ?? '';
-        if (empty($preview_data_raw)) {
-            throw new Exception("No se encontraron datos de vista previa. Por favor, genere la vista previa nuevamente.");
-        }
-        
-        // Decodificar datos
-        $preview_data = json_decode($preview_data_raw, true);
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            error_log("AHP: Error JSON: " . json_last_error_msg());
-            error_log("AHP: Datos recibidos: " . substr($preview_data_raw, 0, 200) . "...");
-            throw new Exception("Error al procesar datos de vista previa: " . json_last_error_msg());
-        }
-        
-        if (!is_array($preview_data) || empty($preview_data)) {
-            throw new Exception("Los datos de vista previa están vacíos o son inválidos.");
-        }
-        
-        error_log("AHP: Confirmando " . count($preview_data) . " asignaciones");
-        
-        // Iniciar transacción
-        $conn->beginTransaction();
-        
-        $query_insertar = "
-            INSERT INTO asignaciones (
-                id_docente, id_estudiante, id_tipo_discapacidad, id_materia,
-                ciclo_academico, materia, numero_estudiantes, puntuacion_ahp, estado
-            ) VALUES (?, ?, ?, ?, ?, ?, 1, ?, 'Activa')";
-        
-        $stmt_insertar = $conn->prepare($query_insertar);
-        $asignaciones_exitosas = 0;
-        
-        foreach ($preview_data as $asignacion) {
-            // Validar que tengamos todos los campos necesarios
-            $campos_requeridos = ['id_docente', 'id_estudiante', 'id_tipo_discapacidad', 'id_materia', 'materia', 'puntuacion_ahp'];
-            foreach ($campos_requeridos as $campo) {
-                if (!isset($asignacion[$campo])) {
-                    error_log("AHP: Campo faltante: $campo en asignación");
-                    continue 2; // Saltar esta asignación
-                }
-            }
-            
-            $success = $stmt_insertar->execute([
-                $asignacion['id_docente'],
-                $asignacion['id_estudiante'],
-                $asignacion['id_tipo_discapacidad'],
-                $asignacion['id_materia'],
-                $ciclo_academico,
-                $asignacion['materia'],
-                $asignacion['puntuacion_ahp']
-            ]);
-            
-            if ($success) {
-                $asignaciones_exitosas++;
-            } else {
-                error_log("AHP: Error al insertar asignación: " . implode(", ", $stmt_insertar->errorInfo()));
-            }
-        }
-        
-        if ($asignaciones_exitosas > 0) {
+            // Confirmar transacción
             $conn->commit();
             
-            $mensaje = "✅ Asignación automática completada!\n";
-            $mensaje .= "📊 Total de asignaciones: $asignaciones_exitosas\n";
-            $mensaje .= "🎯 Ciclo académico: $ciclo_academico";
-            
-            error_log("AHP: Asignaciones confirmadas exitosamente: $asignaciones_exitosas");
-            
-            header("Location: ../pages/asignacion.php?success=" . urlencode($mensaje));
-            exit();
-        } else {
-            $conn->rollBack();
-            throw new Exception("No se pudo confirmar ninguna asignación. Revise los datos e intente nuevamente.");
+            return [
+                'exito' => true,
+                'total' => $asignaciones_exitosas,
+                'errores' => $errores
+            ];
         }
+        
+    } catch (Exception $e) {
+        if (!$preview) {
+            $conn->rollBack();
+        }
+        
+        throw $e;
     }
-    
-    // Solicitud inválida
-    else {
-        throw new Exception("Tipo de solicitud no válido.");
-    }
-    
-} catch (Exception $e) {
-    // Rollback si hay transacción activa
-    if (isset($conn) && $conn->inTransaction()) {
-        $conn->rollBack();
-    }
-    
-    error_log("AHP: Error en procesamiento: " . $e->getMessage());
-    error_log("AHP: POST data: " . json_encode($_POST));
-    
-    $mensaje_error = "Error en la asignación: " . $e->getMessage();
-    
-    // Agregar sugerencias según el tipo de error
-    if (strpos($e->getMessage(), 'vista previa') !== false) {
-        $mensaje_error .= "\n\n💡 Sugerencias:\n";
-        $mensaje_error .= "• Intente generar la vista previa nuevamente\n";
-        $mensaje_error .= "• Verifique que la base de datos esté actualizada\n";
-        $mensaje_error .= "• Asegúrese de que las vistas AHP estén funcionando";
-    }
-    
-    header("Location: ../pages/asignacion.php?error=" . urlencode($mensaje_error));
-    exit();
 }
 ?>

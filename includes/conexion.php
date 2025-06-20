@@ -17,7 +17,7 @@ function ConexionBD() {
     
     // Usar valores por defecto si las constantes no están definidas
     $host = defined('DB_HOST') ? DB_HOST : 'localhost';
-    $dbname = defined('DB_NAME') ? DB_NAME : 'asignacion_docente';
+    $dbname = defined('DB_NAME') ? DB_NAME : 'asignacion_docente1';
     $username = defined('DB_USER') ? DB_USER : 'moises';
     $password = defined('DB_PASS') ? DB_PASS : 'moises';
     $puerto = defined('DB_PORT') ? DB_PORT : 3306;
