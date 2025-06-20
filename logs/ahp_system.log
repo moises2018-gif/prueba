@@ -62,3 +62,14 @@
 [2025-06-14 09:54:48] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
 [2025-06-14 09:54:48] [INFO] Usando método AHP Tradicional
 [2025-06-14 09:54:49] [INFO] Vista previa tradicional generada exitosamente | Contexto: {"total_asignaciones":1}
+[2025-06-19 21:16:34] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-19 21:16:34] [INFO] Usando método AHP Tradicional
+[2025-06-19 21:16:35] [ERROR] Error en procesamiento automático | Contexto: {"mensaje":"No se generaron asignaciones en la vista previa tradicional","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\procesar\\procesar_asignacion_automatica.php","linea":125,"ciclo":"2025-1","metodo":"tradicional"}
+[2025-06-19 21:17:44] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-19 21:17:44] [INFO] Usando método AHP Tradicional
+[2025-06-19 21:17:44] [ERROR] Error en procesamiento automático | Contexto: {"mensaje":"No se generaron asignaciones en la vista previa tradicional","archivo":"C:\\Users\\CNT\\Desktop\\prueba\\procesar\\procesar_asignacion_automatica.php","linea":125,"ciclo":"2025-1","metodo":"tradicional"}
+[2025-06-19 21:23:11] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-19 21:23:11] [INFO] Usando método AHP Tradicional
+[2025-06-19 21:23:12] [INFO] Vista previa tradicional generada exitosamente | Contexto: {"total_asignaciones":12}
+[2025-06-19 21:23:41] [INFO] Iniciando procesamiento de asignación automática | Contexto: {"ciclo":"2025-1","metodo":"tradicional","ip":"::1"}
+[2025-06-19 21:23:41] [INFO] Usando método AHP Tradicional
