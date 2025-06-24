@@ -1,10 +1,217 @@
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/nav.php'; ?>
+
+<style>
+.pdf-buttons-container {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-pdf {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-pdf:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-pdf-activas {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.btn-pdf-activas:hover {
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-pdf-canceladas {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+}
+
+.btn-pdf-canceladas:hover {
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-pdf-completo {
+    background: linear-gradient(135deg, #6f42c1 0%, #6610f2 100%);
+}
+
+.btn-pdf-completo:hover {
+    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.4);
+}
+
+.filtros-pdf {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.filtros-pdf h4 {
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.filtro-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro-item label {
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.filtro-item select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .pdf-buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-pdf {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+</style>
+
 <div id="reportes" class="tab-content" style="display: block;">
     <h2>Reportes de Asignaciones</h2>
+    
+    <!-- Botones para generar PDFs -->
+    <div class="filtros-pdf">
+        <h4>📄 Generar Reportes PDF</h4>
+        <form id="filtrosPDF" action="../procesar/generar_pdf.php" method="POST" target="_blank">
+            <div class="filtros-grid">
+                <div class="filtro-item">
+                    <label for="ciclo_filtro">Ciclo Académico:</label>
+                    <select id="ciclo_filtro" name="ciclo_filtro">
+                        <option value="">Todos los ciclos</option>
+                        <?php
+                        include '../includes/conexion.php';
+                        $conn = ConexionBD();
+                        if ($conn) {
+                            $query_ciclos = "SELECT DISTINCT ciclo_academico FROM asignaciones ORDER BY ciclo_academico DESC";
+                            $stmt_ciclos = $conn->prepare($query_ciclos);
+                            $stmt_ciclos->execute();
+                            $ciclos = $stmt_ciclos->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            foreach ($ciclos as $ciclo) {
+                                echo "<option value='{$ciclo['ciclo_academico']}'>{$ciclo['ciclo_academico']}</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                
+                <div class="filtro-item">
+                    <label for="discapacidad_filtro">Tipo Discapacidad:</label>
+                    <select id="discapacidad_filtro" name="discapacidad_filtro">
+                        <option value="">Todos los tipos</option>
+                        <?php
+                        if ($conn) {
+                            $query_tipos = "SELECT * FROM tipos_discapacidad ORDER BY peso_prioridad DESC";
+                            $stmt_tipos = $conn->prepare($query_tipos);
+                            $stmt_tipos->execute();
+                            $tipos = $stmt_tipos->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            foreach ($tipos as $tipo) {
+                                echo "<option value='{$tipo['id_tipo_discapacidad']}'>{$tipo['nombre_discapacidad']}</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                
+                <div class="filtro-item">
+                    <label for="docente_filtro">Docente:</label>
+                    <select id="docente_filtro" name="docente_filtro">
+                        <option value="">Todos los docentes</option>
+                        <?php
+                        if ($conn) {
+                            $query_docentes = "SELECT DISTINCT d.id_docente, d.nombres_completos 
+                                             FROM docentes d 
+                                             JOIN asignaciones a ON d.id_docente = a.id_docente 
+                                             ORDER BY d.nombres_completos";
+                            $stmt_docentes = $conn->prepare($query_docentes);
+                            $stmt_docentes->execute();
+                            $docentes = $stmt_docentes->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            foreach ($docentes as $docente) {
+                                echo "<option value='{$docente['id_docente']}'>{$docente['nombres_completos']}</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                
+                <div class="filtro-item">
+                    <label for="orden_filtro">Ordenar por:</label>
+                    <select id="orden_filtro" name="orden_filtro">
+                        <option value="fecha_desc">Fecha (Más reciente)</option>
+                        <option value="fecha_asc">Fecha (Más antigua)</option>
+                        <option value="prioridad_desc">Prioridad (Mayor a menor)</option>
+                        <option value="docente_asc">Docente (A-Z)</option>
+                        <option value="estudiante_asc">Estudiante (A-Z)</option>
+                        <option value="puntuacion_desc">Puntuación AHP (Mayor)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="pdf-buttons-container">
+                <button type="submit" name="tipo_reporte" value="activas" class="btn-pdf btn-pdf-activas">
+                    📋 PDF Asignaciones Activas
+                </button>
+                
+                <button type="submit" name="tipo_reporte" value="canceladas" class="btn-pdf btn-pdf-canceladas">
+                    📋 PDF Asignaciones Canceladas
+                </button>
+                
+                <button type="submit" name="tipo_reporte" value="completo" class="btn-pdf btn-pdf-completo">
+                    📋 PDF Reporte Completo
+                </button>
+                
+                <button type="submit" name="tipo_reporte" value="estadisticas" class="btn-pdf">
+                    📊 PDF Estadísticas AHP
+                </button>
+            </div>
+        </form>
+    </div>
+
     <?php
-    include '../includes/conexion.php';
-    $conn = ConexionBD();
     if ($conn) {
         // Obtener tipos de discapacidad para subcriterios
         $query_subcriterios = "SELECT * FROM tipos_discapacidad ORDER BY peso_prioridad DESC";
