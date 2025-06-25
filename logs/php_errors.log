@@ -116,3 +116,16 @@ Stack trace:
 [20-Jun-2025 02:32:58 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
 [20-Jun-2025 02:33:37 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
 [20-Jun-2025 02:33:37 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
+[24-Jun-2025 18:59:40 America/Guayaquil] Estudiantes encontrados: 8
+[24-Jun-2025 18:59:40 America/Guayaquil] Materias disponibles: 10
+[24-Jun-2025 18:59:40 America/Guayaquil] Docentes con carga inicializada: 10
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Diego Armando Sánchez Díaz -> JACOME MORALES GLADYS CRISTINA
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Julián David Vargas Sánchez -> JACOME MORALES GLADYS CRISTINA
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Laura Daniela Chávez Morales -> Ana Patricia Loor Cedeño
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Felipe Nicolás Martínez Cruz -> ALFONSO ANÍBAL GUIJARRO RODRÍGUEZ
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Catalina María Díaz Torres -> MARÍA FERNANDA CASTRO MORALES
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Gabriel Esteban Flores Gómez -> Carlos Mendoza Silva
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Valeria Isabel Ramírez Ortiz -> JACOME MORALES GLADYS CRISTINA
+[24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Paula Valentina Rojas Castro -> Ana Patricia Loor Cedeño
+[24-Jun-2025 18:59:40 America/Guayaquil] Total asignaciones generadas: 8
+[24-Jun-2025 18:59:40 America/Guayaquil] Errores de procesamiento: 0
