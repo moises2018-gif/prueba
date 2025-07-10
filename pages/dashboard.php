@@ -330,6 +330,25 @@
     color: #ffc107 !important;
 }
 
+/* Grid para estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.info-item {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.info-item strong {
+    color: #155724 !important;
+}
+
 /* Responsive mejoras */
 @media (max-width: 768px) {
     .dashboard-container {
@@ -360,6 +379,10 @@
     }
     
     .distribucion-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -434,6 +457,8 @@
             <a href="#inicio" class="dashboard-nav-link">🏠 Inicio</a>
             <a href="#estadisticas" class="dashboard-nav-link">📊 Estadísticas</a>
             <a href="#distribucion" class="dashboard-nav-link">📈 Distribución</a>
+            <a href="#materias-estudiantes" class="dashboard-nav-link">📚 Materias</a>
+            <a href="#analisis-materias" class="dashboard-nav-link">🔍 Análisis</a>
             <a href="#graficos" class="dashboard-nav-link">📉 Gráficos</a>
         </div>
     </div>
@@ -559,6 +584,7 @@
                     <?php if ($triggers_activos): ?>
                         <small class="estado-ok">✅ Triggers activos</small>
                     <?php else: ?>
+                        <small class="estado-error">❌ Triggers inactivos</small>
                     <?php endif; ?>
                 </div>
                 
@@ -620,40 +646,299 @@
             </div>
         </section>
 
-        <!-- SECCIÓN GRÁFICOS -->
-        <section id="graficos" class="dashboard-section fade-in">
-            <h3>📉 Análisis Visual</h3>
-            <div class="charts-grid">
-                <div class="chart-item">
-                    <div class="chart-container">
-                        <h4>Pesos de Subcriterios (Orden Corregido)</h4>
-                        <canvas id="subcriteriosChart"></canvas>
-                    </div>
-                </div>
-                <div class="chart-item">
-                    <div class="chart-container">
-                        <h4>Pesos de Criterios Principales</h4>
-                        <canvas id="criteriosPrincipalesChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- SECCIÓN MATERIAS Y ESTUDIANTES -->
+        <section id="materias-estudiantes" class="dashboard-section fade-in">
+            <h3>📚 Materias con Estudiantes Asignados</h3>
+            
+            <?php
+            try {
+                // Obtener materias con estudiantes asignados
+                $query_materias_estudiantes = "
+                    SELECT 
+                        m.id_materia,
+                        m.nombre_materia,
+                        m.facultad,
+                        m.ciclo_academico,
+                        COUNT(DISTINCT a.id_estudiante) as total_estudiantes_asignados,
+                        COUNT(DISTINCT a.id_docente) as total_docentes_asignando,
+                        GROUP_CONCAT(
+                            DISTINCT CONCAT(
+                                e.nombres_completos, 
+                                ' (', td.nombre_discapacidad, ') - ', 
+                                d.nombres_completos
+                            ) 
+                            ORDER BY td.peso_prioridad DESC, e.nombres_completos 
+                            SEPARATOR '|'
+                        ) as estudiantes_detalle,
+                        AVG(a.puntuacion_ahp) as puntuacion_promedio,
+                        GROUP_CONCAT(DISTINCT td.nombre_discapacidad ORDER BY td.peso_prioridad DESC) as tipos_discapacidad
+                    FROM materias m
+                    LEFT JOIN asignaciones a ON m.id_materia = a.id_materia AND a.estado = 'Activa'
+                    LEFT JOIN estudiantes e ON a.id_estudiante = e.id_estudiante
+                    LEFT JOIN docentes d ON a.id_docente = d.id_docente
+                    LEFT JOIN tipos_discapacidad td ON a.id_tipo_discapacidad = td.id_tipo_discapacidad
+                    GROUP BY m.id_materia, m.nombre_materia, m.facultad, m.ciclo_academico
+                    ORDER BY m.ciclo_academico DESC, total_estudiantes_asignados DESC, m.nombre_materia";
+                
+                $stmt_materias = $conn->prepare($query_materias_estudiantes);
+                $stmt_materias->execute();
+                $materias_estudiantes = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
+                
+                if (!empty($materias_estudiantes)) {
+                    // Estadísticas generales de materias
+                    $total_materias = count($materias_estudiantes);
+                    $materias_con_estudiantes = count(array_filter($materias_estudiantes, function($m) {
+                        return $m['total_estudiantes_asignados'] > 0;
+                    }));
+                    $total_asignaciones_materias = array_sum(array_column($materias_estudiantes, 'total_estudiantes_asignados'));
+                    
+                    echo '<div class="info-box">
+                        <h4>📊 Resumen de Materias</h4>
+                        <div class="stats-grid">
+                            <div class="info-item">
+                                <strong>Total de materias:</strong> ' . $total_materias . '
+                            </div>
+                            <div class="info-item">
+                                <strong>Materias con estudiantes NEE:</strong> ' . $materias_con_estudiantes . '
+                            </div>
+                            <div class="info-item">
+                                <strong>Total asignaciones a materias:</strong> ' . $total_asignaciones_materias . '
+                            </div>
+                            <div class="info-item">
+                                <strong>Promedio estudiantes por materia:</strong> ' . 
+                                ($materias_con_estudiantes > 0 ? round($total_asignaciones_materias / $materias_con_estudiantes, 1) : 0) . '
+                            </div>
+                        </div>
+                    </div>';
+                    
+                    // Tabla de materias con scroll optimizado
+                    echo '<div class="tabla-scroll">
+                        <table class="table table-fixed-header">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%">Materia</th>
+                                    <th style="width: 15%">Facultad</th>
+                                    <th style="width: 8%">Ciclo</th>
+                                    <th style="width: 8%">Est. NEE</th>
+                                    <th style="width: 8%">Docentes</th>
+                                    <th style="width: 15%">Tipos Discapacidad</th>
+                                    <th style="width: 8%">Punt. Prom.</th>
+                                   <th style="width: 18%">Estudiantes Asignados</th>
+                               </tr>
+                           </thead>
+                           <tbody>';
+                   
+                   foreach ($materias_estudiantes as $materia) {
+                       $estudiantes_asignados = $materia['total_estudiantes_asignados'];
+                       $clase_fila = '';
+                      
+                      if ($estudiantes_asignados == 0) {
+                          $clase_fila = 'style="opacity: 0.6; background: #f8f9fa;"';
+                      } else if ($estudiantes_asignados >= 5) {
+                          $clase_fila = 'style="background: rgba(40, 167, 69, 0.1);"'; // Verde claro
+                      } else if ($estudiantes_asignados >= 3) {
+                          $clase_fila = 'style="background: rgba(255, 193, 7, 0.1);"'; // Amarillo claro
+                      }
+                      
+                      echo '<tr ' . $clase_fila . '>
+                          <td>
+                              <strong>' . htmlspecialchars($materia['nombre_materia']) . '</strong>
+                          </td>
+                          <td>' . htmlspecialchars(substr($materia['facultad'], 0, 30)) . 
+                              (strlen($materia['facultad']) > 30 ? '...' : '') . '</td>
+                          <td style="text-align: center; font-weight: bold;">
+                              ' . htmlspecialchars($materia['ciclo_academico']) . '
+                          </td>
+                          <td style="text-align: center;">
+                              <span style="font-weight: bold; color: ' . 
+                              ($estudiantes_asignados > 0 ? '#28a745' : '#6c757d') . ';">
+                                  ' . $estudiantes_asignados . '
+                              </span>
+                          </td>
+                          <td style="text-align: center;">
+                              ' . ($materia['total_docentes_asignando'] ?: 0) . '
+                          </td>
+                          <td style="font-size: 11px;">
+                              ' . ($materia['tipos_discapacidad'] ? 
+                                  htmlspecialchars(substr($materia['tipos_discapacidad'], 0, 40)) . 
+                                  (strlen($materia['tipos_discapacidad']) > 40 ? '...' : '') : 
+                                  '<em>Sin asignaciones</em>') . '
+                          </td>
+                          <td style="text-align: center; color: #28a745; font-weight: bold;">
+                              ' . ($materia['puntuacion_promedio'] ? 
+                                  number_format($materia['puntuacion_promedio'], 2) : '-') . '
+                          </td>
+                          <td style="font-size: 11px;">';
+                      
+                      if ($materia['estudiantes_detalle']) {
+                          $estudiantes_array = explode('|', $materia['estudiantes_detalle']);
+                          $max_mostrar = 3;
+                          
+                          for ($i = 0; $i < min(count($estudiantes_array), $max_mostrar); $i++) {
+                              $partes = explode(' - ', $estudiantes_array[$i]);
+                              $estudiante_info = $partes[0] ?? '';
+                              $docente_nombre = $partes[1] ?? '';
+                              
+                              echo '<div style="margin: 2px 0; padding: 2px; background: rgba(102, 126, 234, 0.1); border-radius: 3px;">
+                                  <strong style="color: #2c3e50;">' . htmlspecialchars($estudiante_info) . '</strong>';
+                              if ($docente_nombre) {
+                                  echo '<br><small style="color: #6c757d;">👨‍🏫 ' . 
+                                       htmlspecialchars(substr($docente_nombre, 0, 25)) . 
+                                       (strlen($docente_nombre) > 25 ? '...' : '') . '</small>';
+                              }
+                              echo '</div>';
+                          }
+                          
+                          if (count($estudiantes_array) > $max_mostrar) {
+                              echo '<small style="color: #6c757d; font-style: italic;">
+                                  +' . (count($estudiantes_array) - $max_mostrar) . ' estudiante(s) más...
+                              </small>';
+                          }
+                      } else {
+                          echo '<em style="color: #6c757d;">Sin estudiantes asignados</em>';
+                      }
+                      
+                      echo '</td></tr>';
+                  }
+           
+                  echo '</tbody>
+                      </table>
+                  </div>';
+                  
+                  // Leyenda explicativa
+                  echo '<div class="info-box" style="margin-top: 15px;">
+                      <h4>💡 Leyenda</h4>
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                          <div style="background: rgba(40, 167, 69, 0.1); padding: 8px; border-radius: 5px;">
+                              <strong>Verde:</strong> 5+ estudiantes NEE
+                          </div>
+                          <div style="background: rgba(255, 193, 7, 0.1); padding: 8px; border-radius: 5px;">
+                              <strong>Amarillo:</strong> 3-4 estudiantes NEE
+                          </div>
+                          <div style="background: #f8f9fa; padding: 8px; border-radius: 5px;">
+                              <strong>Gris:</strong> Sin estudiantes NEE
+                          </div>
+                          <div style="background: rgba(102, 126, 234, 0.1); padding: 8px; border-radius: 5px;">
+                              <strong>Azul:</strong> Información de estudiantes
+                          </div>
+                      </div>
+                  </div>';
+                  
+              } else {
+                  echo '<div class="warning-box">
+                      <h4>⚠️ Sin Datos de Materias</h4>
+                      <p>No se encontraron materias registradas en el sistema.</p>
+                  </div>';
+              }
+              
+          } catch (Exception $e) {
+              echo '<div class="warning-box">
+                  <h4>❌ Error al cargar materias</h4>
+                  <p>Error: ' . htmlspecialchars($e->getMessage()) . '</p>
+              </div>';
+          }
+          ?>
+      </section>
 
+      <!-- SECCIÓN ANÁLISIS DETALLADO POR MATERIA -->
+      <section id="analisis-materias" class="dashboard-section fade-in">
+          <h3>🔍 Análisis Detallado por Materia</h3>
+          
+          <?php
+          try {
+              // Top 5 materias con más estudiantes NEE
+              $query_top_materias = "
+                  SELECT 
+                      m.nombre_materia,
+                      m.facultad,
+                      m.ciclo_academico,
+                      COUNT(a.id_estudiante) as total_estudiantes,
+                      AVG(a.puntuacion_ahp) as puntuacion_promedio,
+                      COUNT(DISTINCT a.id_docente) as docentes_involucrados,
+                      GROUP_CONCAT(DISTINCT td.nombre_discapacidad ORDER BY td.peso_prioridad DESC) as tipos_atencion
+                  FROM materias m
+                  JOIN asignaciones a ON m.id_materia = a.id_materia AND a.estado = 'Activa'
+                  JOIN tipos_discapacidad td ON a.id_tipo_discapacidad = td.id_tipo_discapacidad
+                  GROUP BY m.id_materia
+                  HAVING total_estudiantes > 0
+                  ORDER BY total_estudiantes DESC, puntuacion_promedio DESC
+                  LIMIT 5";
+              
+              $stmt_top = $conn->prepare($query_top_materias);
+              $stmt_top->execute();
+              $top_materias = $stmt_top->fetchAll(PDO::FETCH_ASSOC);
+              
+              if (!empty($top_materias)) {
+                  echo '<div class="distribucion-grid">';
+                  
+                  foreach ($top_materias as $index => $materia) {
+                      $colores = ['#e74c3c', '#3498db', '#f39c12', '#27ae60', '#9b59b6'];
+                      $color = $colores[$index % count($colores)];
+                      
+                      echo '<div class="distribucion-card" style="background: linear-gradient(135deg, ' . $color . ', ' . $color . '99);">
+                          <h4>🏆 #' . ($index + 1) . ' ' . htmlspecialchars($materia['nombre_materia']) . '</h4>
+                          <div style="margin: 15px 0;">
+                              <p><strong>📚 Facultad:</strong><br>' . htmlspecialchars(substr($materia['facultad'], 0, 35)) . '</p>
+                              <p><strong>📅 Ciclo:</strong> ' . htmlspecialchars($materia['ciclo_academico']) . '</p>
+                              <p><strong>👥 Estudiantes NEE:</strong> ' . $materia['total_estudiantes'] . '</p>
+                              <p><strong>👨‍🏫 Docentes:</strong> ' . $materia['docentes_involucrados'] . '</p>
+                              <p><strong>📊 Punt. Promedio:</strong> ' . number_format($materia['puntuacion_promedio'], 2) . '</p>
+                              <p><strong>🎯 Tipos atendidos:</strong><br>' . 
+                                 htmlspecialchars(substr($materia['tipos_atencion'], 0, 40)) . 
+                                 (strlen($materia['tipos_atencion']) > 40 ? '...' : '') . '</p>
+                          </div>
+                      </div>';
+                  }
+                  
+                  echo '</div>';
+              } else {
+                  echo '<div class="info-box">
+                      <p>No hay materias con estudiantes NEE asignados actualmente.</p>
+                  </div>';
+              }
+              
+          } catch (Exception $e) {
+              echo '<div class="warning-box">
+                  <h4>❌ Error en análisis</h4>
+                  <p>Error: ' . htmlspecialchars($e->getMessage()) . '</p>
+              </div>';
+          }
+          ?>
+      </section>
 
+      <!-- SECCIÓN GRÁFICOS -->
+      <section id="graficos" class="dashboard-section fade-in">
+          <h3>📉 Análisis Visual</h3>
+          <div class="charts-grid">
+              <div class="chart-item">
+                  <div class="chart-container">
+                      <h4>Pesos de Subcriterios (Orden Corregido)</h4>
+                      <canvas id="subcriteriosChart"></canvas>
+                  </div>
+              </div>
+              <div class="chart-item">
+                  <div class="chart-container">
+                      <h4>Pesos de Criterios Principales</h4>
+                      <canvas id="criteriosPrincipalesChart"></canvas>
+                  </div>
+              </div>
+          </div>
+      </section>
 
-        <?php } else { ?>
-            <div class="alert alert-error">No se pudo conectar a la base de datos.</div>
-        <?php } ?>
-    </div>
+      <?php 
+      } else { ?>
+          <div class="alert alert-error">No se pudo conectar a la base de datos.</div>
+      <?php } ?>
+  </div>
 </div>
 
 <!-- Indicador de scroll y botón para ir arriba -->
 <div id="scrollIndicator" class="scroll-indicator" style="opacity: 0;">
-    📍 Navegando...
+  📍 Navegando...
 </div>
 
 <button id="scrollToTop" class="scroll-to-top" title="Ir arriba">
-    ↑
+  ↑
 </button>
 
 <script>
@@ -662,80 +947,80 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('dashboardContainer');
-    const scrollIndicator = document.getElementById('scrollIndicator');
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    // Mostrar/ocultar indicador de scroll y botón
-    container.addEventListener('scroll', function() {
-        const scrollPercent = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
-        
-        // Mostrar indicador si hay scroll
-        if (container.scrollTop > 100) {
-            scrollIndicator.style.opacity = '1';
-            scrollIndicator.textContent = `📍 ${Math.round(scrollPercent)}%`;
-            scrollToTopBtn.classList.add('visible');
-        } else {
-            scrollIndicator.style.opacity = '0';
-            scrollToTopBtn.classList.remove('visible');
-        }
-    });
-    
-    // Botón ir arriba
-    scrollToTopBtn.addEventListener('click', function() {
-        container.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Navegación suave para los enlaces internos
-    document.querySelectorAll('.dashboard-nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const containerRect = container.getBoundingClientRect();
-                const targetRect = targetElement.getBoundingClientRect();
-                const offsetTop = targetRect.top - containerRect.top + container.scrollTop - 100;
-                
-                container.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Highlight del enlace activo
-                document.querySelectorAll('.dashboard-nav-link').forEach(l => l.style.background = 'rgba(255, 255, 255, 0.8)');
-                this.style.background = 'rgba(255, 255, 255, 0.9)';
-            }
-        });
-    });
-    
-    // Animación de aparición para las secciones
-    const observerOptions = {
-        root: container,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observar todas las secciones
-    document.querySelectorAll('.dashboard-section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
+  const container = document.getElementById('dashboardContainer');
+  const scrollIndicator = document.getElementById('scrollIndicator');
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  
+  // Mostrar/ocultar indicador de scroll y botón
+  container.addEventListener('scroll', function() {
+      const scrollPercent = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+      
+      // Mostrar indicador si hay scroll
+      if (container.scrollTop > 100) {
+          scrollIndicator.style.opacity = '1';
+          scrollIndicator.textContent = `📍 ${Math.round(scrollPercent)}%`;
+          scrollToTopBtn.classList.add('visible');
+      } else {
+          scrollIndicator.style.opacity = '0';
+          scrollToTopBtn.classList.remove('visible');
+      }
+  });
+  
+  // Botón ir arriba
+  scrollToTopBtn.addEventListener('click', function() {
+      container.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  });
+  
+  // Navegación suave para los enlaces internos
+  document.querySelectorAll('.dashboard-nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+              const containerRect = container.getBoundingClientRect();
+              const targetRect = targetElement.getBoundingClientRect();
+              const offsetTop = targetRect.top - containerRect.top + container.scrollTop - 100;
+              
+              container.scrollTo({
+                  top: offsetTop,
+                  behavior: 'smooth'
+              });
+              
+              // Highlight del enlace activo
+              document.querySelectorAll('.dashboard-nav-link').forEach(l => l.style.background = 'rgba(255, 255, 255, 0.8)');
+              this.style.background = 'rgba(255, 255, 255, 0.9)';
+          }
+      });
+  });
+  
+  // Animación de aparición para las secciones
+  const observerOptions = {
+      root: container,
+      rootMargin: '0px',
+      threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+          }
+      });
+  }, observerOptions);
+  
+  // Observar todas las secciones
+  document.querySelectorAll('.dashboard-section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+  });
 });
 
 // ============================================
@@ -745,110 +1030,110 @@ document.addEventListener('DOMContentLoaded', function() {
 // Gráfico de Subcriterios
 const ctxSub = document.getElementById('subcriteriosChart').getContext('2d');
 new Chart(ctxSub, {
-    type: 'doughnut',
-    data: {
-        labels: [<?php echo "'" . implode("','", array_column($criterios, 'codigo_criterio')) . "'"; ?>],
-        datasets: [{
-            label: 'Pesos de Subcriterios',
-            data: [<?php echo implode(',', array_column($criterios, 'peso_criterio')); ?>],
-            backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#27ae60', '#9b59b6'],
-            borderColor: '#FFFFFF',
-            borderWidth: 2,
-            hoverOffset: 4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            title: { 
-                display: true, 
-                text: 'EPR (32%) > FSI (28%) > AMI (16%) > AED (13%) > NFA (11%)',
-                color: '#2c3e50',
-                font: { size: 14 }
-            },
-            legend: {
-                position: 'bottom',
-                labels: { color: '#2c3e50' }
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return context.label + ': ' + (context.parsed * 100).toFixed(1) + '%';
-                    }
-                }
-            }
-        }
-    }
+  type: 'doughnut',
+  data: {
+      labels: [<?php echo "'" . implode("','", array_column($criterios, 'codigo_criterio')) . "'"; ?>],
+      datasets: [{
+          label: 'Pesos de Subcriterios',
+          data: [<?php echo implode(',', array_column($criterios, 'peso_criterio')); ?>],
+          backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#27ae60', '#9b59b6'],
+          borderColor: '#FFFFFF',
+          borderWidth: 2,
+          hoverOffset: 4
+      }]
+  },
+  options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+          title: { 
+              display: true, 
+              text: 'EPR (32%) > FSI (28%) > AMI (16%) > AED (13%) > NFA (11%)',
+              color: '#2c3e50',
+              font: { size: 14 }
+          },
+          legend: {
+              position: 'bottom',
+              labels: { color: '#2c3e50' }
+          },
+          tooltip: {
+              callbacks: {
+                  label: function(context) {
+                      return context.label + ': ' + (context.parsed * 100).toFixed(1) + '%';
+                  }
+              }
+          }
+      }
+  }
 });
 
 // Gráfico de Criterios Principales
 const ctxPrin = document.getElementById('criteriosPrincipalesChart').getContext('2d');
 new Chart(ctxPrin, {
-    type: 'bar',
-    data: {
-        labels: [<?php echo "'" . implode("','", array_column($tipos_discapacidad, 'nombre_discapacidad')) . "'"; ?>],
-        datasets: [{
-            label: 'Peso de Prioridad',
-            data: [<?php echo implode(',', array_column($tipos_discapacidad, 'peso_prioridad')); ?>],
-            backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#27ae60', '#95a5a6'],
-            borderColor: '#FFFFFF',
-            borderWidth: 1,
-            borderRadius: 5,
-            borderSkipped: false,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            y: { 
-                beginAtZero: true, 
-                max: 0.5,
-                title: { 
-                    display: true, 
-                    text: 'Peso AHP',
-                    color: '#2c3e50'
-                },
-                ticks: { color: '#2c3e50' },
-                grid: { color: 'rgba(44, 62, 80, 0.1)' }
-            },
-            x: { 
-                title: { 
-                    display: true, 
-                    text: 'Tipos de Discapacidad',
-                    color: '#2c3e50'
-                },
-                ticks: { 
-                    color: '#2c3e50',
-                    maxRotation: 45
-                },
-                grid: { color: 'rgba(44, 62, 80, 0.1)' }
-            }
-        },
-        plugins: { 
-            title: { 
-                display: true, 
-                text: 'Psicosocial (40%) > Intelectual (30%) > Visual (15%) > Auditiva (10%) > Física (5%)',
-                color: '#2c3e50',
-                font: { size: 14 }
-            },
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return 'Peso: ' + (context.parsed.y * 100).toFixed(1) + '%';
-                    }
-                }
-            }
-        },
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutQuart'
-        }
-    }
+  type: 'bar',
+  data: {
+      labels: [<?php echo "'" . implode("','", array_column($tipos_discapacidad, 'nombre_discapacidad')) . "'"; ?>],
+      datasets: [{
+          label: 'Peso de Prioridad',
+          data: [<?php echo implode(',', array_column($tipos_discapacidad, 'peso_prioridad')); ?>],
+          backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#27ae60', '#95a5a6'],
+          borderColor: '#FFFFFF',
+          borderWidth: 1,
+          borderRadius: 5,
+          borderSkipped: false,
+      }]
+  },
+  options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+          y: { 
+              beginAtZero: true, 
+              max: 0.5,
+              title: { 
+                  display: true, 
+                  text: 'Peso AHP',
+                  color: '#2c3e50'
+              },
+              ticks: { color: '#2c3e50' },
+              grid: { color: 'rgba(44, 62, 80, 0.1)' }
+          },
+          x: { 
+              title: { 
+                  display: true, 
+                  text: 'Tipos de Discapacidad',
+                  color: '#2c3e50'
+              },
+              ticks: { 
+                  color: '#2c3e50',
+                  maxRotation: 45
+              },
+              grid: { color: 'rgba(44, 62, 80, 0.1)' }
+          }
+      },
+      plugins: { 
+          title: { 
+              display: true, 
+              text: 'Psicosocial (40%) > Intelectual (30%) > Visual (15%) > Auditiva (10%) > Física (5%)',
+              color: '#2c3e50',
+              font: { size: 14 }
+          },
+          legend: {
+              display: false
+          },
+          tooltip: {
+              callbacks: {
+                  label: function(context) {
+                      return 'Peso: ' + (context.parsed.y * 100).toFixed(1) + '%';
+                  }
+              }
+          }
+      },
+      animation: {
+          duration: 2000,
+          easing: 'easeInOutQuart'
+      }
+  }
 });
 
 // ============================================
@@ -858,24 +1143,24 @@ new Chart(ctxPrin, {
 // Función para detectar si el usuario está navegando
 let scrollTimeout;
 container.addEventListener('scroll', function() {
-    clearTimeout(scrollTimeout);
-    container.style.scrollBehavior = 'auto';
-    
-    scrollTimeout = setTimeout(function() {
-        container.style.scrollBehavior = 'smooth';
-    }, 150);
+  clearTimeout(scrollTimeout);
+  container.style.scrollBehavior = 'auto';
+  
+  scrollTimeout = setTimeout(function() {
+      container.style.scrollBehavior = 'smooth';
+  }, 150);
 });
 
 // Mejorar rendimiento del scroll
 let ticking = false;
 function updateScrollIndicator() {
-    if (!ticking) {
-        requestAnimationFrame(function() {
-            // Aquí van las actualizaciones del scroll
-            ticking = false;
-        });
-        ticking = true;
-    }
+  if (!ticking) {
+      requestAnimationFrame(function() {
+          // Aquí van las actualizaciones del scroll
+          ticking = false;
+      });
+      ticking = true;
+  }
 }
 
 // Event listener optimizado
@@ -883,31 +1168,31 @@ container.addEventListener('scroll', updateScrollIndicator, { passive: true });
 
 // Función para imprimir o exportar el dashboard
 function exportDashboard() {
-    window.print();
+  window.print();
 }
 
 // Función para alternar modo compacto
 function toggleCompactMode() {
-    document.querySelectorAll('.ahp-card').forEach(card => {
-        card.classList.toggle('compact-mode');
-    });
+  document.querySelectorAll('.ahp-card').forEach(card => {
+      card.classList.toggle('compact-mode');
+  });
 }
 
 // Añadir clase CSS para modo compacto
 const style = document.createElement('style');
 style.textContent = `
-    .ahp-card.compact-mode {
-        padding: 15px !important;
-        margin: 10px 0 !important;
-    }
-    .ahp-card.compact-mode h3 {
-        font-size: 1.1em !important;
-        margin-bottom: 8px !important;
-    }
-    .ahp-card.compact-mode p {
-        font-size: 0.9em !important;
-        margin: 5px 0 !important;
-    }
+  .ahp-card.compact-mode {
+      padding: 15px !important;
+      margin: 10px 0 !important;
+  }
+  .ahp-card.compact-mode h3 {
+      font-size: 1.1em !important;
+      margin-bottom: 8px !important;
+  }
+  .ahp-card.compact-mode p {
+      font-size: 0.9em !important;
+      margin: 5px 0 !important;
+  }
 `;
 document.head.appendChild(style);
 </script>

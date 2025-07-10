@@ -129,3 +129,66 @@ Stack trace:
 [24-Jun-2025 18:59:40 America/Guayaquil] Asignación exitosa: Paula Valentina Rojas Castro -> Ana Patricia Loor Cedeño
 [24-Jun-2025 18:59:40 America/Guayaquil] Total asignaciones generadas: 8
 [24-Jun-2025 18:59:40 America/Guayaquil] Errores de procesamiento: 0
+[04-Jul-2025 11:48:22 America/Guayaquil] Estudiantes encontrados: 8
+[04-Jul-2025 11:48:22 America/Guayaquil] Materias disponibles: 10
+[04-Jul-2025 11:48:23 America/Guayaquil] Docentes con carga inicializada: 10
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Diego Armando Sánchez Díaz -> JACOME MORALES GLADYS CRISTINA
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Julián David Vargas Sánchez -> JACOME MORALES GLADYS CRISTINA
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Laura Daniela Chávez Morales -> Ana Patricia Loor Cedeño
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Felipe Nicolás Martínez Cruz -> ALFONSO ANÍBAL GUIJARRO RODRÍGUEZ
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Catalina María Díaz Torres -> MARÍA FERNANDA CASTRO MORALES
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Gabriel Esteban Flores Gómez -> Carlos Mendoza Silva
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Valeria Isabel Ramírez Ortiz -> JACOME MORALES GLADYS CRISTINA
+[04-Jul-2025 11:48:23 America/Guayaquil] Asignación exitosa: Paula Valentina Rojas Castro -> Ana Patricia Loor Cedeño
+[04-Jul-2025 11:48:23 America/Guayaquil] Total asignaciones generadas: 8
+[04-Jul-2025 11:48:23 America/Guayaquil] Errores de procesamiento: 0
+[04-Jul-2025 12:16:13 America/Guayaquil] No se encontraron estudiantes para el ciclo: 2025-1
+[04-Jul-2025 12:16:22 America/Guayaquil] Estudiantes encontrados: 1
+[04-Jul-2025 12:16:22 America/Guayaquil] Materias disponibles: 10
+[04-Jul-2025 12:16:22 America/Guayaquil] Docentes con carga inicializada: 10
+[04-Jul-2025 12:16:22 America/Guayaquil] Asignación exitosa: Ana María López García -> Wilson Gilces Tutiven
+[04-Jul-2025 12:16:22 America/Guayaquil] Total asignaciones generadas: 1
+[04-Jul-2025 12:16:22 America/Guayaquil] Errores de procesamiento: 0
+[09-Jul-2025 20:02:07 America/Guayaquil] Estudiantes encontrados: 30
+[09-Jul-2025 20:02:07 America/Guayaquil] Materias disponibles: 60
+[09-Jul-2025 20:02:07 America/Guayaquil] Docentes con carga inicializada: 85
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: JIMENEZ CASTRO LUIS FERNANDO -> VERGARA BELLO OSWALDO GASTON
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: MORALES PINEDA ANA CRISTINA -> REYES WAGNIO MANUEL FABRICIO
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: RODRIGUEZ MENDEZ CARLOS ALEXANDER -> CASTRO AGUILAR GILBERTO FERNANDO
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: SANTOS RAMIREZ DIEGO ANTONIO -> GUIJARRO RODRIGUEZ ALFONSO ANIBAL
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: TORRES VALENCIA MARIA ESPERANZA -> MINDA GILCES DIANA ELIZABETH
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: ZAMBRANO SILVA PAULA MICHELLE -> NARANJO PEÑA IRMA ELIZABETH
+[09-Jul-2025 20:02:07 America/Guayaquil] Asignación exitosa: CASTRO JIMENEZ GABRIEL ESTEBAN -> GILCES TUTIVEN WILSON
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: CEDEÑO LOPEZ SARA VALENTINA -> SANTOS DIAZ LILIA BEATRIZ
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: FLORES ORTIZ CAMILA VALENTINA -> MOLINA CALDERON MIGUEL ALFONSO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: GUTIERREZ SILVA ROBERTO CARLOS -> COLLANTES FARAH ALEX ROBERTO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: LEON VEGA SEBASTIAN EDUARDO -> VERGARA BELLO OSWALDO GASTON
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: MARTINEZ CRUZ DANIELA ELIZABETH -> REYES WAGNIO MANUEL FABRICIO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: RAMOS AGUILAR LUCIANA FERNANDA -> CASTRO AGUILAR GILBERTO FERNANDO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: ALVARADO CRUZ MATEO SEBASTIAN -> ORDOÑEZ VALENCIA MAYLEE LISBETH
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: HERNANDEZ LOPEZ VALERIA NICOLE -> GARCIA ENRIQUEZ MYRIAM CECILIA
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: MENDOZA TORRES EMILIO ALFONSO -> GARZON RODAS MAURICIO FERNANDO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: ROJAS PAREDES ISABELLA SOFIA -> VERGARA BELLO OSWALDO GASTON
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: SALAZAR MEDINA JONATHAN DAVID -> REYES WAGNIO MANUEL FABRICIO
+[09-Jul-2025 20:02:08 America/Guayaquil] Asignación exitosa: VILLAREAL SANTOS CAROLINA ANDREA -> CASTRO AGUILAR GILBERTO FERNANDO
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: CHAVEZ MORENO ANDRES FELIPE -> GUIJARRO RODRIGUEZ ALFONSO ANIBAL
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: DELGADO RUIZ PATRICIA ISABEL -> MINDA GILCES DIANA ELIZABETH
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: PEREZ GONZALEZ SOFIA ALEJANDRA -> SANTOS DIAZ LILIA BEATRIZ
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: SANCHEZ MORALES DAVID ORLANDO -> CEVALLOS ORDOÑEZ ROSA BELEN
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: VARGAS HERRERA MIGUEL ANGEL -> MOLINA CALDERON MIGUEL ALFONSO
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: AGUIRRE FLORES KEVIN ALEXANDER -> GARCIA ENRIQUEZ MYRIAM CECILIA
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: CORDOVA REYES ALEJANDRA MONSERRAT -> NARANJO PEÑA IRMA ELIZABETH
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: GUERRERO CHAVEZ FRANCISCO JAVIER -> COLLANTES FARAH ALEX ROBERTO
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: MOLINA VARGAS RICARDO BENJAMIN -> GARCIA ENRIQUEZ MYRIAM CECILIA
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: PONCE HERRERA SAMANTHA NICOLE -> MERO BAQUERIZO CESAR ANDRES
+[09-Jul-2025 20:02:09 America/Guayaquil] Asignación exitosa: VERA GONZALEZ NICOLE STEPHANIE -> HECHAVARRIA HERNANDEZ JESÚS RAFAEL
+[09-Jul-2025 20:02:09 America/Guayaquil] Total asignaciones generadas: 30
+[09-Jul-2025 20:02:09 America/Guayaquil] Errores de procesamiento: 0
+[09-Jul-2025 20:45:19 America/Guayaquil] No se encontraron estudiantes para el ciclo: 2025-1
+[09-Jul-2025 20:45:33 America/Guayaquil] Estudiantes encontrados: 1
+[09-Jul-2025 20:45:33 America/Guayaquil] Materias disponibles: 60
+[09-Jul-2025 20:45:33 America/Guayaquil] Docentes con carga inicializada: 85
+[09-Jul-2025 20:45:33 America/Guayaquil] Asignación exitosa: JIMENEZ CASTRO LUIS FERNANDO -> VERGARA BELLO OSWALDO GASTON
+[09-Jul-2025 20:45:33 America/Guayaquil] Total asignaciones generadas: 1
+[09-Jul-2025 20:45:33 America/Guayaquil] Errores de procesamiento: 0
+[09-Jul-2025 20:51:44 America/Guayaquil] No se encontraron estudiantes para el ciclo: 2025-1
