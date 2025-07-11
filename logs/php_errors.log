@@ -192,3 +192,10 @@ Stack trace:
 [09-Jul-2025 20:45:33 America/Guayaquil] Total asignaciones generadas: 1
 [09-Jul-2025 20:45:33 America/Guayaquil] Errores de procesamiento: 0
 [09-Jul-2025 20:51:44 America/Guayaquil] No se encontraron estudiantes para el ciclo: 2025-1
+[09-Jul-2025 23:48:13 America/Guayaquil] Estudiantes encontrados: 2
+[09-Jul-2025 23:48:13 America/Guayaquil] Materias disponibles: 60
+[09-Jul-2025 23:48:13 America/Guayaquil] Docentes con carga inicializada: 85
+[09-Jul-2025 23:48:13 America/Guayaquil] Asignación exitosa: MORALES PINEDA ANA CRISTINA -> REYES WAGNIO MANUEL FABRICIO
+[09-Jul-2025 23:48:13 America/Guayaquil] Asignación exitosa: RODRIGUEZ MENDEZ CARLOS ALEXANDER -> CASTRO AGUILAR GILBERTO FERNANDO
+[09-Jul-2025 23:48:13 America/Guayaquil] Total asignaciones generadas: 2
+[09-Jul-2025 23:48:13 America/Guayaquil] Errores de procesamiento: 0
