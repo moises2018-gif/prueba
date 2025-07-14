@@ -1,8 +1,8 @@
 <?php
 /**
- * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - VERSIÓN CORREGIDA
+ * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - CON BALANCEADO DE CARGA
  * Archivo: procesar/procesar_asignacion_automatica.php
- * CORRECCIÓN: Manejo de estudiantes sin materias específicas y debugging mejorado
+ * VERSIÓN 3: Implementa balanceado de carga para evitar sobrecargar un docente
  */
 
 include '../includes/conexion.php';
@@ -80,92 +80,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 /**
- * DIAGNÓSTICO MEJORADO - Identifica exactamente dónde está el problema
+ * Diagnostica por qué no hay estudiantes disponibles
  */
 function diagnosticarProblema($conn, $ciclo_academico) {
-    $diagnosticos = [];
-    
-    // 1. Verificar estudiantes totales
     $total_estudiantes = $conn->query("SELECT COUNT(*) FROM estudiantes")->fetchColumn();
-    $diagnosticos[] = "Total estudiantes en sistema: $total_estudiantes";
     
-    // 2. Verificar estudiantes del ciclo específico
     $stmt_ciclo = $conn->prepare("SELECT COUNT(*) FROM estudiantes WHERE ciclo_academico = ?");
     $stmt_ciclo->execute([$ciclo_academico]);
     $estudiantes_ciclo = $stmt_ciclo->fetchColumn();
-    $diagnosticos[] = "Estudiantes para ciclo $ciclo_academico: $estudiantes_ciclo";
     
-    // 3. Verificar estudiantes ya asignados
     $stmt_asignados = $conn->prepare("
         SELECT COUNT(*) FROM estudiantes e
         JOIN asignaciones a ON e.id_estudiante = a.id_estudiante 
         WHERE e.ciclo_academico = ? AND a.estado = 'Activa'");
     $stmt_asignados->execute([$ciclo_academico]);
     $estudiantes_asignados = $stmt_asignados->fetchColumn();
-    $diagnosticos[] = "Estudiantes ya asignados: $estudiantes_asignados";
     
     $disponibles = $estudiantes_ciclo - $estudiantes_asignados;
-    $diagnosticos[] = "Estudiantes disponibles: $disponibles";
     
-    // 4. Verificar materias disponibles
-    $stmt_materias = $conn->prepare("SELECT COUNT(*) FROM materias WHERE ciclo_academico = ?");
-    $stmt_materias->execute([$ciclo_academico]);
-    $materias_ciclo = $stmt_materias->fetchColumn();
-    $diagnosticos[] = "Materias para ciclo $ciclo_academico: $materias_ciclo";
-    
-    // 5. Verificar docentes disponibles
-    $docentes_total = $conn->query("SELECT COUNT(*) FROM docentes")->fetchColumn();
-    $diagnosticos[] = "Total docentes: $docentes_total";
-    
-    // 6. Verificar vista AHP
-    try {
-        $vista_ahp = $conn->query("SELECT COUNT(*) FROM vista_ranking_ahp_especifico")->fetchColumn();
-        $diagnosticos[] = "Registros en vista AHP: $vista_ahp";
-    } catch (Exception $e) {
-        $diagnosticos[] = "ERROR en vista AHP: " . $e->getMessage();
-    }
-    
-    // 7. Verificar estudiantes específicos disponibles
-    if ($disponibles > 0) {
-        $stmt_detalle = $conn->prepare("
-            SELECT e.nombres_completos, e.facultad, t.nombre_discapacidad
-            FROM estudiantes e
-            JOIN tipos_discapacidad t ON e.id_tipo_discapacidad = t.id_tipo_discapacidad
-            LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante AND a.estado = 'Activa'
-            WHERE e.ciclo_academico = ? AND a.id_asignacion IS NULL
-            LIMIT 5");
-        $stmt_detalle->execute([$ciclo_academico]);
-        $estudiantes_detalle = $stmt_detalle->fetchAll(PDO::FETCH_ASSOC);
-        
-        if (!empty($estudiantes_detalle)) {
-            $diagnosticos[] = "Estudiantes disponibles encontrados:";
-            foreach ($estudiantes_detalle as $est) {
-                $diagnosticos[] = "- {$est['nombres_completos']} ({$est['nombre_discapacidad']}, {$est['facultad']})";
-            }
-        }
-    }
-    
-    // Construir mensaje final
-    if ($disponibles == 0) {
-        return "Todos los estudiantes ya están asignados. " . implode(" | ", $diagnosticos);
+    if ($total_estudiantes == 0) {
+        return "No hay estudiantes registrados en el sistema. Agregue estudiantes primero.";
+    } elseif ($estudiantes_ciclo == 0) {
+        return "No hay estudiantes para el ciclo $ciclo_academico. Total en sistema: $total_estudiantes";
+    } elseif ($disponibles == 0) {
+        return "Todos los estudiantes del ciclo $ciclo_academico ya están asignados ($estudiantes_asignados de $estudiantes_ciclo)";
     } else {
-        return "DIAGNÓSTICO DETALLADO: " . implode(" | ", $diagnosticos) . " | PROBABLE CAUSA: Falta de materias específicas del ciclo o problemas en vista AHP.";
+        return "Hay $disponibles estudiantes disponibles pero no se pudieron procesar. Verifique la configuración.";
     }
 }
 
 /**
- * GENERACIÓN DE VISTA PREVIA CORREGIDA
+ * Genera vista previa de asignaciones usando AHP optimizado CON BALANCEADO DE CARGA
  */
 function generarVistaPrevia($conn, $ciclo_academico) {
-    // Obtener estudiantes sin asignar - CONSULTA MEJORADA
+    // Obtener estudiantes sin asignar
     $query_estudiantes = "
         SELECT e.id_estudiante, e.nombres_completos, e.facultad,
                t.id_tipo_discapacidad, t.nombre_discapacidad, t.peso_prioridad
         FROM estudiantes e
         JOIN tipos_discapacidad t ON e.id_tipo_discapacidad = t.id_tipo_discapacidad
         LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante AND a.estado = 'Activa'
-        WHERE e.ciclo_academico = :ciclo 
-        AND a.id_asignacion IS NULL
+        WHERE e.ciclo_academico = :ciclo AND a.id_asignacion IS NULL
         ORDER BY t.peso_prioridad DESC, e.nombres_completos";
     
     $stmt_estudiantes = $conn->prepare($query_estudiantes);
@@ -173,24 +128,18 @@ function generarVistaPrevia($conn, $ciclo_academico) {
     $estudiantes = $stmt_estudiantes->fetchAll(PDO::FETCH_ASSOC);
     
     if (empty($estudiantes)) {
-        error_log("No se encontraron estudiantes para el ciclo: $ciclo_academico");
         return [];
     }
     
-    error_log("Estudiantes encontrados: " . count($estudiantes));
-    
-    // Obtener materias - MEJORADO CON FALLBACK
-    $materias = obtenerMateriasConFallback($conn, $ciclo_academico);
-    error_log("Materias disponibles: " . count($materias));
+    // Obtener materias disponibles
+    $materias = obtenerMaterias($conn, $ciclo_academico);
     
     // INICIALIZAR CONTADOR DE CARGA POR DOCENTE
     $carga_docentes = inicializarCargaDocentes($conn, $ciclo_academico);
-    error_log("Docentes con carga inicializada: " . count($carga_docentes));
     
     $asignaciones_preview = [];
-    $errores_procesamiento = [];
     
-    // Para cada estudiante, encontrar el mejor docente disponible
+    // Para cada estudiante, encontrar el mejor docente disponible CON BALANCEADO
     foreach ($estudiantes as $estudiante) {
         try {
             $docente_recomendado = encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes);
@@ -201,8 +150,8 @@ function generarVistaPrevia($conn, $ciclo_academico) {
                 $carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] = 
                     ($carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] ?? 0) + 1;
                 
-                // Seleccionar materia apropiada - MEJORADO
-                $materia_seleccionada = seleccionarMateriaInteligente($materias, $estudiante['facultad']);
+                // Seleccionar materia apropiada
+                $materia_seleccionada = seleccionarMateria($materias, $estudiante['facultad']);
                 
                 // Preparar datos para vista previa
                 $asignaciones_preview[] = [
@@ -222,100 +171,19 @@ function generarVistaPrevia($conn, $ciclo_academico) {
                     'capacidad_restante' => $docente_recomendado['capacidad_restante'],
                     'carga_actual' => $carga_docentes[$docente_recomendado['id_docente']]['asignaciones_actuales']
                 ];
-                
-                error_log("Asignación exitosa: {$estudiante['nombres_completos']} -> {$docente_recomendado['nombres_completos']}");
-            } else {
-                $errores_procesamiento[] = "No se encontró docente para: {$estudiante['nombres_completos']} ({$estudiante['nombre_discapacidad']})";
-                error_log("No se encontró docente para: {$estudiante['nombres_completos']}");
             }
             
         } catch (Exception $e) {
-            $error_msg = "Error asignando estudiante {$estudiante['nombres_completos']}: " . $e->getMessage();
-            $errores_procesamiento[] = $error_msg;
-            error_log($error_msg);
+            error_log("Error asignando estudiante {$estudiante['nombres_completos']}: " . $e->getMessage());
             continue;
         }
     }
-    
-    error_log("Total asignaciones generadas: " . count($asignaciones_preview));
-    error_log("Errores de procesamiento: " . count($errores_procesamiento));
     
     return $asignaciones_preview;
 }
 
 /**
- * OBTENER MATERIAS CON FALLBACK MEJORADO
- */
-function obtenerMateriasConFallback($conn, $ciclo_academico) {
-    // Intentar obtener materias del ciclo específico
-    $query_materias = "
-        SELECT id_materia, nombre_materia, facultad 
-        FROM materias 
-        WHERE ciclo_academico = ? 
-        ORDER BY nombre_materia";
-    $stmt_materias = $conn->prepare($query_materias);
-    $stmt_materias->execute([$ciclo_academico]);
-    $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
-    
-    // Si no hay materias para el ciclo específico, usar materias generales
-    if (empty($materias)) {
-        error_log("No se encontraron materias para ciclo $ciclo_academico, usando materias generales");
-        $query_materias_general = "
-            SELECT id_materia, nombre_materia, facultad 
-            FROM materias 
-            ORDER BY nombre_materia";
-        $stmt_materias_general = $conn->prepare($query_materias_general);
-        $stmt_materias_general->execute();
-        $materias = $stmt_materias_general->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    // Si aún no hay materias, crear una materia por defecto
-    if (empty($materias)) {
-        error_log("No se encontraron materias en la BD, creando materia por defecto");
-        $materias = [[
-            'id_materia' => 5, // ID de Álgebra Lineal que existe en tu BD
-            'nombre_materia' => 'Álgebra Lineal',
-            'facultad' => 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS'
-        ]];
-    }
-    
-    return $materias;
-}
-
-/**
- * SELECCIONAR MATERIA DE FORMA INTELIGENTE
- */
-function seleccionarMateriaInteligente($materias, $facultad_estudiante) {
-    // 1. Buscar materia de la misma facultad
-    foreach ($materias as $materia) {
-        if (strpos($materia['facultad'], 'CIENCIAS MATEMATICAS') !== false && 
-            strpos($facultad_estudiante, 'CIENCIAS MATEMATICAS') !== false) {
-            return $materia;
-        }
-    }
-    
-    // 2. Buscar cualquier materia de la facultad exacta
-    foreach ($materias as $materia) {
-        if ($materia['facultad'] == $facultad_estudiante) {
-            return $materia;
-        }
-    }
-    
-    // 3. Usar la primera materia disponible
-    if (!empty($materias)) {
-        return $materias[0];
-    }
-    
-    // 4. Crear materia de emergencia
-    return [
-        'id_materia' => 5, // Álgebra Lineal existe en tu BD
-        'nombre_materia' => 'Álgebra Lineal',
-        'facultad' => $facultad_estudiante
-    ];
-}
-
-/**
- * INICIALIZAR CARGA DOCENTES - SIN CAMBIOS (ya está bien)
+ * Inicializa el contador de carga de todos los docentes
  */
 function inicializarCargaDocentes($conn, $ciclo_academico) {
     $query_carga = "
@@ -347,7 +215,7 @@ function inicializarCargaDocentes($conn, $ciclo_academico) {
             'limite_maximo' => $docente['limite_maximo'],
             'limite_por_tipo' => $docente['limite_por_tipo'],
             'asignaciones_actuales' => $docente['asignaciones_actuales'],
-            'por_tipo' => []
+            'por_tipo' => [] // Se llenará dinámicamente
         ];
     }
     
@@ -372,10 +240,10 @@ function inicializarCargaDocentes($conn, $ciclo_academico) {
 }
 
 /**
- * ENCONTRAR MEJOR DOCENTE - MEJORADO CON MÁS FALLBACKS
+ * Encuentra el mejor docente disponible CON BALANCEADO DE CARGA
  */
 function encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes) {
-    // 1. Intentar con vista AHP específica
+    // Obtener candidatos ordenados por AHP
     $query_candidatos = "
         SELECT vra.id_docente, d.nombres_completos,
                vra.puntuacion_especifica_discapacidad as puntuacion_base,
@@ -392,62 +260,21 @@ function encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes) {
     $stmt_candidatos->execute([$estudiante['id_tipo_discapacidad'], $estudiante['facultad']]);
     $candidatos = $stmt_candidatos->fetchAll(PDO::FETCH_ASSOC);
     
-    // 2. Si no hay candidatos específicos, buscar de la misma facultad
     if (empty($candidatos)) {
-        $query_facultad = "
-            SELECT d.id_docente, d.nombres_completos,
-                   0.700 as puntuacion_base,
-                   50 as ranking_especifico,
-                   COALESCE(edd.tiene_experiencia, 0) as tiene_experiencia_especifica,
-                   COALESCE(edd.nivel_competencia, 'Básico') as nivel_competencia_especifica
-            FROM docentes d
-            LEFT JOIN experiencia_docente_discapacidad edd ON d.id_docente = edd.id_docente 
-                AND edd.id_tipo_discapacidad = ?
-            WHERE d.facultad = ?
-            ORDER BY d.experiencia_nee_años DESC, d.formacion_inclusion DESC";
-        
-        $stmt_facultad = $conn->prepare($query_facultad);
-        $stmt_facultad->execute([$estudiante['id_tipo_discapacidad'], $estudiante['facultad']]);
-        $candidatos = $stmt_facultad->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    // 3. Si aún no hay candidatos, buscar cualquier docente con formación
-    if (empty($candidatos)) {
-        $query_cualquiera = "
+        // Fallback: buscar cualquier docente de la facultad
+        $query_fallback = "
             SELECT d.id_docente, d.nombres_completos,
                    0.500 as puntuacion_base,
                    99 as ranking_especifico,
                    0 as tiene_experiencia_especifica,
                    'Básico' as nivel_competencia_especifica
             FROM docentes d
-            WHERE d.formacion_inclusion = 1
+            WHERE d.facultad = ?
             ORDER BY d.experiencia_nee_años DESC";
         
-        $stmt_cualquiera = $conn->prepare($query_cualquiera);
-        $stmt_cualquiera->execute();
-        $candidatos = $stmt_cualquiera->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    // 4. Última opción: cualquier docente
-    if (empty($candidatos)) {
-        $query_ultimo = "
-            SELECT d.id_docente, d.nombres_completos,
-                   0.300 as puntuacion_base,
-                   999 as ranking_especifico,
-                   0 as tiene_experiencia_especifica,
-                   'Básico' as nivel_competencia_especifica
-            FROM docentes d
-            ORDER BY d.experiencia_nee_años DESC
-            LIMIT 10";
-        
-        $stmt_ultimo = $conn->prepare($query_ultimo);
-        $stmt_ultimo->execute();
-        $candidatos = $stmt_ultimo->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    if (empty($candidatos)) {
-        error_log("No se encontraron candidatos para estudiante: {$estudiante['nombres_completos']}");
-        return null;
+        $stmt_fallback = $conn->prepare($query_fallback);
+        $stmt_fallback->execute([$estudiante['facultad']]);
+        $candidatos = $stmt_fallback->fetchAll(PDO::FETCH_ASSOC);
     }
     
     $mejor_candidato = null;
@@ -500,7 +327,61 @@ function encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes) {
 }
 
 /**
- * CONFIRMAR ASIGNACIONES - SIN CAMBIOS (ya está bien)
+ * Obtiene materias disponibles
+ */
+function obtenerMaterias($conn, $ciclo_academico) {
+    $query_materias = "
+        SELECT id_materia, nombre_materia, facultad 
+        FROM materias 
+        WHERE ciclo_academico = ? 
+        ORDER BY nombre_materia";
+    $stmt_materias = $conn->prepare($query_materias);
+    $stmt_materias->execute([$ciclo_academico]);
+    $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (empty($materias)) {
+        $query_materias_general = "
+            SELECT id_materia, nombre_materia, facultad 
+            FROM materias 
+            ORDER BY nombre_materia 
+            LIMIT 10";
+        $stmt_materias_general = $conn->prepare($query_materias_general);
+        $stmt_materias_general->execute();
+        $materias = $stmt_materias_general->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    if (empty($materias)) {
+        $materias = [[
+            'id_materia' => null,
+            'nombre_materia' => 'Materia Asignada Automáticamente',
+            'facultad' => 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS'
+        ]];
+    }
+    
+    return $materias;
+}
+
+/**
+ * Selecciona la mejor materia para un estudiante
+ */
+function seleccionarMateria($materias, $facultad_estudiante) {
+    // Buscar materia de la misma facultad
+    foreach ($materias as $materia) {
+        if ($materia['facultad'] == $facultad_estudiante) {
+            return $materia;
+        }
+    }
+    
+    // Si no hay materia específica, usar la primera disponible
+    return !empty($materias) ? $materias[0] : [
+        'id_materia' => null,
+        'nombre_materia' => 'Materia General',
+        'facultad' => $facultad_estudiante
+    ];
+}
+
+/**
+ * Confirma las asignaciones en la base de datos
  */
 function confirmarAsignaciones($conn, $asignaciones_preview, $ciclo_academico) {
     $query_insertar = "
