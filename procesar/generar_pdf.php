@@ -1,8 +1,8 @@
 <?php
 /**
- * GENERADOR DE REPORTES PDF
+ * GENERADOR DE REPORTES PDF - VERSIÓN MODIFICADA
  * Archivo: procesar/generar_pdf.php
- * Genera PDFs de asignaciones activas, canceladas y estadísticas
+ * Genera PDFs sin los campos: Prioridad, Ciclo, Puntuación, Experiencia
  */
 
 // Configuración para PDF
@@ -247,7 +247,7 @@ function obtenerEstadisticasDetalladas($conn, $ciclo_filtro = '') {
 }
 
 /**
- * Genera PDF básico usando HTML/CSS
+ * Genera PDF básico usando HTML/CSS - VERSIÓN SIMPLIFICADA
  */
 function generarPDFBasico($datos, $titulo, $filename, $ciclo_filtro, $discapacidad_filtro, $docente_filtro) {
     // Headers para HTML optimizado para PDF
@@ -279,7 +279,7 @@ function generarPDFSoloEstadisticas($estadisticas, $titulo, $filename, $ciclo_fi
 }
 
 /**
- * Genera HTML base para PDFs
+ * Genera HTML base para PDFs - VERSIÓN SIMPLIFICADA SIN CAMPOS ESPECÍFICOS
  */
 function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro, $docente_filtro, $tipo = 'basico') {
     $fecha_generacion = date('d/m/Y H:i:s');
@@ -306,7 +306,7 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
             }
             body { 
                 font-family: Arial, sans-serif; 
-                font-size: 10px; 
+                font-size: 11px; 
                 line-height: 1.4;
                 margin: 0;
                 color: #333;
@@ -319,25 +319,25 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
             }
             .header h1 {
                 color: #667eea;
-                font-size: 18px;
+                font-size: 20px;
                 margin: 0 0 5px 0;
             }
             .header .subtitle {
                 color: #666;
-                font-size: 12px;
+                font-size: 14px;
                 margin: 5px 0;
             }
             .info-section {
                 background: #f8f9fa;
-                padding: 10px;
+                padding: 15px;
                 border-radius: 5px;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 border-left: 4px solid #667eea;
             }
             .info-section h3 {
-                margin: 0 0 8px 0;
+                margin: 0 0 10px 0;
                 color: #667eea;
-                font-size: 12px;
+                font-size: 14px;
             }
             .info-grid {
                 display: grid;
@@ -346,7 +346,7 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
             }
             .info-item {
                 background: white;
-                padding: 8px;
+                padding: 10px;
                 border-radius: 3px;
                 border: 1px solid #e1e8ed;
             }
@@ -356,78 +356,56 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
             table { 
                 width: 100%; 
                 border-collapse: collapse; 
-                margin-top: 15px;
-                font-size: 9px;
+                margin-top: 20px;
+                font-size: 11px;
             }
             th { 
                 background: #667eea; 
                 color: white; 
-                padding: 8px 5px; 
+                padding: 12px 8px; 
                 text-align: left;
                 font-weight: bold;
                 border: 1px solid #5a67d8;
             }
             td { 
-                padding: 6px 5px; 
+                padding: 10px 8px; 
                 border: 1px solid #e1e8ed;
                 vertical-align: top;
             }
             tr:nth-child(even) { 
                 background: #f8f9fa; 
             }
-            .priority-high { 
-                background: #ffebee !important; 
-                border-left: 3px solid #f44336;
-            }
-            .priority-medium { 
-                background: #fff3e0 !important; 
-                border-left: 3px solid #ff9800;
-            }
-            .priority-low { 
-                background: #f3e5f5 !important; 
-                border-left: 3px solid #9c27b0;
-            }
-            .experience-yes { 
-                color: #4caf50; 
-                font-weight: bold; 
-            }
-            .experience-no { 
-                color: #f44336; 
-            }
-            .score-high { 
-                color: #4caf50; 
-                font-weight: bold; 
-            }
-            .score-medium { 
-                color: #ff9800; 
-                font-weight: bold; 
-            }
-            .score-low { 
-                color: #f44336; 
+            tr:hover { 
+                background: #e3f2fd; 
             }
             .footer {
                 margin-top: 30px;
                 text-align: center;
-                font-size: 8px;
+                font-size: 9px;
                 color: #666;
                 border-top: 1px solid #e1e8ed;
-                padding-top: 10px;
+                padding-top: 15px;
             }
             .no-data {
                 text-align: center;
-                padding: 30px;
+                padding: 40px;
                 color: #666;
                 font-style: italic;
+                font-size: 14px;
             }
             .print-button {
                 background: #667eea;
                 color: white;
-                padding: 10px 20px;
+                padding: 12px 25px;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
-                margin: 10px;
-                font-size: 12px;
+                margin: 15px;
+                font-size: 14px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .print-button:hover {
+                background: #5a67d8;
             }
             @media print {
                 .print-button { display: none; }
@@ -466,42 +444,26 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
         </div>';
     
     if (!empty($datos)) {
+        // TABLA SIMPLIFICADA - SIN LOS CAMPOS ELIMINADOS
         $html .= '<table>
             <thead>
                 <tr>
-                    <th style="width: 15%">Docente</th>
-                    <th style="width: 15%">Estudiante</th>
-                    <th style="width: 12%">Discapacidad</th>
-                    <th style="width: 8%">Prioridad</th>
-                    <th style="width: 12%">Materia</th>
-                    <th style="width: 8%">Ciclo</th>
-                    <th style="width: 8%">Puntuación</th>
-                    <th style="width: 10%">Experiencia</th>
-                    <th style="width: 12%">Fecha</th>
+                    <th style="width: 25%">Docente Asignado</th>
+                    <th style="width: 25%">Estudiante</th>
+                    <th style="width: 20%">Tipo de Discapacidad</th>
+                    <th style="width: 20%">Materia</th>
+                    <th style="width: 10%">Fecha Asignación</th>
                 </tr>
             </thead>
             <tbody>';
         
         foreach ($datos as $row) {
-            $prioridad = $row['peso_prioridad'] * 100;
-            $clase_prioridad = $prioridad >= 30 ? 'priority-high' : ($prioridad >= 15 ? 'priority-medium' : 'priority-low');
-            
-            $puntuacion = floatval($row['puntuacion_ahp']);
-            $clase_puntuacion = $puntuacion >= 0.8 ? 'score-high' : ($puntuacion >= 0.5 ? 'score-medium' : 'score-low');
-            
-            $experiencia_clase = $row['tiene_experiencia'] ? 'experience-yes' : 'experience-no';
-            $experiencia_texto = $row['tiene_experiencia'] ? '✓ ' . $row['nivel_competencia'] : '✗ Sin experiencia';
-            
-            $html .= '<tr class="' . $clase_prioridad . '">
-                <td>' . htmlspecialchars($row['docente'] ?: 'No asignado') . '</td>
+            $html .= '<tr>
+                <td><strong>' . htmlspecialchars($row['docente'] ?: 'No asignado') . '</strong></td>
                 <td>' . htmlspecialchars($row['estudiante'] ?: 'No asignado') . '</td>
                 <td>' . htmlspecialchars($row['nombre_discapacidad']) . '</td>
-                <td>' . number_format($prioridad, 1) . '%</td>
                 <td>' . htmlspecialchars($row['nombre_materia'] ?: 'No especificada') . '</td>
-                <td>' . htmlspecialchars($row['ciclo_academico']) . '</td>
-                <td class="' . $clase_puntuacion . '">' . number_format($puntuacion, 3) . '</td>
-                <td class="' . $experiencia_clase . '">' . $experiencia_texto . '</td>
-                <td>' . date('d/m/Y H:i', strtotime($row['fecha_asignacion'])) . '</td>
+                <td>' . date('d/m/Y', strtotime($row['fecha_asignacion'])) . '</td>
             </tr>';
         }
         
@@ -526,7 +488,7 @@ function generarHTMLParaPDF($datos, $titulo, $ciclo_filtro, $discapacidad_filtro
 }
 
 /**
- * Genera HTML completo para reporte integral
+ * Genera HTML completo para reporte integral - VERSIÓN SIMPLIFICADA
  */
 function generarHTMLCompleto($activas, $canceladas, $estadisticas, $titulo, $ciclo_filtro, $discapacidad_filtro, $docente_filtro) {
     $fecha_generacion = date('d/m/Y H:i:s');
@@ -537,13 +499,13 @@ function generarHTMLCompleto($activas, $canceladas, $estadisticas, $titulo, $cic
         <meta charset="UTF-8">
         <title>' . $titulo . '</title>
         <style>
-            body { font-family: Arial, sans-serif; font-size: 10px; margin: 20px; }
+            body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; }
             .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #667eea; padding-bottom: 15px; }
-            .section { margin: 20px 0; page-break-inside: avoid; }
-            .section h2 { color: #667eea; border-bottom: 1px solid #e1e8ed; padding-bottom: 5px; }
-            table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9px; }
-            th { background: #667eea; color: white; padding: 8px 5px; }
-            td { padding: 6px 5px; border: 1px solid #e1e8ed; }
+            .section { margin: 25px 0; page-break-inside: avoid; }
+            .section h2 { color: #667eea; border-bottom: 1px solid #e1e8ed; padding-bottom: 8px; font-size: 16px; }
+            table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10px; }
+            th { background: #667eea; color: white; padding: 10px 8px; }
+            td { padding: 8px; border: 1px solid #e1e8ed; }
             tr:nth-child(even) { background: #f8f9fa; }
             .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
             .stat-card { background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #667eea; }
@@ -574,24 +536,24 @@ function generarHTMLCompleto($activas, $canceladas, $estadisticas, $titulo, $cic
                     <strong>Total Asignaciones:</strong><br>' . $estadisticas['total_asignaciones'] . '
                 </div>
                 <div class="stat-card">
-                    <strong>Promedio Puntuación AHP:</strong><br>' . number_format($estadisticas['promedio_puntuacion'], 3) . '
+                    <strong>Eficiencia del Sistema:</strong><br>' . number_format(($estadisticas['asignaciones_activas'] / max($estadisticas['total_asignaciones'], 1)) * 100, 1) . '%
                 </div>
             </div>
         </div>';
     
-    // Tabla de asignaciones activas
+    // Tabla de asignaciones activas SIMPLIFICADA
     if (!empty($activas)) {
         $html .= '<div class="section">
             <h2>✅ Asignaciones Activas (' . count($activas) . ')</h2>';
-        $html .= generarTablaAsignaciones($activas);
+        $html .= generarTablaAsignacionesSimplificada($activas);
         $html .= '</div>';
     }
     
-    // Tabla de asignaciones canceladas
+    // Tabla de asignaciones canceladas SIMPLIFICADA
     if (!empty($canceladas)) {
         $html .= '<div class="section">
             <h2>❌ Asignaciones Canceladas (' . count($canceladas) . ')</h2>';
-        $html .= generarTablaAsignaciones($canceladas);
+        $html .= generarTablaAsignacionesSimplificada($canceladas);
         $html .= '</div>';
     }
     
@@ -602,15 +564,18 @@ function generarHTMLCompleto($activas, $canceladas, $estadisticas, $titulo, $cic
             <table>
                 <tr>
                     <th>Tipo de Discapacidad</th>
-                    <th>Peso Prioridad AHP</th>
                     <th>Asignaciones Activas</th>
+                    <th>Porcentaje del Total</th>
                 </tr>';
         
         foreach ($estadisticas['distribucion_tipos'] as $tipo) {
+            $porcentaje = $estadisticas['asignaciones_activas'] > 0 ? 
+                         ($tipo['cantidad'] / $estadisticas['asignaciones_activas'] * 100) : 0;
+            
             $html .= '<tr>
                 <td>' . htmlspecialchars($tipo['nombre_discapacidad']) . '</td>
-                <td>' . number_format($tipo['peso_prioridad'] * 100, 1) . '%</td>
                 <td>' . $tipo['cantidad'] . '</td>
+                <td>' . number_format($porcentaje, 1) . '%</td>
             </tr>';
         }
         
@@ -623,28 +588,24 @@ function generarHTMLCompleto($activas, $canceladas, $estadisticas, $titulo, $cic
 }
 
 /**
- * Genera tabla HTML para asignaciones
+ * Genera tabla HTML SIMPLIFICADA para asignaciones - SIN CAMPOS ELIMINADOS
  */
-function generarTablaAsignaciones($datos) {
+function generarTablaAsignacionesSimplificada($datos) {
     $html = '<table>
         <tr>
-            <th>Docente</th>
+            <th>Docente Asignado</th>
             <th>Estudiante</th>
-            <th>Discapacidad</th>
-            <th>Puntuación AHP</th>
-            <th>Experiencia</th>
+            <th>Tipo de Discapacidad</th>
+            <th>Materia</th>
             <th>Fecha</th>
         </tr>';
     
     foreach ($datos as $row) {
-        $experiencia = $row['tiene_experiencia'] ? '✓ ' . $row['nivel_competencia'] : '✗ Sin exp.';
-        
         $html .= '<tr>
-            <td>' . htmlspecialchars($row['docente'] ?: 'No asignado') . '</td>
+            <td><strong>' . htmlspecialchars($row['docente'] ?: 'No asignado') . '</strong></td>
             <td>' . htmlspecialchars($row['estudiante'] ?: 'No asignado') . '</td>
             <td>' . htmlspecialchars($row['nombre_discapacidad']) . '</td>
-            <td>' . number_format($row['puntuacion_ahp'], 3) . '</td>
-            <td>' . $experiencia . '</td>
+            <td>' . htmlspecialchars($row['nombre_materia'] ?: 'No especificada') . '</td>
             <td>' . date('d/m/Y', strtotime($row['fecha_asignacion'])) . '</td>
         </tr>';
     }
@@ -654,7 +615,7 @@ function generarTablaAsignaciones($datos) {
 }
 
 /**
- * Genera HTML para estadísticas
+ * Genera HTML para estadísticas - VERSIÓN SIMPLIFICADA
  */
 function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
     $fecha_generacion = date('d/m/Y H:i:s');
@@ -665,14 +626,14 @@ function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
         <meta charset="UTF-8">
         <title>' . $titulo . '</title>
         <style>
-            body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; }
+            body { font-family: Arial, sans-serif; font-size: 12px; margin: 20px; }
             .header { text-align: center; margin-bottom: 30px; }
-            .stats-section { margin: 20px 0; }
+            .stats-section { margin: 25px 0; }
             .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-            .stat-card { background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #667eea; }
+            .stat-card { background: #f8f9fa; padding: 18px; border-radius: 5px; border-left: 4px solid #667eea; }
             table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-            th { background: #667eea; color: white; padding: 10px; }
-            td { padding: 8px; border: 1px solid #e1e8ed; }
+            th { background: #667eea; color: white; padding: 12px; }
+            td { padding: 10px; border: 1px solid #e1e8ed; }
             .print-button { background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
             @media print { .print-button { display: none; } }
         </style>
@@ -693,19 +654,19 @@ function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>Total de Asignaciones</h3>
-                    <div style="font-size: 24px; color: #667eea; font-weight: bold;">' . $estadisticas['total_asignaciones'] . '</div>
+                    <div style="font-size: 28px; color: #667eea; font-weight: bold;">' . $estadisticas['total_asignaciones'] . '</div>
                 </div>
                 <div class="stat-card">
                     <h3>Asignaciones Activas</h3>
-                    <div style="font-size: 24px; color: #28a745; font-weight: bold;">' . $estadisticas['asignaciones_activas'] . '</div>
+                    <div style="font-size: 28px; color: #28a745; font-weight: bold;">' . $estadisticas['asignaciones_activas'] . '</div>
                 </div>
                 <div class="stat-card">
                     <h3>Asignaciones Canceladas</h3>
-                    <div style="font-size: 24px; color: #dc3545; font-weight: bold;">' . $estadisticas['asignaciones_canceladas'] . '</div>
+                    <div style="font-size: 28px; color: #dc3545; font-weight: bold;">' . $estadisticas['asignaciones_canceladas'] . '</div>
                 </div>
                 <div class="stat-card">
-                    <h3>Promedio Puntuación AHP</h3>
-                    <div style="font-size: 24px; color: #ffc107; font-weight: bold;">' . number_format($estadisticas['promedio_puntuacion'], 3) . '</div>
+                    <h3>Eficiencia del Sistema</h3>
+                    <div style="font-size: 28px; color: #ffc107; font-weight: bold;">' . number_format(($estadisticas['asignaciones_activas'] / max($estadisticas['total_asignaciones'], 1)) * 100, 1) . '%</div>
                 </div>
             </div>
         </div>';
@@ -717,7 +678,6 @@ function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
             <table>
                 <tr>
                     <th>Tipo de Discapacidad</th>
-                    <th>Peso AHP (%)</th>
                     <th>Asignaciones</th>
                     <th>Porcentaje del Total</th>
                 </tr>';
@@ -728,7 +688,6 @@ function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
             
             $html .= '<tr>
                 <td>' . htmlspecialchars($tipo['nombre_discapacidad']) . '</td>
-                <td>' . number_format($tipo['peso_prioridad'] * 100, 1) . '%</td>
                 <td>' . $tipo['cantidad'] . '</td>
                 <td>' . number_format($porcentaje_total, 1) . '%</td>
             </tr>';
@@ -745,53 +704,31 @@ function generarHTMLEstadisticas($estadisticas, $titulo, $ciclo_filtro) {
                 <tr>
                     <th>Docente</th>
                     <th>Total Asignaciones</th>
-                    <th>Promedio Puntuación</th>
                 </tr>';
         
         foreach ($estadisticas['docentes_activos'] as $docente) {
             $html .= '<tr>
                 <td>' . htmlspecialchars($docente['nombres_completos']) . '</td>
                 <td>' . $docente['total_asignaciones'] . '</td>
-                <td>' . number_format($docente['promedio_puntuacion'], 3) . '</td>
             </tr>';
         }
         
         $html .= '</table></div>';
     }
     
-    // Criterios AHP
-    if (!empty($estadisticas['criterios_ahp'])) {
-        $html .= '<div class="stats-section">
-            <h2>⚖️ Criterios del Algoritmo AHP</h2>
-            <table>
-                <tr>
-                    <th>Criterio</th>
-                    <th>Código</th>
-                    <th>Peso (%)</th>
-                    <th>Descripción</th>
-                </tr>';
-        
-        foreach ($estadisticas['criterios_ahp'] as $criterio) {
-            $html .= '<tr>
-                <td>' . htmlspecialchars($criterio['nombre_criterio']) . '</td>
-                <td><strong>' . htmlspecialchars($criterio['codigo_criterio']) . '</strong></td>
-                <td>' . number_format($criterio['peso_criterio'] * 100, 1) . '%</td>
-                <td>' . htmlspecialchars($criterio['descripcion']) . '</td>
-            </tr>';
-        }
-        
-        $html .= '</table></div>';
-    }
-    
+    // Información del sistema (sin datos sensibles del AHP)
     $html .= '<div class="stats-section">
-        <h2>📋 Notas Importantes</h2>
-        <ul>
-            <li><strong>Sistema AHP:</strong> Proceso Analítico Jerárquico para asignación óptima de docentes</li>
-            <li><strong>Criterios principales:</strong> EPR (32%), FSI (28%), AMI (16%), AED (13%), NFA (11%)</li>
-            <li><strong>Prioridades por discapacidad:</strong> Psicosocial (40%), Intelectual (30%), Visual (15%), Auditiva (10%), Física (5%)</li>
-            <li><strong>Experiencia específica:</strong> Bonificación del 2%-15% según nivel de competencia</li>
-            <li><strong>Balanceado de carga:</strong> Penalización hasta 30% por sobrecarga de docentes</li>
-        </ul>
+        <h2>📋 Información del Sistema</h2>
+        <div class="stat-card">
+            <h3>Sistema de Asignación Automatizada</h3>
+            <p>Este sistema utiliza algoritmos avanzados para optimizar la asignación de docentes a estudiantes con necesidades educativas especiales, garantizando:</p>
+            <ul>
+                <li><strong>Distribución equilibrada:</strong> Evita la sobrecarga de docentes</li>
+                <li><strong>Especialización:</strong> Considera la experiencia específica por tipo de discapacidad</li>
+                <li><strong>Eficiencia académica:</strong> Maximiza la calidad educativa</li>
+                <li><strong>Cumplimiento normativo:</strong> Respeta los límites institucionales</li>
+            </ul>
+        </div>
     </div>';
     
     $html .= '</body></html>';

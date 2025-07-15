@@ -15,6 +15,60 @@
     margin-bottom: 15px;
 }
 
+/* Estilos para el panel desplegable */
+.panel-tecnico {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.panel-header {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+}
+
+.panel-header:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.panel-header h4 {
+    color: #2c3e50 !important;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.panel-toggle {
+    color: #2c3e50 !important;
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.panel-toggle.rotated {
+    transform: rotate(180deg);
+}
+
+.panel-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 20px;
+}
+
+.panel-content.expanded {
+    max-height: 1000px;
+    padding: 20px;
+}
+
 .asignacion-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -171,85 +225,107 @@
     .stats-grid {
         grid-template-columns: 1fr;
     }
+    
+    .panel-header h4 {
+        font-size: 14px;
+    }
 }
 </style>
 
 <div id="asignacion" class="tab-content" style="display: block;">
-    <h2>Asignación Automática de Docentes - AHP Optimizado</h2>
+    <h2>Asignación Automática de Docentes</h2>
     
-    <div class="asignacion-info-box">
-        <h3>🎯 Sistema AHP Especializado por Tipo de Discapacidad</h3>
-        <div class="asignacion-grid">
-            <div class="tipo-discapacidad-card" style="background: rgba(231, 76, 60, 0.2);">
-                <h4 style="color: #e74c3c;">🧠 Psicosocial (40%)</h4>
-                <p>Prioriza <strong>Experiencia Práctica (50%)</strong> y Formación Específica (26%)</p>
+    <!-- Panel desplegable para información técnica -->
+    <div class="panel-tecnico">
+        <div class="panel-header" onclick="togglePanel()">
+            <h4>📊 Ver Información Técnica del Sistema AHP</h4>
+            <span class="panel-toggle" id="panelToggle">▼</span>
+        </div>
+        <div class="panel-content" id="panelContent">
+            <div class="asignacion-info-box">
+                <h3>🎯 Sistema AHP Especializado por Tipo de Discapacidad</h3>
+                <div class="asignacion-grid">
+                    <div class="tipo-discapacidad-card" style="background: rgba(231, 76, 60, 0.2);">
+                        <h4 style="color: #e74c3c;">🧠 Psicosocial (40%)</h4>
+                        <p>Prioriza <strong>Experiencia Práctica (50%)</strong> y Formación Específica (26%)</p>
+                    </div>
+                    <div class="tipo-discapacidad-card" style="background: rgba(52, 152, 219, 0.2);">
+                        <h4 style="color: #3498db;">🎓 Intelectual (30%)</h4>
+                        <p>Prioriza <strong>Formación Específica (46%)</strong> y Adaptaciones (20%)</p>
+                    </div>
+                    <div class="tipo-discapacidad-card" style="background: rgba(243, 156, 18, 0.2);">
+                        <h4 style="color: #f39c12;">👁️ Visual (15%)</h4>
+                        <p>Prioriza <strong>Formación Académica (41%)</strong> y Experiencia General (25%)</p>
+                    </div>
+                    <div class="tipo-discapacidad-card" style="background: rgba(39, 174, 96, 0.2);">
+                        <h4 style="color: #27ae60;">👂 Auditiva (10%)</h4>
+                        <p>Prioriza <strong>Experiencia Práctica (42%)</strong> y Experiencia General (27%)</p>
+                    </div>
+                    <div class="tipo-discapacidad-card" style="background: rgba(149, 165, 166, 0.2);">
+                        <h4 style="color: #95a5a6;">🦽 Física (5%)</h4>
+                        <p>Prioriza <strong>Adaptaciones Metodológicas (44%)</strong> y Experiencia General (26%)</p>
+                    </div>
+                </div>
             </div>
-            <div class="tipo-discapacidad-card" style="background: rgba(52, 152, 219, 0.2);">
-                <h4 style="color: #3498db;">🎓 Intelectual (30%)</h4>
-                <p>Prioriza <strong>Formación Específica (46%)</strong> y Adaptaciones (20%)</p>
+            
+            <?php
+            include '../includes/conexion.php';
+            $conn = ConexionBD();
+            if ($conn) {
+                // Obtener estadísticas de estudiantes por tipo de discapacidad
+                $query_stats_estudiantes = "
+                    SELECT td.nombre_discapacidad, td.peso_prioridad,
+                           COUNT(e.id_estudiante) as total_estudiantes,
+                           COUNT(CASE WHEN a.estado = 'Activa' THEN 1 END) as con_asignacion,
+                           COUNT(CASE WHEN a.estado IS NULL THEN 1 END) as sin_asignacion
+                    FROM tipos_discapacidad td
+                    LEFT JOIN estudiantes e ON td.id_tipo_discapacidad = e.id_tipo_discapacidad
+                    LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante
+                    GROUP BY td.id_tipo_discapacidad
+                    ORDER BY td.peso_prioridad DESC";
+                $stmt_stats = $conn->prepare($query_stats_estudiantes);
+                $stmt_stats->execute();
+                $stats_estudiantes = $stmt_stats->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            
+            <!-- Estadísticas de estudiantes por tipo de discapacidad -->
+            <h3>Estado de Estudiantes por Tipo de Discapacidad</h3>
+            <div class="ahp-results">
+                <?php foreach ($stats_estudiantes as $stat): ?>
+                    <div class="ahp-card" style="background: linear-gradient(135deg, 
+                        <?php 
+                        echo $stat['peso_prioridad'] >= 0.3 ? '#e74c3c, #c0392b' :  
+                            ($stat['peso_prioridad'] >= 0.15 ? '#f39c12, #e67e22' : '#95a5a6, #7f8c8d'); 
+                        ?> 100%);">
+                        <h4><?php echo htmlspecialchars($stat['nombre_discapacidad']); ?></h4>
+                        <p><strong>Prioridad:</strong> <?php echo number_format($stat['peso_prioridad'] * 100, 1); ?>%</p>
+                        <p><strong>Total:</strong> <?php echo $stat['total_estudiantes'] ?: 0; ?> estudiantes</p>
+                        <p><strong>Con asignación:</strong> <?php echo $stat['con_asignacion'] ?: 0; ?></p>
+                        <p><strong>Sin asignación:</strong> <?php echo $stat['sin_asignacion'] ?: 0; ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <div class="tipo-discapacidad-card" style="background: rgba(243, 156, 18, 0.2);">
-                <h4 style="color: #f39c12;">👁️ Visual (15%)</h4>
-                <p>Prioriza <strong>Formación Académica (41%)</strong> y Experiencia General (25%)</p>
-            </div>
-            <div class="tipo-discapacidad-card" style="background: rgba(39, 174, 96, 0.2);">
-                <h4 style="color: #27ae60;">👂 Auditiva (10%)</h4>
-                <p>Prioriza <strong>Experiencia Práctica (42%)</strong> y Experiencia General (27%)</p>
-            </div>
-            <div class="tipo-discapacidad-card" style="background: rgba(149, 165, 166, 0.2);">
-                <h4 style="color: #95a5a6;">🦽 Física (5%)</h4>
-                <p>Prioriza <strong>Adaptaciones Metodológicas (44%)</strong> y Experiencia General (26%)</p>
-            </div>
+            
+            <?php } ?>
         </div>
     </div>
     
     <?php
-    include '../includes/conexion.php';
-    $conn = ConexionBD();
+    if (!$conn) {
+        $conn = ConexionBD();
+    }
+    
     if ($conn) {
         // Obtener ciclos académicos disponibles
         $query_ciclos = "SELECT DISTINCT ciclo_academico FROM materias ORDER BY ciclo_academico DESC";
         $stmt_ciclos = $conn->prepare($query_ciclos);
         $stmt_ciclos->execute();
         $ciclos = $stmt_ciclos->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Obtener estadísticas de estudiantes por tipo de discapacidad
-        $query_stats_estudiantes = "
-            SELECT td.nombre_discapacidad, td.peso_prioridad,
-                   COUNT(e.id_estudiante) as total_estudiantes,
-                   COUNT(CASE WHEN a.estado = 'Activa' THEN 1 END) as con_asignacion,
-                   COUNT(CASE WHEN a.estado IS NULL THEN 1 END) as sin_asignacion
-            FROM tipos_discapacidad td
-            LEFT JOIN estudiantes e ON td.id_tipo_discapacidad = e.id_tipo_discapacidad
-            LEFT JOIN asignaciones a ON e.id_estudiante = a.id_estudiante
-            GROUP BY td.id_tipo_discapacidad
-            ORDER BY td.peso_prioridad DESC";
-        $stmt_stats = $conn->prepare($query_stats_estudiantes);
-        $stmt_stats->execute();
-        $stats_estudiantes = $stmt_stats->fetchAll(PDO::FETCH_ASSOC);
     ?>
-    
-    <!-- Estadísticas de estudiantes por tipo de discapacidad -->
-    <h3>Estado de Estudiantes por Tipo de Discapacidad</h3>
-    <div class="ahp-results">
-        <?php foreach ($stats_estudiantes as $stat): ?>
-            <div class="ahp-card" style="background: linear-gradient(135deg, 
-                <?php 
-                echo $stat['peso_prioridad'] >= 0.3 ? '#e74c3c, #c0392b' :  
-                    ($stat['peso_prioridad'] >= 0.15 ? '#f39c12, #e67e22' : '#95a5a6, #7f8c8d'); 
-                ?> 100%);">
-                <h4><?php echo htmlspecialchars($stat['nombre_discapacidad']); ?></h4>
-                <p><strong>Prioridad:</strong> <?php echo number_format($stat['peso_prioridad'] * 100, 1); ?>%</p>
-                <p><strong>Total:</strong> <?php echo $stat['total_estudiantes'] ?: 0; ?> estudiantes</p>
-                <p><strong>Con asignación:</strong> <?php echo $stat['con_asignacion'] ?: 0; ?></p>
-                <p><strong>Sin asignación:</strong> <?php echo $stat['sin_asignacion'] ?: 0; ?></p>
-            </div>
-        <?php endforeach; ?>
-    </div>
     
     <!-- Formulario de asignación automática -->
     <div class="formulario-box">
-        <h3>Nueva Asignación Automática AHP</h3>
+        <h3>Nueva Asignación Automática</h3>
         <form action="../procesar/procesar_asignacion_automatica.php" method="POST" class="form-group">
             <label for="ciclo_academico">Ciclo Académico:</label>
             <select name="ciclo_academico" id="ciclo_academico" required>
@@ -262,17 +338,17 @@
             </select>
             <input type="hidden" name="preview" value="1">
             <div style="margin-top: 15px;">
-                <button type="submit" class="btn">🔍 Vista Previa de Asignaciones AHP</button>
+                <button type="submit" class="btn">🔍 Vista Previa de Asignaciones</button>
             </div>
             <small>
-                El sistema usará ranking específico por tipo de discapacidad y bonificaciones por experiencia especializada
+                El sistema asignará automáticamente docentes a estudiantes usando criterios optimizados
             </small>
         </form>
     </div>
     
     <?php if (isset($_GET['preview_data'])): ?>
         <div class="preview-box">
-            <h3>🔍 Vista Previa de Asignaciones AHP Optimizadas</h3>
+            <h3>🔍 Vista Previa de Asignaciones Optimizadas</h3>
             <?php
             $preview_data = json_decode(urldecode($_GET['preview_data']), true);
             if (!empty($preview_data)): 
@@ -300,7 +376,7 @@
                             <strong>Total de asignaciones:</strong> <?php echo $total_asignaciones; ?>
                         </div>
                         <div class="stats-item">
-                            <strong>Puntuación promedio:</strong> <?php echo number_format($puntuacion_promedio, 3); ?>
+                            <strong>Asignaciones exitosas:</strong> <?php echo $total_asignaciones; ?>
                         </div>
                         <div class="stats-item">
                             <strong>Con experiencia específica:</strong> <?php echo $con_experiencia; ?> / <?php echo $total_asignaciones; ?> (<?php echo number_format(($con_experiencia / $total_asignaciones) * 100, 1); ?>%)
@@ -322,45 +398,18 @@
                     <div class="table-container">
                         <table class="table">
                             <tr>
-                                <th>Prioridad</th>
                                 <th>Estudiante</th>
                                 <th>Tipo de Discapacidad</th>
                                 <th>Materia</th>
                                 <th>Docente Propuesto</th>
-                                <th>Puntuación AHP</th>
-                                <th>Ranking Específico</th>
                                 <th>Experiencia Específica</th>
                             </tr>
                             <?php foreach ($preview_data as $index => $preview): ?>
-                                <tr style="<?php echo $preview['peso_discapacidad'] >= 0.3 ? 'background: rgba(231, 76, 60, 0.1);' : ''; ?>">
-                                    <td class="text-center font-bold">
-                                        <?php echo number_format($preview['peso_discapacidad'] * 100, 1); ?>%
-                                        <?php if ($preview['peso_discapacidad'] >= 0.3): ?>
-                                            <span style="color: #e74c3c;">🔥</span>
-                                        <?php endif; ?>
-                                    </td>
+                                <tr>
                                     <td class="font-semibold"><?php echo htmlspecialchars($preview['estudiante']); ?></td>
-                                    <td>
-                                        <span style="color: <?php 
-                                            echo $preview['peso_discapacidad'] >= 0.3 ? '#e74c3c' : 
-                                                ($preview['peso_discapacidad'] >= 0.15 ? '#f39c12' : '#95a5a6');
-                                        ?>">
-                                            <?php echo htmlspecialchars($preview['nombre_discapacidad']); ?>
-                                        </span>
-                                    </td>
+                                    <td><?php echo htmlspecialchars($preview['nombre_discapacidad']); ?></td>
                                     <td><?php echo htmlspecialchars($preview['materia']); ?></td>
                                     <td class="font-semibold"><?php echo htmlspecialchars($preview['docente']); ?></td>
-                                    <td class="text-center font-bold text-success">
-                                        <?php echo number_format($preview['puntuacion_ahp'], 3); ?>
-                                    </td>
-                                    <td class="text-center">
-                                        #<?php echo $preview['ranking_original']; ?>
-                                        <?php if ($preview['ranking_original'] == 1): ?>
-                                            <span style="color: #ffd700;">🥇</span>
-                                        <?php elseif ($preview['ranking_original'] <= 3): ?>
-                                            <span style="color: #c0c0c0;">🥈</span>
-                                        <?php endif; ?>
-                                    </td>
                                     <td class="text-center">
                                         <?php if ($preview['tiene_experiencia_especifica']): ?>
                                             <span class="text-success">✅ <?php echo htmlspecialchars($preview['nivel_competencia']); ?></span>
@@ -375,7 +424,7 @@
                     
                     <div class="text-center mt-20">
                         <button type="submit" class="btn bg-success" style="padding: 15px 30px; font-size: 16px;">
-                            ✅ Confirmar Asignaciones AHP Optimizadas
+                            ✅ Confirmar Asignaciones Optimizadas
                         </button>
                         <a href="asignacion.php" class="btn bg-danger ml-10" style="padding: 15px 30px; font-size: 16px;">
                             ❌ Cancelar
@@ -413,7 +462,7 @@
             LEFT JOIN experiencia_docente_discapacidad edd ON d.id_docente = edd.id_docente 
                                                            AND a.id_tipo_discapacidad = edd.id_tipo_discapacidad
             WHERE a.estado = 'Activa'
-            ORDER BY t.peso_prioridad DESC, a.puntuacion_ahp DESC, a.fecha_asignacion DESC";
+            ORDER BY a.fecha_asignacion DESC";
         $stmt_asignaciones = $conn->prepare($query_asignaciones);
         $stmt_asignaciones->execute();
         $asignaciones = $stmt_asignaciones->fetchAll(PDO::FETCH_ASSOC);
@@ -437,7 +486,7 @@
                     <strong>Total asignaciones activas:</strong> <?php echo $total_activas; ?>
                 </div>
                 <div class="stats-item">
-                    <strong>Puntuación promedio:</strong> <?php echo number_format($puntuacion_promedio_actual, 3); ?>
+                    <strong>Asignaciones completadas:</strong> <?php echo $total_activas; ?>
                 </div>
                 <div class="stats-item">
                     <strong>Con experiencia específica:</strong> <?php echo $con_experiencia_actual; ?> / <?php echo $total_activas; ?> (<?php echo number_format(($con_experiencia_actual / $total_activas) * 100, 1); ?>%)
@@ -452,45 +501,21 @@
     <div class="table-container">
         <table class="table">
             <tr>
-                <th>Prioridad AHP</th>
                 <th>Docente</th>
                 <th>Estudiante</th>
                 <th>Tipo de Discapacidad</th>
                 <th>Materia</th>
-                <th>Ciclo Académico</th>
-                <th>Puntuación AHP</th>
                 <th>Experiencia Específica</th>
                 <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
             <?php if (count($asignaciones) > 0): ?>
                 <?php foreach ($asignaciones as $asignacion): ?>
-                    <tr style="<?php echo $asignacion['peso_prioridad'] >= 0.3 ? 'background: rgba(231, 76, 60, 0.1);' : ''; ?>">
-                        <td class="text-center font-bold">
-                            <?php echo number_format($asignacion['peso_prioridad'] * 100, 1); ?>%
-                            <?php if ($asignacion['peso_prioridad'] >= 0.3): ?>
-                                <br><span style="color: #e74c3c; font-size: 12px;">ALTA</span>
-                            <?php elseif ($asignacion['peso_prioridad'] >= 0.15): ?>
-                                <br><span style="color: #f39c12; font-size: 12px;">MEDIA</span>
-                            <?php else: ?>
-                                <br><span style="color: #95a5a6; font-size: 12px;">BAJA</span>
-                            <?php endif; ?>
-                        </td>
+                    <tr>
                         <td class="font-semibold"><?php echo htmlspecialchars($asignacion['docente'] ?: 'No asignado'); ?></td>
                         <td><?php echo htmlspecialchars($asignacion['estudiante'] ?: 'No asignado'); ?></td>
-                        <td>
-                            <span style="color: <?php 
-                                echo $asignacion['peso_prioridad'] >= 0.3 ? '#e74c3c' : 
-                                    ($asignacion['peso_prioridad'] >= 0.15 ? '#f39c12' : '#95a5a6');
-                            ?>; font-weight: bold;">
-                                <?php echo htmlspecialchars($asignacion['nombre_discapacidad']); ?>
-                            </span>
-                        </td>
+                        <td><?php echo htmlspecialchars($asignacion['nombre_discapacidad']); ?></td>
                         <td><?php echo htmlspecialchars($asignacion['nombre_materia'] ?: 'No especificada'); ?></td>
-                        <td class="text-center"><?php echo htmlspecialchars($asignacion['ciclo_academico']); ?></td>
-                        <td class="text-center font-bold text-success">
-                            <?php echo number_format($asignacion['puntuacion_ahp'], 3); ?>
-                        </td>
                         <td class="text-center">
                             <?php if ($asignacion['tiene_experiencia_especifica']): ?>
                                 <span class="text-success">✅ <?php echo htmlspecialchars($asignacion['nivel_competencia']); ?></span>
@@ -514,26 +539,14 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="10" class="empty-state">
+                    <td colspan="7" class="empty-state">
                         <h4>📋 No hay asignaciones activas</h4>
-                        <p>Use el formulario de arriba para crear nuevas asignaciones automáticas con AHP</p>
+                        <p>Use el formulario de arriba para crear nuevas asignaciones automáticas</p>
                     </td>
                 </tr>
             <?php endif; ?>
         </table>
     </div>
-    
-    <?php if (!empty($asignaciones)): ?>
-        <div class="leyenda-box">
-            <p>
-                <strong>🔍 Leyenda:</strong> 
-                <span style="color: #e74c3c;">■</span> Alta prioridad (≥30%) | 
-                <span style="color: #f39c12;">■</span> Media prioridad (15-29%) | 
-                <span style="color: #95a5a6;">■</span> Baja prioridad (<15%) | 
-                ✅ Con experiencia específica | ❌ Sin experiencia específica
-            </p>
-        </div>
-    <?php endif; ?>
     
     <?php } else { ?>
         <div class="alert alert-error">No se pudo conectar a la base de datos.</div>
@@ -541,6 +554,21 @@
 </div>
 
 <script>
+// Función para alternar el panel desplegable
+function togglePanel() {
+    const content = document.getElementById('panelContent');
+    const toggle = document.getElementById('panelToggle');
+    
+    content.classList.toggle('expanded');
+    toggle.classList.toggle('rotated');
+    
+    if (content.classList.contains('expanded')) {
+        toggle.textContent = '▲';
+    } else {
+        toggle.textContent = '▼';
+    }
+}
+
 function confirmarEliminacion(mensaje) {
     return confirm(mensaje);
 }
