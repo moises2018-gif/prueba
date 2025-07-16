@@ -116,3 +116,24 @@ Stack trace:
 [20-Jun-2025 02:32:58 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
 [20-Jun-2025 02:33:37 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
 [20-Jun-2025 02:33:37 America/Guayaquil] [INFO] Sistema AHP inicializado {"configuracion_completa":true,"debug_mode":true,"timezone":"America\/Guayaquil","log_enabled":true}
+[15-Jul-2025 21:16:43 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:16:43 America/Guayaquil] PHP Fatal error:  Uncaught TypeError: array_column(): Argument #1 ($array) must be of type array, null given in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:750
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(750): array_column(NULL, 'codigo_criterio')
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 750
+[15-Jul-2025 21:16:50 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:16:54 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:16:58 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:17:13 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:17:18 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:17:33 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:17:33 America/Guayaquil] PHP Fatal error:  Uncaught TypeError: array_column(): Argument #1 ($array) must be of type array, null given in C:\Users\CNT\Desktop\prueba\pages\dashboard.php:750
+Stack trace:
+#0 C:\Users\CNT\Desktop\prueba\pages\dashboard.php(750): array_column(NULL, 'codigo_criterio')
+#1 {main}
+  thrown in C:\Users\CNT\Desktop\prueba\pages\dashboard.php on line 750
+[15-Jul-2025 21:17:39 America/Guayaquil] [ERROR] Error de conexión a BD | {"mensaje":"SQLSTATE[HY000] [2002] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n","host":"localhost","database":"asignacion_docente","user":"moises"}
+[15-Jul-2025 21:56:28 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 21:56:33 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 21:56:41 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1

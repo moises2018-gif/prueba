@@ -1,30 +1,381 @@
 # Sistema AHP - Asignación de Docentes NEE
 
-Sistema modular para asignar docentes a estudiantes con necesidades educativas especiales (NEE) usando AHP.
+Sistema modular para asignar docentes a estudiantes con necesidades educativas especiales (NEE) usando AHP, **ahora con sistema de autenticación completo**.
 
-## Requisitos
-- PHP 7.4+
-- MySQL 5.7+
-- Servidor web (XAMPP, WAMP)
-- Chart.js (incluido vía CDN)
+# Sistema AHP - Asignación de Docentes NEE
 
-## Instalación
-1. Configura un servidor web con PHP y MySQL.
-2. Crea la base de datos `asignacion_docente` y ejecuta el script SQL proporcionado.
-3. Copia los archivos al directorio raíz del servidor (e.g., `htdocs`).
-4. Asegúrate de que el usuario `moises` con contraseña `moises` tenga acceso a la base de datos.
-5. Navega a `http://localhost/index.php`.
+Sistema modular para asignar docentes a estudiantes con necesidades educativas especiales (NEE) usando AHP, **con sistema de login simplificado**.
 
-## Estructura
-- `css/`: Estilos CSS.
-- `js/`: Scripts JavaScript.
-- `includes/`: Componentes comunes (header, nav, footer, conexión).
-- `pages/`: Pantallas principales (dashboard, docentes, estudiantes, asignación, reportes).
-- `procesar/`: Scripts para procesar formularios.
+## 🔐 Sistema de Login Simplificado
 
-## Funcionalidades
-- **Dashboard**: Estadísticas, criterios AHP, gráfica de pesos.
-- **Gestión Docentes**: Registrar y listar docentes.
-- **Gestión Estudiantes**: Registrar estudiantes con NEE.
-- **Asignación AHP**: Ranking de docentes y asignaciones.
-- **Reportes**: Resumen de subcriterios y asignaciones.
+### Características
+- **Un solo usuario administrador**
+- **Autenticación robusta** con tokens de sesión
+- **Sesiones seguras** con expiración automática (24 horas)
+- **Contraseñas hasheadas** con bcrypt
+- **Limpieza automática** de sesiones expiradas
+
+### Usuario del Sistema
+```
+🔑 CREDENCIALES DE ACCESO:
+
+👑 Administrador Único:
+   Usuario: admin
+   Contraseña: admin123
+```
+
+### Crear Usuarios Adicionales (Solo por Base de Datos)
+Si necesitas crear más usuarios, usa directamente la base de datos:
+
+```sql
+-- Ejemplo para crear un coordinador:
+INSERT INTO usuarios (usuario, email, password, nombre_completo, rol, activo) 
+VALUES ('coordinador', 'coord@universidad.edu.ec', 
+        '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 
+        'Coordinador NEE', 'coordinador', 1);
+
+-- Ejemplo para crear un docente:
+INSERT INTO usuarios (usuario, email, password, nombre_completo, rol, activo) 
+VALUES ('docente1', 'docente1@universidad.edu.ec', 
+        '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+        'Nombre del Docente', 'docente', 1);
+
+-- Nota: La contraseña del ejemplo es 'admin123'
+-- Para generar nueva contraseña: password_hash('tucontraseña', PASSWORD_DEFAULT)
+```
+
+## 📁 Archivos del Sistema de Login
+
+### Archivos Principales
+- `login.php` - Página principal de login
+- `includes/auth.php` - Middleware de autenticación simplificado
+- `procesar/procesar_login.php` - Procesador de autenticación
+- `procesar/procesar_logout.php` - Procesador de cierre de sesión
+
+### Archivos Actualizados
+- `index.php` - Redirección inteligente según estado de login
+- `includes/header.php` - Barra de usuario y verificación de autenticación
+- `includes/nav.php` - Navegación simplificada (sin roles complejos)
+
+### ❌ Archivos NO Necesarios
+- ~~`pages/admin_usuarios.php`~~ - **NO CREAR** (sin gestión de usuarios por interfaz)
+- ~~`procesar/procesar_usuario.php`~~ - **NO CREAR** (sin CRUD de usuarios)
+
+## 🛠️ Instalación Simplificada
+
+### 1. Ejecutar Script SQL
+```sql
+-- Ejecutar en phpMyAdmin o MySQL Workbench
+SOURCE basededatos.sql;
+
+-- Luego ejecutar SOLO la parte de login simplificada
+-- Esto creará: usuarios, sesiones_usuario
+-- E insertará ÚNICAMENTE el usuario admin
+```
+
+### 2. Estructura de Archivos Final
+```
+proyecto/
+├── login.php                    # 🆕 Página de login
+├── index.php                   # ✅ Actualizado - Redirección inteligente
+├── css/styles.css              # Sin cambios
+├── js/scripts.js              # Sin cambios
+├── includes/
+│   ├── auth.php               # 🆕 Middleware simplificado
+│   ├── header.php             # ✅ Actualizado - Con barra de usuario
+│   ├── nav.php                # ✅ Actualizado - Navegación simplificada
+│   ├── footer.php             # Sin cambios
+│   ├── conexion.php           # Sin cambios
+│   └── config.php             # Sin cambios
+├── pages/
+│   ├── dashboard.php          # ✅ Protegido con autenticación
+│   ├── docentes.php           # ✅ Protegido
+│   ├── estudiantes.php        # ✅ Protegido
+│   ├── asignacion.php         # ✅ Protegido
+│   └── reportes.php           # ✅ Protegido
+├── procesar/
+│   ├── procesar_login.php     # 🆕 Manejo de autenticación
+│   ├── procesar_logout.php    # 🆕 Cierre de sesión
+│   └── [otros archivos existentes sin cambios...]
+└── classes/
+    └── [archivos existentes sin cambios...]
+```
+
+## 🚀 Flujo de Uso Simplificado
+
+### 1. Acceso
+1. **Navegar a** `http://localhost/[tu-proyecto]/`
+2. **Redirige automáticamente** a `login.php`
+3. **Usar credenciales**: admin / admin123
+4. **Acceder al sistema** completo
+
+### 2. Funcionalidades Disponibles
+- ✅ Dashboard con estadísticas completas
+- ✅ Gestión de docentes y estudiantes  
+- ✅ Asignaciones AHP automáticas
+- ✅ Reportes y generación de PDFs
+- ✅ Todas las funcionalidades AHP existentes
+
+### 3. Gestión de Usuarios
+- ✅ **Usuario principal**: admin (creado automáticamente)
+- ✅ **Usuarios adicionales**: Solo por INSERT en base de datos
+- ❌ **NO hay interfaz** de gestión de usuarios
+- ❌ **NO hay formularios** de creación
+
+## 🔧 Implementación Técnica
+
+### Base de Datos Mínima
+```sql
+-- Solo estas tablas para autenticación:
+usuarios (id_usuario, usuario, password, nombre_completo, rol, activo...)
+sesiones_usuario (id_sesion, id_usuario, token_sesion, ip_address...)
+
+-- Procedimientos simplificados:
+validar_login(), crear_sesion(), validar_sesion(), cerrar_sesion()
+```
+
+### Middleware Simplificado
+```php
+// Uso en todas las páginas protegidas:
+require_once '../includes/auth.php';
+requireAuth(); // Solo verifica que esté logueado
+```
+
+## 🎯 Características AHP (Sin Cambios)
+
+Todas las funcionalidades del sistema AHP se mantienen exactamente igual:
+
+- ✅ **Dashboard**: Estadísticas en tiempo real con gráficos
+- ✅ **Gestión Docentes**: CRUD con triggers automáticos  
+- ✅ **Gestión Estudiantes**: Registro por tipo de discapacidad
+- ✅ **Asignación AHP**: Algoritmo automático con vista previa
+- ✅ **Reportes PDF**: Generación de informes personalizados
+- ✅ **Algoritmo optimizado**: Balanceado de carga y pesos específicos
+
+## 🛡️ Seguridad Implementada
+
+- ✅ Contraseñas hasheadas con bcrypt
+- ✅ Tokens de sesión criptográficos  
+- ✅ Validación de entrada en formularios
+- ✅ Protección contra SQL injection
+- ✅ Sesiones con expiración automática
+- ✅ Limpieza automática de sesiones
+
+## 📝 Notas Importantes
+
+### ✅ Implementar:
+- `login.php`
+- `includes/auth.php` (versión simplificada)
+- `procesar/procesar_login.php`
+- `procesar/procesar_logout.php`
+- Actualizar `index.php`, `header.php`, `nav.php`
+
+### ❌ NO Implementar:
+- ~~Panel de administración de usuarios~~
+- ~~Formularios de creación de usuarios~~
+- ~~Sistema de roles complejos~~
+- ~~Gestión de permisos granulares~~
+
+### 🔄 Para Crear Usuarios Adicionales:
+1. **Usar phpMyAdmin** o cualquier cliente MySQL
+2. **Ejecutar INSERT** con contraseña hasheada
+3. **Usar password_hash()** en PHP si necesitas generar hash
+
+---
+
+**🎓 Universidad Estatal de Guayaquil**  
+**📐 Facultad de Ciencias Matemáticas y Físicas**  
+**🤖 Sistema AHP con Login Simplificado**
+
+## 📁 Nuevos Archivos del Sistema de Login
+
+### Archivos Principales
+- `login.php` - Página principal de login
+- `includes/auth.php` - Middleware de autenticación
+- `procesar/procesar_login.php` - Procesador de autenticación
+- `procesar/procesar_logout.php` - Procesador de cierre de sesión
+- `procesar/procesar_usuario.php` - Gestión de usuarios (admin)
+- `pages/admin_usuarios.php` - Panel de administración de usuarios
+
+### Archivos Actualizados
+- `index.php` - Redirección inteligente según estado de login
+- `includes/header.php` - Barra de usuario y verificación de autenticación
+- `includes/nav.php` - Navegación con permisos por rol
+
+## 🛠️ Instalación del Sistema de Login
+
+### 1. Ejecutar Script SQL
+```sql
+-- Ejecutar en phpMyAdmin o MySQL Workbench
+SOURCE basededatos.sql;
+
+-- Luego ejecutar el script de login (incluido en el repositorio)
+-- Esto creará las tablas: usuarios, sesiones_usuario
+-- E insertará los usuarios predeterminados
+```
+
+### 2. Configuración de la Base de Datos
+El sistema ya está configurado para trabajar con:
+- **Host**: localhost
+- **Base de datos**: asignacion_docente  
+- **Usuario**: moises
+- **Contraseña**: moises
+
+### 3. Estructura de Archivos Completa
+```
+proyecto/
+├── login.php                    # 🆕 Página de login
+├── index.php                   # ✅ Actualizado - Redirección inteligente
+├── css/styles.css              # Estilos existentes
+├── js/scripts.js              # Scripts existentes
+├── includes/
+│   ├── auth.php               # 🆕 Middleware de autenticación
+│   ├── header.php             # ✅ Actualizado - Con barra de usuario
+│   ├── nav.php                # ✅ Actualizado - Navegación por roles
+│   ├── footer.php             # Sin cambios
+│   ├── conexion.php           # Sin cambios
+│   └── config.php             # Sin cambios
+├── pages/
+│   ├── dashboard.php          # ✅ Protegido con autenticación
+│   ├── docentes.php           # ✅ Protegido (coordinador+)
+│   ├── estudiantes.php        # ✅ Protegido (coordinador+)
+│   ├── asignacion.php         # ✅ Protegido (coordinador+)
+│   ├── reportes.php           # ✅ Protegido (coordinador+)
+│   └── admin_usuarios.php     # 🆕 Solo administradores
+├── procesar/
+│   ├── procesar_login.php     # 🆕 Manejo de autenticación
+│   ├── procesar_logout.php    # 🆕 Cierre de sesión
+│   ├── procesar_usuario.php   # 🆕 CRUD de usuarios (admin)
+│   └── [otros archivos existentes...]
+└── classes/
+    └── [archivos existentes sin cambios...]
+```
+
+## 🚀 Flujo de Uso del Sistema
+
+### 1. Acceso Inicial
+1. **Navegar a** `http://localhost/[tu-proyecto]/`
+2. **Redirige automáticamente** a `login.php`
+3. **Usar credenciales** predeterminadas
+4. **Acceder al dashboard** según rol
+
+### 2. Navegación por Roles
+
+#### 👑 Administrador (admin/admin123)
+- ✅ Dashboard con estadísticas completas
+- ✅ Gestión de docentes y estudiantes  
+- ✅ Asignaciones AHP
+- ✅ Reportes y estadísticas
+- ✅ **Administración de usuarios** (crear, editar, desactivar)
+- ✅ Control de sesiones activas
+
+#### 📋 Coordinador (coordinador/coord123)  
+- ✅ Dashboard con estadísticas
+- ✅ Gestión de docentes y estudiantes
+- ✅ Asignaciones AHP automáticas
+- ✅ Generación de reportes PDF
+- ❌ No acceso a administración de usuarios
+
+#### 👨‍🏫 Docente (próximamente)
+- ✅ Dashboard básico
+- ✅ Vista de sus asignaciones
+- ❌ No acceso a gestión ni administración
+
+### 3. Funcionalidades de Seguridad
+
+#### Gestión de Sesiones
+- **Expiración automática**: 24 horas de inactividad
+- **Tokens únicos**: Cada sesión tiene un token criptográfico
+- **Limpieza automática**: Sesiones expiradas se eliminan automáticamente
+- **Control multi-dispositivo**: Un usuario puede tener múltiples sesiones
+
+#### Panel de Administración (Solo Admin)
+- **Crear usuarios** con roles específicos
+- **Activar/Desactivar** cuentas de usuario
+- **Cerrar sesiones remotas** de otros usuarios
+- **Eliminar usuarios** (con confirmación de seguridad)
+- **Monitoreo en tiempo real** de sesiones activas
+
+## 🔧 Funcionalidades Técnicas
+
+### Middleware de Autenticación
+```php
+// Uso en páginas protegidas
+require_once '../includes/auth.php';
+requireAuth('coordinador'); // Requiere rol coordinador o superior
+```
+
+### Verificación de Roles
+- **Sistema jerárquico**: admin > coordinador > docente
+- **Control granular**: Cada página puede requerir un rol específico
+- **Redirección automática**: Error 403 si no tiene permisos
+
+### Base de Datos de Seguridad
+```sql
+-- Nuevas tablas para autenticación
+usuarios (id_usuario, usuario, password, nombre_completo, rol, activo...)
+sesiones_usuario (id_sesion, id_usuario, token_sesion, ip_address...)
+
+-- Procedimientos almacenados
+validar_login(), crear_sesion(), validar_sesion(), cerrar_sesion()
+```
+
+## 🎯 Características del Sistema AHP (Sin Cambios)
+
+### Algoritmo AHP Optimizado
+- **Criterios Principales**: Tipos de discapacidad con pesos específicos
+- **Subcriterios**: FSI (28%), EPR (32%), AMI (16%), AED (13%), NFA (11%)
+- **Balanceado de carga**: Evita sobrecargar docentes
+- **Triggers automáticos**: Inserción inteligente de datos
+
+### Funcionalidades Principales
+- ✅ **Dashboard**: Estadísticas en tiempo real con gráficos
+- ✅ **Gestión Docentes**: CRUD con triggers automáticos  
+- ✅ **Gestión Estudiantes**: Registro por tipo de discapacidad
+- ✅ **Asignación AHP**: Algoritmo automático con vista previa
+- ✅ **Reportes PDF**: Generación de informes personalizados
+
+## 📊 Próximas Mejoras
+
+### Corto Plazo
+- [ ] **Vista de docente** completa (mis asignaciones, horarios)
+- [ ] **Edición de usuarios** en el panel de admin
+- [ ] **Recuperación de contraseña** por email
+- [ ] **Logs de auditoría** detallados
+
+### Mediano Plazo  
+- [ ] **API REST** para integración externa
+- [ ] **Dashboard móvil** responsivo mejorado
+- [ ] **Notificaciones** en tiempo real
+- [ ] **Exportación** de datos en múltiples formatos
+
+## 🛡️ Consideraciones de Seguridad
+
+### Implementadas
+- ✅ Contraseñas hasheadas con bcrypt
+- ✅ Tokens de sesión criptográficos  
+- ✅ Validación de entrada en todos los formularios
+- ✅ Protección contra SQL injection
+- ✅ Control de acceso basado en roles
+- ✅ Limpieza automática de sesiones
+
+### Recomendaciones Adicionales
+- 🔄 Cambiar contraseñas predeterminadas en producción
+- 🔄 Configurar HTTPS en servidor de producción  
+- 🔄 Implementar rate limiting para intentos de login
+- 🔄 Configurar backup automático de base de datos
+
+## 📞 Soporte
+
+Para cualquier problema con el sistema de login o autenticación:
+
+1. **Verificar credenciales** predeterminadas
+2. **Comprobar conexión** a base de datos  
+3. **Revisar logs** en `logs/` (si están habilitados)
+4. **Limpiar sesiones** con `SELECT limpiar_sesiones_expiradas();`
+
+---
+
+**🎓 Universidad Estatal de Guayaquil**  
+**📐 Facultad de Ciencias Matemáticas y Físicas**  
+**🤖 Sistema AHP con Autenticación Completa v2.0**
