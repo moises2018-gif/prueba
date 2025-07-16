@@ -137,3 +137,11 @@ Stack trace:
 [15-Jul-2025 21:56:28 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
 [15-Jul-2025 21:56:33 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
 [15-Jul-2025 21:56:41 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 21:59:21 America/Guayaquil] Intento de login fallido - Usuario: administrador - IP: ::1
+[15-Jul-2025 21:59:32 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 22:01:23 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 22:05:36 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:05:42 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:07:15 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:07:23 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:10:20 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
