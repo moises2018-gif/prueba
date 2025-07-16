@@ -166,3 +166,365 @@ Stack trace:
 [15-Jul-2025 22:37:19 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
 [15-Jul-2025 22:37:22 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
 [15-Jul-2025 22:37:22 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:40:17 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:43:40 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:43:40 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:43:40 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:43:40 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:43:40 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:43:40 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:43:40 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:43:40",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:43:40 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:43:40 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:43:46 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:43:46 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:43:46 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:43:46 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:43:46 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:43:46 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:43:46 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:43:46",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:43:46 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:43:46 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:43:57 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:43:57 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:43:57 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:43:57 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:43:57 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:43:57 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:43:57 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:43:57",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:43:57 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:43:57 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:05 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:44:05 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:44:05 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:44:05 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:44:05 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:44:05 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:44:05 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:44:05",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:44:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:16 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:44:16 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:44:16 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:44:16 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:44:16 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:44:16 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:44:16 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:44:16",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:44:16 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:16 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:20 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:44:20 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:44:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:44:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:44:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:44:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:44:20 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:44:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:44:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:20 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:44:20 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:44:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:44:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:44:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:44:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:44:20 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:44:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:44:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:23 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:44:23 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:44:23 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:44:23 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:44:23 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:44:23 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:44:23 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:44:23",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:44:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:44:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:24 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:47:24 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:47:24 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:47:24 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:47:24 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:47:24 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:47:24 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:47:24",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:47:24 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:24 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:41 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:47:41 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:47:41 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:47:41 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:47:41 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:47:41 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:47:41 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:47:41",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:47:41 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:41 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
+[15-Jul-2025 22:47:41 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:47:41 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:47:41 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:47:41 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:47:41 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:47:41 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:47:41 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:47:41",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:47:47 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:47:47 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:47:47 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:47:47 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:47:47 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:47:47 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:47:47 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:47:47",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:47:47 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:47 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[15-Jul-2025 22:47:47 America/Guayaquil] Configuración del sistema:
+[15-Jul-2025 22:47:47 America/Guayaquil] - Configuración completa: SÍ
+[15-Jul-2025 22:47:47 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[15-Jul-2025 22:47:47 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[15-Jul-2025 22:47:47 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[15-Jul-2025 22:47:47 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[15-Jul-2025 22:47:47 America/Guayaquil] {
+    "timestamp": "2025-07-15 22:47:47",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[15-Jul-2025 22:47:47 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[15-Jul-2025 22:47:47 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises

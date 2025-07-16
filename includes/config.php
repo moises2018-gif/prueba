@@ -1,6 +1,6 @@
 <?php
 /**
- * CONFIGURACIÓN PRINCIPAL DEL SISTEMA AHP - CORREGIDA
+ * CONFIGURACIÓN PRINCIPAL DEL SISTEMA AHP - VERSIÓN DEBUG
  * Archivo: includes/config.php
  */
 
@@ -57,9 +57,10 @@ if (!defined('LOG_DIR')) {
     define('LOG_DIR', __DIR__ . '/../logs/');
 }
 
-// Configuración de errores y debug (con valores por defecto)
+// Configuración de errores y debug - ACTIVAR DEBUG TEMPORALMENTE
 if (!defined('DEBUG_MODE')) {
-    define('DEBUG_MODE', isset($_ENV['DEBUG_MODE']) ? filter_var($_ENV['DEBUG_MODE'], FILTER_VALIDATE_BOOLEAN) : false);
+    // FORZAR DEBUG MODE PARA DIAGNOSTICAR PROBLEMAS
+    define('DEBUG_MODE', true); // Cambiar a false en producción
 }
 
 // Configurar manejo de errores según el modo debug
@@ -67,6 +68,13 @@ if (DEBUG_MODE) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    
+    // Log adicional para debugging
+    error_log("=== DEBUG MODE ACTIVADO ===");
+    error_log("DB_HOST: " . DB_HOST);
+    error_log("DB_NAME: " . DB_NAME);
+    error_log("DB_USER: " . DB_USER);
+    error_log("DB_PORT: " . DB_PORT);
 } else {
     ini_set('display_errors', 0);
     error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
@@ -85,12 +93,18 @@ if (!defined('TIMEZONE')) {
 }
 date_default_timezone_set(TIMEZONE);
 
-// Autoloader para las clases
+// Autoloader para las clases - MEJORADO
 spl_autoload_register(function ($className) {
     $classFile = __DIR__ . '/../classes/' . $className . '.php';
     if (file_exists($classFile)) {
         require_once $classFile;
+        if (DEBUG_MODE) {
+            error_log("Clase cargada: $className");
+        }
         return true;
+    }
+    if (DEBUG_MODE) {
+        error_log("Clase no encontrada: $className en $classFile");
     }
     return false;
 });
@@ -125,18 +139,69 @@ function verificarConfiguracion() {
     ];
 }
 
-// Log de inicialización del sistema (solo si todo está configurado)
-if (LOG_ENABLED && class_exists('Logger', false)) {
-    try {
-        $logger = new Logger();
-        $config_status = verificarConfiguracion();
-        $logger->info("Sistema AHP inicializado", [
-            'configuracion_completa' => $config_status['completa'],
-            'debug_mode' => DEBUG_MODE,
-            'timezone' => TIMEZONE
-        ]);
-    } catch (Exception $e) {
-        // Ignorar errores de logging durante la inicialización
+// Mostrar información de configuración en modo debug
+if (DEBUG_MODE) {
+    $config_status = verificarConfiguracion();
+    error_log("Configuración del sistema:");
+    error_log("- Configuración completa: " . ($config_status['completa'] ? 'SÍ' : 'NO'));
+    error_log("- DEBUG_MODE: " . (DEBUG_MODE ? 'ACTIVADO' : 'DESACTIVADO'));
+    error_log("- LOG_ENABLED: " . (LOG_ENABLED ? 'ACTIVADO' : 'DESACTIVADO'));
+    error_log("- TIMEZONE: " . TIMEZONE);
+    
+    if (!$config_status['completa']) {
+        error_log("Constantes faltantes: " . implode(', ', $config_status['faltantes']));
     }
+}
+
+// Log de inicialización del sistema
+if (LOG_ENABLED) {
+    try {
+        // Solo intentar cargar Logger si la clase existe
+        if (class_exists('Logger', false)) {
+            $logger = new Logger();
+            $config_status = verificarConfiguracion();
+            $logger->info("Sistema AHP inicializado", [
+                'configuracion_completa' => $config_status['completa'],
+                'debug_mode' => DEBUG_MODE,
+                'timezone' => TIMEZONE,
+                'log_enabled' => LOG_ENABLED
+            ]);
+        }
+    } catch (Exception $e) {
+        // Si hay error con Logger, usar error_log básico
+        error_log("Error inicializando Logger: " . $e->getMessage());
+        error_log("Sistema AHP inicializado - DEBUG: " . (DEBUG_MODE ? 'ON' : 'OFF'));
+    }
+}
+
+// Función de diagnóstico del sistema
+function diagnosticarSistema() {
+    $diagnostico = [
+        'timestamp' => date('Y-m-d H:i:s'),
+        'configuracion' => verificarConfiguracion(),
+        'php_version' => phpversion(),
+        'extensions' => [
+            'pdo' => extension_loaded('pdo'),
+            'pdo_mysql' => extension_loaded('pdo_mysql'),
+            'mbstring' => extension_loaded('mbstring'),
+            'json' => extension_loaded('json')
+        ],
+        'permisos' => [
+            'logs_escribible' => is_writable(LOG_DIR),
+            'logs_existe' => is_dir(LOG_DIR)
+        ]
+    ];
+    
+    if (DEBUG_MODE) {
+        error_log("=== DIAGNÓSTICO DEL SISTEMA ===");
+        error_log(json_encode($diagnostico, JSON_PRETTY_PRINT));
+    }
+    
+    return $diagnostico;
+}
+
+// Ejecutar diagnóstico si estamos en modo debug
+if (DEBUG_MODE) {
+    diagnosticarSistema();
 }
 ?>
