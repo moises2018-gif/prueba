@@ -145,3 +145,24 @@ Stack trace:
 [15-Jul-2025 22:07:15 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
 [15-Jul-2025 22:07:23 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
 [15-Jul-2025 22:10:20 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:17:21 America/Guayaquil] Intento de login fallido - Usuario: admin - IP: ::1
+[15-Jul-2025 22:23:08 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:23:17 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:24:29 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:24:38 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:24:55 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:26:37 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:26:41 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:31:18 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:33:38 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:33:44 America/Guayaquil] Intento de login fallido - Usuario válido pero contraseña incorrecta: admin - IP: ::1
+[15-Jul-2025 22:36:11 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[15-Jul-2025 22:36:11 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:36:18 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:36:21 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:36:24 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:36:31 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:37:10 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75
+[15-Jul-2025 22:37:19 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
+[15-Jul-2025 22:37:22 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[15-Jul-2025 22:37:22 America/Guayaquil] PHP Fatal error:  Cannot redeclare ConexionBD() (previously declared in C:\Users\CNT\Desktop\prueba\includes\conexion.php:9) in C:\Users\CNT\Desktop\prueba\includes\conexion.php on line 75

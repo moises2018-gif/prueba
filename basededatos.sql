@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2025 a las 05:14:35
+-- Tiempo de generación: 16-07-2025 a las 05:39:23
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -2459,6 +2459,31 @@ INSERT INTO `pesos_criterios_discapacidad` (`id_peso`, `id_tipo_discapacidad`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sesiones_usuario`
+--
+
+CREATE TABLE `sesiones_usuario` (
+  `id_sesion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `token_sesion` varchar(255) NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_expiracion` timestamp NULL DEFAULT NULL,
+  `activa` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `sesiones_usuario`
+--
+
+INSERT INTO `sesiones_usuario` (`id_sesion`, `id_usuario`, `token_sesion`, `ip_address`, `user_agent`, `fecha_creacion`, `fecha_expiracion`, `activa`) VALUES
+(1, 6, '220a418788688151b288393bd9dc351085c99427f27e4cda579a7cf92fa9052c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:36:11', '2025-07-17 03:36:11', 0),
+(2, 6, '95761a2793fe8b9ada222e9ee5a200352237defc643e5e43ef87d146aa4fa3bc', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:37:22', '2025-07-17 03:37:22', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipos_discapacidad`
 --
 
@@ -2499,6 +2524,13 @@ CREATE TABLE `usuarios` (
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `email`, `password`, `nombre_completo`, `rol`, `activo`, `ultimo_acceso`, `fecha_creacion`, `fecha_actualizacion`) VALUES
+(6, 'admin', 'admin@sistema.com', '$2y$10$7IcWZnbPDQfRh5uoqsH2/ekhlGU0Mz/jsVje672Fn0WYsfpPs6ua2', 'Administrador del Sistema', 'admin', 1, '2025-07-16 03:37:22', '2025-07-16 03:35:59', '2025-07-16 03:37:22');
 
 -- --------------------------------------------------------
 
@@ -2808,6 +2840,13 @@ ALTER TABLE `pesos_criterios_discapacidad`
   ADD KEY `id_criterio` (`id_criterio`);
 
 --
+-- Indices de la tabla `sesiones_usuario`
+--
+ALTER TABLE `sesiones_usuario`
+  ADD PRIMARY KEY (`id_sesion`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `tipos_discapacidad`
 --
 ALTER TABLE `tipos_discapacidad`
@@ -2910,6 +2949,12 @@ ALTER TABLE `pesos_criterios_discapacidad`
   MODIFY `id_peso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT de la tabla `sesiones_usuario`
+--
+ALTER TABLE `sesiones_usuario`
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `tipos_discapacidad`
 --
 ALTER TABLE `tipos_discapacidad`
@@ -2919,7 +2964,7 @@ ALTER TABLE `tipos_discapacidad`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
@@ -2993,6 +3038,12 @@ ALTER TABLE `limites_asignacion`
 ALTER TABLE `pesos_criterios_discapacidad`
   ADD CONSTRAINT `pesos_criterios_discapacidad_ibfk_1` FOREIGN KEY (`id_tipo_discapacidad`) REFERENCES `tipos_discapacidad` (`id_tipo_discapacidad`) ON DELETE CASCADE,
   ADD CONSTRAINT `pesos_criterios_discapacidad_ibfk_2` FOREIGN KEY (`id_criterio`) REFERENCES `criterios_ahp` (`id_criterio`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `sesiones_usuario`
+--
+ALTER TABLE `sesiones_usuario`
+  ADD CONSTRAINT `sesiones_usuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
