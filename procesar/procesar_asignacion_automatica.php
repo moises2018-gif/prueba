@@ -1,8 +1,8 @@
 <?php
 /**
- * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - CON BALANCEADO DE CARGA
+ * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - CON SELECCIÓN DE MATERIAS
  * Archivo: procesar/procesar_asignacion_automatica.php
- * VERSIÓN 3: Implementa balanceado de carga para evitar sobrecargar un docente
+ * VERSIÓN 4: Permite seleccionar materias específicas en la vista previa
  */
 
 include '../includes/conexion.php';
@@ -20,8 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $asignaciones_preview = generarVistaPrevia($conn, $ciclo_academico);
             
             if (!empty($asignaciones_preview)) {
+                // Obtener todas las materias disponibles para la selección
+                $materias_disponibles = obtenerTodasLasMaterias($conn, $ciclo_academico);
+                
                 $preview_data = urlencode(json_encode($asignaciones_preview));
-                header("Location: ../pages/asignacion.php?preview_data=$preview_data&ciclo_academico=" . urlencode($ciclo_academico));
+                $materias_data = urlencode(json_encode($materias_disponibles));
+                header("Location: ../pages/asignacion.php?preview_data=$preview_data&materias_data=$materias_data&ciclo_academico=" . urlencode($ciclo_academico));
             } else {
                 $diagnostico = diagnosticarProblema($conn, $ciclo_academico);
                 header("Location: ../pages/asignacion.php?error=" . urlencode($diagnostico));
@@ -32,7 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // Confirmar asignaciones
+    // Confirmar asignaciones con materias seleccionadas
+    elseif (isset($_POST['confirm_with_materias']) && $_POST['confirm_with_materias'] == '1') {
+        $ciclo_academico = $_POST['ciclo_academico'];
+        
+        try {
+            $conn->beginTransaction();
+            
+            $asignaciones_exitosas = confirmarAsignacionesConMaterias($conn, $_POST, $ciclo_academico);
+            
+            $conn->commit();
+            header("Location: ../pages/asignacion.php?success=" . urlencode("Se confirmaron $asignaciones_exitosas asignaciones exitosamente con materias seleccionadas"));
+            
+        } catch (Exception $e) {
+            $conn->rollBack();
+            header("Location: ../pages/asignacion.php?error=" . urlencode("Error al confirmar asignaciones: " . $e->getMessage()));
+        }
+    }
+    
+    // Confirmar asignaciones (método original)
     elseif (isset($_POST['confirm']) && $_POST['confirm'] == '1') {
         $ciclo_academico = $_POST['ciclo_academico'];
         $preview_data = json_decode($_POST['preview_data'], true);
@@ -77,6 +99,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     header("Location: ../pages/asignacion.php?error=" . urlencode("Método de solicitud no válido"));
+}
+
+/**
+ * NUEVA FUNCIÓN: Obtiene todas las materias disponibles agrupadas por facultad
+ */
+function obtenerTodasLasMaterias($conn, $ciclo_academico) {
+    $query_materias = "
+        SELECT m.id_materia, m.nombre_materia, m.facultad, m.ciclo_academico
+        FROM materias m
+        WHERE m.ciclo_academico = :ciclo OR m.ciclo_academico IS NULL
+        ORDER BY m.facultad, m.nombre_materia";
+    
+    $stmt_materias = $conn->prepare($query_materias);
+    $stmt_materias->execute([':ciclo' => $ciclo_academico]);
+    $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Si no hay materias para el ciclo específico, obtener materias generales
+    if (empty($materias)) {
+        $query_materias_general = "
+            SELECT m.id_materia, m.nombre_materia, m.facultad, m.ciclo_academico
+            FROM materias m
+            ORDER BY m.facultad, m.nombre_materia";
+        
+        $stmt_materias_general = $conn->prepare($query_materias_general);
+        $stmt_materias_general->execute();
+        $materias = $stmt_materias_general->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    // Agrupar materias por facultad
+    $materias_agrupadas = [];
+    foreach ($materias as $materia) {
+        $facultad = $materia['facultad'];
+        if (!isset($materias_agrupadas[$facultad])) {
+            $materias_agrupadas[$facultad] = [];
+        }
+        $materias_agrupadas[$facultad][] = $materia;
+    }
+    
+    return $materias_agrupadas;
+}
+
+/**
+ * NUEVA FUNCIÓN: Confirma asignaciones con materias seleccionadas por el usuario
+ */
+function confirmarAsignacionesConMaterias($conn, $post_data, $ciclo_academico) {
+    $query_insertar = "
+        INSERT INTO asignaciones (
+            id_docente, id_estudiante, id_tipo_discapacidad, 
+            id_materia, ciclo_academico, materia, 
+            numero_estudiantes, puntuacion_ahp, estado
+        ) VALUES (
+            :id_docente, :id_estudiante, :id_tipo_discapacidad,
+            :id_materia, :ciclo_academico, :materia,
+            1, :puntuacion_ahp, 'Activa'
+        )";
+    
+    $stmt_insertar = $conn->prepare($query_insertar);
+    $asignaciones_exitosas = 0;
+    
+    // Procesar cada asignación con su materia seleccionada
+    $indice = 0;
+    while (isset($post_data["estudiante_$indice"])) {
+        try {
+            // Obtener datos de la asignación
+            $id_estudiante = $post_data["estudiante_$indice"];
+            $id_docente = $post_data["docente_$indice"];
+            $id_tipo_discapacidad = $post_data["tipo_discapacidad_$indice"];
+            $id_materia = $post_data["materia_$indice"]; // Materia seleccionada por el usuario
+            $puntuacion_ahp = $post_data["puntuacion_$indice"];
+            
+            // Obtener nombre de la materia
+            $query_materia = "SELECT nombre_materia FROM materias WHERE id_materia = ?";
+            $stmt_materia = $conn->prepare($query_materia);
+            $stmt_materia->execute([$id_materia]);
+            $materia_info = $stmt_materia->fetch(PDO::FETCH_ASSOC);
+            $nombre_materia = $materia_info['nombre_materia'] ?? 'Materia Seleccionada';
+            
+            // Insertar la asignación
+            $stmt_insertar->execute([
+                ':id_docente' => $id_docente,
+                ':id_estudiante' => $id_estudiante,
+                ':id_tipo_discapacidad' => $id_tipo_discapacidad,
+                ':id_materia' => $id_materia,
+                ':ciclo_academico' => $ciclo_academico,
+                ':materia' => $nombre_materia,
+                ':puntuacion_ahp' => $puntuacion_ahp
+            ]);
+            
+            $asignaciones_exitosas++;
+            
+        } catch (PDOException $e) {
+            error_log("Error insertando asignación para estudiante índice $indice: " . $e->getMessage());
+        }
+        
+        $indice++;
+    }
+    
+    return $asignaciones_exitosas;
 }
 
 /**
@@ -150,20 +270,21 @@ function generarVistaPrevia($conn, $ciclo_academico) {
                 $carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] = 
                     ($carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] ?? 0) + 1;
                 
-                // Seleccionar materia apropiada
-                $materia_seleccionada = seleccionarMateria($materias, $estudiante['facultad']);
+                // Seleccionar materia sugerida (no final)
+                $materia_sugerida = seleccionarMateria($materias, $estudiante['facultad']);
                 
-                // Preparar datos para vista previa
+                // Preparar datos para vista previa - INCLUIR TODAS LAS MATERIAS DISPONIBLES
                 $asignaciones_preview[] = [
                     'id_estudiante' => $estudiante['id_estudiante'],
                     'estudiante' => $estudiante['nombres_completos'],
+                    'facultad_estudiante' => $estudiante['facultad'],
                     'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
                     'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
                     'peso_discapacidad' => $estudiante['peso_prioridad'],
                     'id_docente' => $docente_recomendado['id_docente'],
                     'docente' => $docente_recomendado['nombres_completos'],
-                    'id_materia' => $materia_seleccionada['id_materia'],
-                    'materia' => $materia_seleccionada['nombre_materia'],
+                    'id_materia_sugerida' => $materia_sugerida['id_materia'],
+                    'materia_sugerida' => $materia_sugerida['nombre_materia'],
                     'puntuacion_ahp' => round($docente_recomendado['puntuacion_final'], 3),
                     'ranking_original' => $docente_recomendado['ranking_especifico'] ?? 1,
                     'tiene_experiencia_especifica' => $docente_recomendado['tiene_experiencia_especifica'] ?? 0,
@@ -381,7 +502,7 @@ function seleccionarMateria($materias, $facultad_estudiante) {
 }
 
 /**
- * Confirma las asignaciones en la base de datos
+ * Confirma las asignaciones en la base de datos (método original)
  */
 function confirmarAsignaciones($conn, $asignaciones_preview, $ciclo_academico) {
     $query_insertar = "
@@ -404,9 +525,9 @@ function confirmarAsignaciones($conn, $asignaciones_preview, $ciclo_academico) {
                 ':id_docente' => $asignacion['id_docente'],
                 ':id_estudiante' => $asignacion['id_estudiante'],
                 ':id_tipo_discapacidad' => $asignacion['id_tipo_discapacidad'],
-                ':id_materia' => $asignacion['id_materia'],
+                ':id_materia' => $asignacion['id_materia'] ?? $asignacion['id_materia_sugerida'],
                 ':ciclo_academico' => $ciclo_academico,
-                ':materia' => $asignacion['materia'],
+                ':materia' => $asignacion['materia'] ?? $asignacion['materia_sugerida'],
                 ':puntuacion_ahp' => $asignacion['puntuacion_ahp']
             ]);
             $asignaciones_exitosas++;
