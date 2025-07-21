@@ -1,8 +1,12 @@
 <?php
 /**
- * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - CON SELECCIÓN DE MATERIAS
+ * PROCESADOR DE ASIGNACIÓN AUTOMÁTICA AHP - VERSIÓN MODIFICADA
  * Archivo: procesar/procesar_asignacion_automatica.php
- * VERSIÓN 4: Permite seleccionar materias específicas en la vista previa
+ * 
+ * CAMBIOS:
+ * 1. No asignar varios docentes a la misma materia hasta que todas tengan uno
+ * 2. Un docente solo puede ser asignado a una materia por estudiante
+ * 3. Eliminado el sistema de "materia sugerida"
  */
 
 include '../includes/conexion.php';
@@ -46,26 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $asignaciones_exitosas = confirmarAsignacionesConMaterias($conn, $_POST, $ciclo_academico);
             
             $conn->commit();
-            header("Location: ../pages/asignacion.php?success=" . urlencode("Se confirmaron $asignaciones_exitosas asignaciones exitosamente con materias seleccionadas"));
-            
-        } catch (Exception $e) {
-            $conn->rollBack();
-            header("Location: ../pages/asignacion.php?error=" . urlencode("Error al confirmar asignaciones: " . $e->getMessage()));
-        }
-    }
-    
-    // Confirmar asignaciones (método original)
-    elseif (isset($_POST['confirm']) && $_POST['confirm'] == '1') {
-        $ciclo_academico = $_POST['ciclo_academico'];
-        $preview_data = json_decode($_POST['preview_data'], true);
-        
-        try {
-            $conn->beginTransaction();
-            
-            $asignaciones_exitosas = confirmarAsignaciones($conn, $preview_data, $ciclo_academico);
-            
-            $conn->commit();
-            header("Location: ../pages/asignacion.php?success=" . urlencode("Se confirmaron $asignaciones_exitosas asignaciones exitosamente con distribución balanceada"));
+            header("Location: ../pages/asignacion.php?success=" . urlencode("Se confirmaron $asignaciones_exitosas asignaciones exitosamente"));
             
         } catch (Exception $e) {
             $conn->rollBack();
@@ -102,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 /**
- * NUEVA FUNCIÓN: Obtiene todas las materias disponibles agrupadas por facultad
+ * Obtiene todas las materias disponibles agrupadas por facultad
  */
 function obtenerTodasLasMaterias($conn, $ciclo_academico) {
     $query_materias = "
@@ -141,7 +126,7 @@ function obtenerTodasLasMaterias($conn, $ciclo_academico) {
 }
 
 /**
- * NUEVA FUNCIÓN: Confirma asignaciones con materias seleccionadas por el usuario
+ * Confirma asignaciones con materias seleccionadas por el usuario
  */
 function confirmarAsignacionesConMaterias($conn, $post_data, $ciclo_academico) {
     $query_insertar = "
@@ -166,7 +151,7 @@ function confirmarAsignacionesConMaterias($conn, $post_data, $ciclo_academico) {
             $id_estudiante = $post_data["estudiante_$indice"];
             $id_docente = $post_data["docente_$indice"];
             $id_tipo_discapacidad = $post_data["tipo_discapacidad_$indice"];
-            $id_materia = $post_data["materia_$indice"]; // Materia seleccionada por el usuario
+            $id_materia = $post_data["materia_$indice"];
             $puntuacion_ahp = $post_data["puntuacion_$indice"];
             
             // Obtener nombre de la materia
@@ -230,7 +215,7 @@ function diagnosticarProblema($conn, $ciclo_academico) {
 }
 
 /**
- * Genera vista previa de asignaciones usando AHP optimizado CON BALANCEADO DE CARGA
+ * ALGORITMO MODIFICADO: Genera vista previa con nuevas reglas de asignación
  */
 function generarVistaPrevia($conn, $ciclo_academico) {
     // Obtener estudiantes sin asignar
@@ -254,26 +239,67 @@ function generarVistaPrevia($conn, $ciclo_academico) {
     // Obtener materias disponibles
     $materias = obtenerMaterias($conn, $ciclo_academico);
     
-    // INICIALIZAR CONTADOR DE CARGA POR DOCENTE
+    // NUEVA ESTRUCTURA: Rastrear asignaciones por materia y docente
+    $asignaciones_por_materia = []; // [id_materia] => [id_docente1, id_docente2, ...]
+    $asignaciones_por_docente_estudiante = []; // [id_estudiante][id_docente] => true
     $carga_docentes = inicializarCargaDocentes($conn, $ciclo_academico);
     
     $asignaciones_preview = [];
     
-    // Para cada estudiante, encontrar el mejor docente disponible CON BALANCEADO
+    // Para cada estudiante, encontrar el mejor docente y materia
     foreach ($estudiantes as $estudiante) {
         try {
-            $docente_recomendado = encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes);
+            // Obtener mejores candidatos para este estudiante
+            $candidatos = obtenerCandidatosDocentes($conn, $estudiante);
             
-            if ($docente_recomendado) {
-                // Actualizar carga del docente seleccionado
-                $carga_docentes[$docente_recomendado['id_docente']]['asignaciones_actuales']++;
-                $carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] = 
-                    ($carga_docentes[$docente_recomendado['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] ?? 0) + 1;
+            $mejor_asignacion = null;
+            $mejor_puntuacion = -1;
+            
+            // Para cada candidato docente
+            foreach ($candidatos as $docente) {
+                // Verificar si este docente ya está asignado a este estudiante
+                if (isset($asignaciones_por_docente_estudiante[$estudiante['id_estudiante']][$docente['id_docente']])) {
+                    continue; // Saltar - ya asignado a este estudiante
+                }
                 
-                // Seleccionar materia sugerida (no final)
-                $materia_sugerida = seleccionarMateria($materias, $estudiante['facultad']);
+                // Verificar capacidad del docente
+                if (!verificarCapacidadDocente($docente['id_docente'], $estudiante['id_tipo_discapacidad'], $carga_docentes)) {
+                    continue; // Sin capacidad
+                }
                 
-                // Preparar datos para vista previa - INCLUIR TODAS LAS MATERIAS DISPONIBLES
+                // Buscar la mejor materia para esta combinación docente-estudiante
+                $mejor_materia = seleccionarMejorMateria($materias, $estudiante, $docente, $asignaciones_por_materia);
+                
+                if ($mejor_materia) {
+                    // Calcular puntuación final
+                    $puntuacion_final = calcularPuntuacionFinal($docente, $estudiante, $mejor_materia, $carga_docentes);
+                    
+                    if ($puntuacion_final > $mejor_puntuacion) {
+                        $mejor_puntuacion = $puntuacion_final;
+                        $mejor_asignacion = [
+                            'docente' => $docente,
+                            'materia' => $mejor_materia,
+                            'puntuacion' => $puntuacion_final
+                        ];
+                    }
+                }
+            }
+            
+            // Si encontramos una buena asignación, registrarla
+            if ($mejor_asignacion) {
+                $docente_sel = $mejor_asignacion['docente'];
+                $materia_sel = $mejor_asignacion['materia'];
+                
+                // Registrar la asignación
+                $asignaciones_por_materia[$materia_sel['id_materia']][] = $docente_sel['id_docente'];
+                $asignaciones_por_docente_estudiante[$estudiante['id_estudiante']][$docente_sel['id_docente']] = true;
+                
+                // Actualizar carga del docente
+                $carga_docentes[$docente_sel['id_docente']]['asignaciones_actuales']++;
+                $carga_docentes[$docente_sel['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] = 
+                    ($carga_docentes[$docente_sel['id_docente']]['por_tipo'][$estudiante['id_tipo_discapacidad']] ?? 0) + 1;
+                
+                // Preparar datos para vista previa
                 $asignaciones_preview[] = [
                     'id_estudiante' => $estudiante['id_estudiante'],
                     'estudiante' => $estudiante['nombres_completos'],
@@ -281,16 +307,15 @@ function generarVistaPrevia($conn, $ciclo_academico) {
                     'id_tipo_discapacidad' => $estudiante['id_tipo_discapacidad'],
                     'nombre_discapacidad' => $estudiante['nombre_discapacidad'],
                     'peso_discapacidad' => $estudiante['peso_prioridad'],
-                    'id_docente' => $docente_recomendado['id_docente'],
-                    'docente' => $docente_recomendado['nombres_completos'],
-                    'id_materia_sugerida' => $materia_sugerida['id_materia'],
-                    'materia_sugerida' => $materia_sugerida['nombre_materia'],
-                    'puntuacion_ahp' => round($docente_recomendado['puntuacion_final'], 3),
-                    'ranking_original' => $docente_recomendado['ranking_especifico'] ?? 1,
-                    'tiene_experiencia_especifica' => $docente_recomendado['tiene_experiencia_especifica'] ?? 0,
-                    'nivel_competencia' => $docente_recomendado['nivel_competencia_especifica'] ?? 'Básico',
-                    'capacidad_restante' => $docente_recomendado['capacidad_restante'],
-                    'carga_actual' => $carga_docentes[$docente_recomendado['id_docente']]['asignaciones_actuales']
+                    'id_docente' => $docente_sel['id_docente'],
+                    'docente' => $docente_sel['nombres_completos'],
+                    'id_materia' => $materia_sel['id_materia'],
+                    'materia' => $materia_sel['nombre_materia'],
+                    'puntuacion_ahp' => round($mejor_asignacion['puntuacion'], 3),
+                    'tiene_experiencia_especifica' => $docente_sel['tiene_experiencia_especifica'] ?? 0,
+                    'nivel_competencia' => $docente_sel['nivel_competencia_especifica'] ?? 'Básico',
+                    'capacidad_restante' => $docente_sel['capacidad_restante'] ?? 1,
+                    'algoritmo_usado' => 'AHP_MODIFICADO'
                 ];
             }
             
@@ -301,6 +326,154 @@ function generarVistaPrevia($conn, $ciclo_academico) {
     }
     
     return $asignaciones_preview;
+}
+
+/**
+ * NUEVA FUNCIÓN: Selecciona la mejor materia aplicando las nuevas reglas
+ */
+function seleccionarMejorMateria($materias, $estudiante, $docente, $asignaciones_por_materia) {
+    $materias_facultad_estudiante = [];
+    $otras_materias = [];
+    
+    // Separar materias por facultad del estudiante
+    foreach ($materias as $materia) {
+        if ($materia['facultad'] === $estudiante['facultad']) {
+            $materias_facultad_estudiante[] = $materia;
+        } else {
+            $otras_materias[] = $materia;
+        }
+    }
+    
+    // Prioridad 1: Materias de la facultad del estudiante SIN docentes asignados
+    foreach ($materias_facultad_estudiante as $materia) {
+        if (!isset($asignaciones_por_materia[$materia['id_materia']]) || 
+            empty($asignaciones_por_materia[$materia['id_materia']])) {
+            return $materia; // Materia sin docentes asignados
+        }
+    }
+    
+    // Prioridad 2: Otras materias SIN docentes asignados
+    foreach ($otras_materias as $materia) {
+        if (!isset($asignaciones_por_materia[$materia['id_materia']]) || 
+            empty($asignaciones_por_materia[$materia['id_materia']])) {
+            return $materia; // Materia sin docentes asignados
+        }
+    }
+    
+    // Prioridad 3: Materias de la facultad del estudiante CON menos docentes asignados
+    usort($materias_facultad_estudiante, function($a, $b) use ($asignaciones_por_materia) {
+        $count_a = isset($asignaciones_por_materia[$a['id_materia']]) ? count($asignaciones_por_materia[$a['id_materia']]) : 0;
+        $count_b = isset($asignaciones_por_materia[$b['id_materia']]) ? count($asignaciones_por_materia[$b['id_materia']]) : 0;
+        return $count_a <=> $count_b;
+    });
+    
+    foreach ($materias_facultad_estudiante as $materia) {
+        // Verificar que este docente no esté ya asignado a esta materia
+        if (!isset($asignaciones_por_materia[$materia['id_materia']]) || 
+            !in_array($docente['id_docente'], $asignaciones_por_materia[$materia['id_materia']])) {
+            return $materia;
+        }
+    }
+    
+    // Prioridad 4: Cualquier otra materia donde este docente no esté asignado
+    foreach ($otras_materias as $materia) {
+        if (!isset($asignaciones_por_materia[$materia['id_materia']]) || 
+            !in_array($docente['id_docente'], $asignaciones_por_materia[$materia['id_materia']])) {
+            return $materia;
+        }
+    }
+    
+    // Si no se encuentra nada (muy raro), devolver la primera materia disponible
+    return !empty($materias) ? $materias[0] : null;
+}
+
+/**
+ * Obtiene candidatos docentes ordenados por AHP
+ */
+function obtenerCandidatosDocentes($conn, $estudiante) {
+    $query_candidatos = "
+        SELECT vra.id_docente, d.nombres_completos,
+               vra.puntuacion_especifica_discapacidad as puntuacion_base,
+               vra.ranking_por_discapacidad as ranking_especifico,
+               vra.tiene_experiencia_especifica,
+               vra.nivel_competencia_especifica
+        FROM vista_ranking_ahp_especifico vra
+        JOIN docentes d ON vra.id_docente = d.id_docente
+        WHERE vra.id_tipo_discapacidad = ?
+        AND vra.facultad = ?
+        ORDER BY vra.puntuacion_especifica_discapacidad DESC";
+    
+    $stmt_candidatos = $conn->prepare($query_candidatos);
+    $stmt_candidatos->execute([$estudiante['id_tipo_discapacidad'], $estudiante['facultad']]);
+    $candidatos = $stmt_candidatos->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (empty($candidatos)) {
+        // Fallback: buscar cualquier docente de la facultad
+        $query_fallback = "
+            SELECT d.id_docente, d.nombres_completos,
+                   0.500 as puntuacion_base,
+                   99 as ranking_especifico,
+                   0 as tiene_experiencia_especifica,
+                   'Básico' as nivel_competencia_especifica
+            FROM docentes d
+            WHERE d.facultad = ?
+            ORDER BY d.experiencia_nee_años DESC";
+        
+        $stmt_fallback = $conn->prepare($query_fallback);
+        $stmt_fallback->execute([$estudiante['facultad']]);
+        $candidatos = $stmt_fallback->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    return $candidatos;
+}
+
+/**
+ * Calcula puntuación final considerando carga y otros factores
+ */
+function calcularPuntuacionFinal($docente, $estudiante, $materia, $carga_docentes) {
+    $puntuacion_base = $docente['puntuacion_base'];
+    
+    // Factor de penalización por carga
+    $docente_id = $docente['id_docente'];
+    if (isset($carga_docentes[$docente_id])) {
+        $carga_info = $carga_docentes[$docente_id];
+        $porcentaje_carga = $carga_info['asignaciones_actuales'] / max($carga_info['limite_maximo'], 1);
+        $penalizacion_carga = 1 - ($porcentaje_carga * 0.3); // Hasta 30% de penalización
+    } else {
+        $penalizacion_carga = 1.0;
+    }
+    
+    // Bonus por experiencia específica
+    $bonus_experiencia = $docente['tiene_experiencia_especifica'] ? 1.1 : 1.0;
+    
+    // Bonus por compatibilidad de facultad
+    $bonus_facultad = ($materia['facultad'] === $estudiante['facultad']) ? 1.05 : 1.0;
+    
+    return $puntuacion_base * $penalizacion_carga * $bonus_experiencia * $bonus_facultad;
+}
+
+/**
+ * Verifica la capacidad de un docente
+ */
+function verificarCapacidadDocente($id_docente, $tipo_discapacidad, $carga_docentes) {
+    if (!isset($carga_docentes[$id_docente])) {
+        return false;
+    }
+    
+    $carga_info = $carga_docentes[$id_docente];
+    
+    // Verificar límite general
+    if ($carga_info['asignaciones_actuales'] >= $carga_info['limite_maximo']) {
+        return false;
+    }
+    
+    // Verificar límite por tipo de discapacidad
+    $actual_por_tipo = $carga_info['por_tipo'][$tipo_discapacidad] ?? 0;
+    if ($actual_por_tipo >= $carga_info['limite_por_tipo']) {
+        return false;
+    }
+    
+    return true;
 }
 
 /**
@@ -336,7 +509,7 @@ function inicializarCargaDocentes($conn, $ciclo_academico) {
             'limite_maximo' => $docente['limite_maximo'],
             'limite_por_tipo' => $docente['limite_por_tipo'],
             'asignaciones_actuales' => $docente['asignaciones_actuales'],
-            'por_tipo' => [] // Se llenará dinámicamente
+            'por_tipo' => []
         ];
     }
     
@@ -361,93 +534,6 @@ function inicializarCargaDocentes($conn, $ciclo_academico) {
 }
 
 /**
- * Encuentra el mejor docente disponible CON BALANCEADO DE CARGA
- */
-function encontrarMejorDocenteBalanceado($conn, $estudiante, $carga_docentes) {
-    // Obtener candidatos ordenados por AHP
-    $query_candidatos = "
-        SELECT vra.id_docente, d.nombres_completos,
-               vra.puntuacion_especifica_discapacidad as puntuacion_base,
-               vra.ranking_por_discapacidad as ranking_especifico,
-               vra.tiene_experiencia_especifica,
-               vra.nivel_competencia_especifica
-        FROM vista_ranking_ahp_especifico vra
-        JOIN docentes d ON vra.id_docente = d.id_docente
-        WHERE vra.id_tipo_discapacidad = ?
-        AND vra.facultad = ?
-        ORDER BY vra.puntuacion_especifica_discapacidad DESC";
-    
-    $stmt_candidatos = $conn->prepare($query_candidatos);
-    $stmt_candidatos->execute([$estudiante['id_tipo_discapacidad'], $estudiante['facultad']]);
-    $candidatos = $stmt_candidatos->fetchAll(PDO::FETCH_ASSOC);
-    
-    if (empty($candidatos)) {
-        // Fallback: buscar cualquier docente de la facultad
-        $query_fallback = "
-            SELECT d.id_docente, d.nombres_completos,
-                   0.500 as puntuacion_base,
-                   99 as ranking_especifico,
-                   0 as tiene_experiencia_especifica,
-                   'Básico' as nivel_competencia_especifica
-            FROM docentes d
-            WHERE d.facultad = ?
-            ORDER BY d.experiencia_nee_años DESC";
-        
-        $stmt_fallback = $conn->prepare($query_fallback);
-        $stmt_fallback->execute([$estudiante['facultad']]);
-        $candidatos = $stmt_fallback->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    $mejor_candidato = null;
-    $mejor_puntuacion_final = -1;
-    
-    foreach ($candidatos as $candidato) {
-        $docente_id = $candidato['id_docente'];
-        
-        // Verificar si el docente tiene capacidad
-        if (!isset($carga_docentes[$docente_id])) {
-            continue;
-        }
-        
-        $carga_info = $carga_docentes[$docente_id];
-        
-        // Verificar límite general
-        if ($carga_info['asignaciones_actuales'] >= $carga_info['limite_maximo']) {
-            continue;
-        }
-        
-        // Verificar límite por tipo de discapacidad
-        $actual_por_tipo = $carga_info['por_tipo'][$estudiante['id_tipo_discapacidad']] ?? 0;
-        if ($actual_por_tipo >= $carga_info['limite_por_tipo']) {
-            continue;
-        }
-        
-        // CALCULAR PUNTUACIÓN FINAL CON PENALIZACIÓN POR CARGA
-        $puntuacion_base = $candidato['puntuacion_base'];
-        
-        // Factor de penalización por carga (más carga = menor puntuación)
-        $porcentaje_carga = $carga_info['asignaciones_actuales'] / $carga_info['limite_maximo'];
-        $penalizacion_carga = 1 - ($porcentaje_carga * 0.3); // Hasta 30% de penalización
-        
-        // Bonus por experiencia específica
-        $bonus_experiencia = $candidato['tiene_experiencia_especifica'] ? 1.1 : 1.0;
-        
-        // Puntuación final balanceada
-        $puntuacion_final = $puntuacion_base * $penalizacion_carga * $bonus_experiencia;
-        
-        if ($puntuacion_final > $mejor_puntuacion_final) {
-            $mejor_puntuacion_final = $puntuacion_final;
-            $mejor_candidato = $candidato;
-            $mejor_candidato['puntuacion_final'] = $puntuacion_final;
-            $mejor_candidato['capacidad_restante'] = $carga_info['limite_maximo'] - $carga_info['asignaciones_actuales'];
-            $mejor_candidato['penalizacion_aplicada'] = $penalizacion_carga;
-        }
-    }
-    
-    return $mejor_candidato;
-}
-
-/**
  * Obtiene materias disponibles
  */
 function obtenerMaterias($conn, $ciclo_academico) {
@@ -455,7 +541,7 @@ function obtenerMaterias($conn, $ciclo_academico) {
         SELECT id_materia, nombre_materia, facultad 
         FROM materias 
         WHERE ciclo_academico = ? 
-        ORDER BY nombre_materia";
+        ORDER BY facultad, nombre_materia";
     $stmt_materias = $conn->prepare($query_materias);
     $stmt_materias->execute([$ciclo_academico]);
     $materias = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
@@ -464,8 +550,7 @@ function obtenerMaterias($conn, $ciclo_academico) {
         $query_materias_general = "
             SELECT id_materia, nombre_materia, facultad 
             FROM materias 
-            ORDER BY nombre_materia 
-            LIMIT 10";
+            ORDER BY facultad, nombre_materia";
         $stmt_materias_general = $conn->prepare($query_materias_general);
         $stmt_materias_general->execute();
         $materias = $stmt_materias_general->fetchAll(PDO::FETCH_ASSOC);
@@ -483,26 +568,7 @@ function obtenerMaterias($conn, $ciclo_academico) {
 }
 
 /**
- * Selecciona la mejor materia para un estudiante
- */
-function seleccionarMateria($materias, $facultad_estudiante) {
-    // Buscar materia de la misma facultad
-    foreach ($materias as $materia) {
-        if ($materia['facultad'] == $facultad_estudiante) {
-            return $materia;
-        }
-    }
-    
-    // Si no hay materia específica, usar la primera disponible
-    return !empty($materias) ? $materias[0] : [
-        'id_materia' => null,
-        'nombre_materia' => 'Materia General',
-        'facultad' => $facultad_estudiante
-    ];
-}
-
-/**
- * Confirma las asignaciones en la base de datos (método original)
+ * Confirma las asignaciones en la base de datos
  */
 function confirmarAsignaciones($conn, $asignaciones_preview, $ciclo_academico) {
     $query_insertar = "
@@ -525,9 +591,9 @@ function confirmarAsignaciones($conn, $asignaciones_preview, $ciclo_academico) {
                 ':id_docente' => $asignacion['id_docente'],
                 ':id_estudiante' => $asignacion['id_estudiante'],
                 ':id_tipo_discapacidad' => $asignacion['id_tipo_discapacidad'],
-                ':id_materia' => $asignacion['id_materia'] ?? $asignacion['id_materia_sugerida'],
+                ':id_materia' => $asignacion['id_materia'],
                 ':ciclo_academico' => $ciclo_academico,
-                ':materia' => $asignacion['materia'] ?? $asignacion['materia_sugerida'],
+                ':materia' => $asignacion['materia'],
                 ':puntuacion_ahp' => $asignacion['puntuacion_ahp']
             ]);
             $asignaciones_exitosas++;
