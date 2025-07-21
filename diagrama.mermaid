@@ -1,0 +1,261 @@
+erDiagram
+    %% Entidades Principales (Core)
+    DOCENTES {
+        int id_docente PK "🔑 PK"
+        varchar nombres_completos "👤 Nombre"
+        varchar facultad "🏫 Facultad"
+        enum modalidad_enseñanza "📚 Modalidad"
+        enum años_experiencia_docente "⏱️ Años exp"
+        varchar titulo_tercer_nivel "🎓 Pregrado"
+        varchar titulo_cuarto_nivel "🎓 Postgrado"
+        tinyint formacion_inclusion "✅ Inclusión"
+        enum estudiantes_nee_promedio "📊 NEE prom"
+        int capacitaciones_nee "📜 Capacit"
+        int experiencia_nee_años "⏱️ Exp NEE"
+        timestamp created_at "📅 Creado"
+        timestamp updated_at "📅 Actualizado"
+    }
+
+    ESTUDIANTES {
+        int id_estudiante PK "🔑 PK"
+        varchar nombres_completos "👤 Nombre"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        varchar ciclo_academico "📅 Ciclo"
+        varchar facultad "🏫 Facultad"
+        timestamp created_at "📅 Creado"
+    }
+
+    %% Catálogos/Lookup
+    TIPOS_DISCAPACIDAD {
+        int id_tipo_discapacidad PK "🔑 PK"
+        varchar nombre_discapacidad "🏷️ Nombre"
+        decimal peso_prioridad "⚖️ Peso"
+        text descripcion "📝 Desc"
+        timestamp created_at "📅 Creado"
+    }
+
+    MATERIAS {
+        int id_materia PK "🔑 PK"
+        varchar nombre_materia "📚 Materia"
+        varchar facultad "🏫 Facultad"
+        varchar ciclo_academico "📅 Ciclo"
+        timestamp created_at "📅 Creado"
+    }
+
+    CRITERIOS_AHP {
+        int id_criterio PK "🔑 PK"
+        varchar nombre_criterio "⚖️ Criterio"
+        varchar codigo_criterio "🔤 Código"
+        decimal peso_criterio "⚖️ Peso"
+        text descripcion "📝 Desc"
+        timestamp created_at "📅 Creado"
+    }
+
+    %% Transaccionales
+    ASIGNACIONES {
+        int id_asignacion PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        int id_estudiante FK "🔗 Estudiante"
+        int id_materia FK "🔗 Materia"
+        varchar ciclo_academico "📅 Ciclo"
+        varchar materia "📚 Materia"
+        int numero_estudiantes "👥 Num est"
+        decimal puntuacion_ahp "📊 Punt AHP"
+        enum estado "📌 Estado"
+        timestamp fecha_asignacion "📅 Fecha"
+    }
+
+    ASIGNACIONES_HISTORIAL {
+        int id_historial PK "🔑 PK"
+        int id_asignacion FK "🔗 Asignación"
+        int id_docente FK "🔗 Docente"
+        int id_estudiante FK "🔗 Estudiante"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        int id_materia FK "🔗 Materia"
+        varchar ciclo_academico "📅 Ciclo"
+        varchar materia "📚 Materia"
+        int numero_estudiantes "👥 Num est"
+        float puntuacion_ahp "📊 Punt AHP"
+        varchar estado "📌 Estado"
+        timestamp fecha_asignacion "📅 F. asign"
+        timestamp fecha_eliminacion "📅 F. elim"
+    }
+
+    %% Entidades de Relación M:N
+    EXPERIENCIA_DOCENTE_DISCAPACIDAD {
+        int id_experiencia PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        tinyint tiene_experiencia "✅ Exp"
+        int años_experiencia "⏱️ Años"
+        enum nivel_competencia "📊 Nivel"
+        text observaciones "📝 Obs"
+    }
+
+    PESOS_CRITERIOS_DISCAPACIDAD {
+        int id_peso PK "🔑 PK"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        int id_criterio FK "🔗 Criterio"
+        decimal peso_especifico "⚖️ Peso esp"
+        varchar descripcion_peso "📝 Desc peso"
+        timestamp created_at "📅 Creado"
+    }
+
+    %% Entidades 1:1 con Docentes
+    ADAPTACIONES_METODOLOGICAS {
+        int id_adaptacion PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        tinyint modificacion_contenido "🔧 Mod cont"
+        tinyint uso_recursos_tecnologicos "💻 Tecnol"
+        tinyint adaptacion_metodologia "📚 Metodol"
+        tinyint coordinacion_servicios_apoyo "🤝 Apoyo"
+        text otras_adaptaciones "📝 Otras"
+    }
+
+    LIMITES_ASIGNACION {
+        int id_limite PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        int maximo_estudiantes_nee "👥 Max NEE"
+        int maximo_por_tipo_discapacidad "👥 Max tipo"
+        varchar disponible_ciclo "📅 Disponible"
+        text observaciones "📝 Obs"
+        timestamp created_at "📅 Creado"
+    }
+
+    %% Entidades 1:N con Docentes
+    CAPACITACIONES_NEE {
+        int id_capacitacion PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        varchar nombre_capacitacion "📜 Capacitación"
+        varchar institucion "🏢 Institución"
+        date fecha_capacitacion "📅 Fecha"
+        int duracion_horas "⏱️ Horas"
+        tinyint certificado "🏆 Cert"
+    }
+
+    %% Caché/Performance
+    CACHE_PUNTUACIONES_AHP {
+        int id_cache PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        decimal puntuacion_fsi "📊 FSI"
+        decimal puntuacion_epr "📊 EPR"
+        decimal puntuacion_ami "📊 AMI"
+        decimal puntuacion_aed "📊 AED"
+        decimal puntuacion_nfa "📊 NFA"
+        decimal puntuacion_final "📊 Final"
+        int ranking_general "🏆 Ranking"
+        timestamp fecha_calculo "📅 F. calc"
+    }
+
+    CACHE_PUNTUACIONES_ESPECIFICAS {
+        int id_cache_especifico PK "🔑 PK"
+        int id_docente FK "🔗 Docente"
+        int id_tipo_discapacidad FK "🔗 Tipo disc"
+        decimal puntuacion_especifica "📊 Punt esp"
+        int ranking_especifico "🏆 Rank esp"
+        tinyint tiene_experiencia_especifica "✅ Exp"
+        varchar nivel_competencia_especifica "📊 Nivel"
+        timestamp fecha_calculo "📅 F. calc"
+    }
+
+    %% Sistema de Control
+    USUARIOS {
+        int id_usuario PK "🔑 PK"
+        varchar usuario "👤 Usuario"
+        varchar email "📧 Email"
+        varchar password "🔒 Password"
+        varchar nombre_completo "👤 Nombre"
+        enum rol "👑 Rol"
+        tinyint activo "✅ Activo"
+        timestamp ultimo_acceso "📅 Ult acc"
+        timestamp fecha_creacion "📅 Creado"
+        timestamp fecha_actualizacion "📅 Actualiz"
+    }
+
+    SESIONES_USUARIO {
+        int id_sesion PK "🔑 PK"
+        int id_usuario FK "🔗 Usuario"
+        varchar token_sesion "🎫 Token"
+        varchar ip_address "🌐 IP"
+        text user_agent "💻 Agent"
+        timestamp fecha_creacion "📅 Creado"
+        timestamp fecha_expiracion "📅 Expira"
+        tinyint activa "✅ Activa"
+    }
+
+    LOG_ACTUALIZACIONES_CACHE {
+        int id_log PK "🔑 PK"
+        varchar tabla_afectada "📊 Tabla"
+        int id_registro "🔢 ID Reg"
+        enum tipo_operacion "⚙️ Operación"
+        text campos_modificados "📝 Campos"
+        varchar usuario "👤 Usuario"
+        timestamp fecha_operacion "📅 Fecha"
+    }
+
+    %% RELACIONES PRINCIPALES (1:N)
+    
+    %% Docentes como entidad principal
+    DOCENTES ||--o{ ASIGNACIONES : "Un docente puede tener muchas asignaciones"
+    DOCENTES ||--|| ADAPTACIONES_METODOLOGICAS : "Un docente tiene una configuración de adaptaciones"
+    DOCENTES ||--|| LIMITES_ASIGNACION : "Un docente tiene unos límites definidos"
+    DOCENTES ||--o{ CAPACITACIONES_NEE : "Un docente puede tener múltiples capacitaciones"
+    DOCENTES ||--o{ EXPERIENCIA_DOCENTE_DISCAPACIDAD : "Un docente puede tener experiencia en múltiples discapacidades"
+    DOCENTES ||--|| CACHE_PUNTUACIONES_AHP : "Un docente tiene un registro de puntuación general"
+    DOCENTES ||--o{ CACHE_PUNTUACIONES_ESPECIFICAS : "Un docente tiene múltiples puntuaciones específicas"
+
+    %% Estudiantes
+    ESTUDIANTES ||--o{ ASIGNACIONES : "Un estudiante puede tener múltiples asignaciones"
+    ESTUDIANTES ||--o{ ASIGNACIONES_HISTORIAL : "Un estudiante puede tener historial de asignaciones"
+
+    %% Tipos de Discapacidad como catálogo principal
+    TIPOS_DISCAPACIDAD ||--o{ ESTUDIANTES : "Un tipo de discapacidad puede tener múltiples estudiantes"
+    TIPOS_DISCAPACIDAD ||--o{ ASIGNACIONES : "Un tipo de discapacidad puede tener múltiples asignaciones"
+    TIPOS_DISCAPACIDAD ||--o{ ASIGNACIONES_HISTORIAL : "Historial por tipo de discapacidad"
+    TIPOS_DISCAPACIDAD ||--o{ EXPERIENCIA_DOCENTE_DISCAPACIDAD : "Experiencia por tipo de discapacidad"
+    TIPOS_DISCAPACIDAD ||--o{ PESOS_CRITERIOS_DISCAPACIDAD : "Pesos específicos por discapacidad"
+    TIPOS_DISCAPACIDAD ||--o{ CACHE_PUNTUACIONES_ESPECIFICAS : "Caché por tipo de discapacidad"
+
+    %% Materias
+    MATERIAS ||--o{ ASIGNACIONES : "Una materia puede tener múltiples asignaciones"
+    MATERIAS ||--o{ ASIGNACIONES_HISTORIAL : "Historial por materia"
+
+    %% Criterios AHP
+    CRITERIOS_AHP ||--o{ PESOS_CRITERIOS_DISCAPACIDAD : "Un criterio puede tener múltiples pesos específicos"
+
+    %% Asignaciones principales
+    ASIGNACIONES ||--o{ ASIGNACIONES_HISTORIAL : "Una asignación puede generar múltiples registros históricos"
+
+    %% Sistema de usuarios
+    USUARIOS ||--o{ SESIONES_USUARIO : "Un usuario puede tener múltiples sesiones"
+
+    %% ESTILOS Y COLORES
+    %%{init: {
+        "theme": "base",
+        "themeVariables": {
+            "primaryColor": "#ff6b6b",
+            "primaryTextColor": "#fff",
+            "primaryBorderColor": "#ff5252",
+            "lineColor": "#333333",
+            "entityBorderColor": "#333333",
+            "attributeBackgroundColorOdd": "#f9f9f9",
+            "attributeBackgroundColorEven": "#ffffff"
+        }
+    }}%%
+
+    %% Clases para colorear entidades
+    classDef coreEntity fill:#ff6b6b,stroke:#d32f2f,stroke-width:3px,color:#fff
+    classDef lookupEntity fill:#4ecdc4,stroke:#26a69a,stroke-width:2px,color:#fff
+    classDef transactionEntity fill:#45b7d1,stroke:#1976d2,stroke-width:2px,color:#fff
+    classDef cacheEntity fill:#96ceb4,stroke:#4caf50,stroke-width:2px,color:#fff
+    classDef controlEntity fill:#ffeaa7,stroke:#ff9800,stroke-width:2px,color:#333
+    classDef relationEntity fill:#dda0dd,stroke:#9c27b0,stroke-width:2px,color:#fff
+
+    %% Aplicar clases
+    class DOCENTES,ESTUDIANTES coreEntity
+    class TIPOS_DISCAPACIDAD,MATERIAS,CRITERIOS_AHP lookupEntity
+    class ASIGNACIONES,ASIGNACIONES_HISTORIAL transactionEntity
+    class CACHE_PUNTUACIONES_AHP,CACHE_PUNTUACIONES_ESPECIFICAS cacheEntity
+    class USUARIOS,SESIONES_USUARIO,LOG_ACTUALIZACIONES_CACHE,LIMITES_ASIGNACION,CAPACITACIONES_NEE,ADAPTACIONES_METODOLOGICAS controlEntity
+    class EXPERIENCIA_DOCENTE_DISCAPACIDAD,PESOS_CRITERIOS_DISCAPACIDAD relationEntity
