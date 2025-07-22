@@ -330,6 +330,139 @@
     color: #ffc107 !important;
 }
 
+/* NUEVOS ESTILOS PARA LA TABLA DE MATERIAS */
+.materias-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+}
+
+.materias-section h3 {
+    color: #667eea !important;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.materias-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.materia-stat-card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid #667eea;
+}
+
+.materia-stat-card h5 {
+    color: #2c3e50 !important;
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.materia-stat-card .valor {
+    color: #667eea !important;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.tabla-materias {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tabla-materias table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.tabla-materias th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 12px;
+    font-weight: 600;
+    text-align: left;
+    border: none;
+    font-size: 14px;
+}
+
+.tabla-materias td {
+    padding: 12px;
+    border-bottom: 1px solid #e1e8ed;
+    color: #2c3e50;
+    font-size: 13px;
+}
+
+.tabla-materias tr:nth-child(even) {
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.tabla-materias tr:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+.materia-badge {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.asignaciones-count {
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.asignaciones-count.cero {
+    background: #dc3545;
+}
+
+.asignaciones-count.bajo {
+    background: #ffc107;
+    color: #212529;
+}
+
+.asignaciones-count.medio {
+    background: #17a2b8;
+}
+
+.asignaciones-count.alto {
+    background: #28a745;
+}
+
+.facultad-tag {
+    background: rgba(102, 126, 234, 0.2);
+    color: #2c3e50;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    display: inline-block;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* Responsive mejoras */
 @media (max-width: 768px) {
     .dashboard-container {
@@ -361,6 +494,18 @@
     
     .distribucion-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .materias-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tabla-materias {
+        overflow-x: auto;
+    }
+    
+    .facultad-tag {
+        max-width: 120px;
     }
 }
 
@@ -433,6 +578,7 @@
         <div class="dashboard-nav-links">
             <a href="#inicio" class="dashboard-nav-link">🏠 Inicio</a>
             <a href="#estadisticas" class="dashboard-nav-link">📊 Estadísticas</a>
+            <a href="#materias" class="dashboard-nav-link">📚 Materias</a>
             <a href="#distribucion" class="dashboard-nav-link">📈 Distribución</a>
             <a href="#graficos" class="dashboard-nav-link">📉 Gráficos</a>
         </div>
@@ -528,6 +674,33 @@
             $stmt_triggers_stats->execute();
             $triggers_stats = $stmt_triggers_stats->fetch(PDO::FETCH_ASSOC);
 
+            // NUEVA CONSULTA: Obtener estadísticas de materias y asignaciones
+            $query_materias = "
+                SELECT 
+                    m.id_materia,
+                    m.nombre_materia,
+                    m.facultad,
+                    m.ciclo_academico,
+                    COUNT(a.id_asignacion) as total_asignaciones,
+                    COUNT(CASE WHEN a.estado = 'Activa' THEN 1 END) as asignaciones_activas,
+                    COUNT(CASE WHEN a.estado = 'Cancelada' THEN 1 END) as asignaciones_canceladas,
+                    COUNT(DISTINCT a.id_docente) as docentes_diferentes,
+                    COUNT(DISTINCT a.id_tipo_discapacidad) as tipos_discapacidad_atendidos
+                FROM materias m
+                LEFT JOIN asignaciones a ON m.id_materia = a.id_materia
+                GROUP BY m.id_materia, m.nombre_materia, m.facultad, m.ciclo_academico
+                ORDER BY total_asignaciones DESC, m.nombre_materia";
+            
+            $stmt_materias = $conn->prepare($query_materias);
+            $stmt_materias->execute();
+            $materias_stats = $stmt_materias->fetchAll(PDO::FETCH_ASSOC);
+
+            // Estadísticas resumen de materias
+            $total_materias = count($materias_stats);
+            $materias_con_asignaciones = count(array_filter($materias_stats, function($m) { return $m['total_asignaciones'] > 0; }));
+            $materias_sin_asignaciones = $total_materias - $materias_con_asignaciones;
+            $total_asignaciones_materias = array_sum(array_column($materias_stats, 'total_asignaciones'));
+
             // Obtener distribución por tipo de discapacidad
             $query_distribucion = "
                 SELECT td.nombre_discapacidad, td.peso_prioridad,
@@ -586,6 +759,128 @@
             </div>
         </section>
 
+        <!-- NUEVA SECCIÓN: MATERIAS Y ASIGNACIONES -->
+        <section id="materias" class="dashboard-section fade-in">
+            <div class="materias-section">
+                <h3>📚 Materias y Asignaciones</h3>
+                
+                <!-- Estadísticas resumen de materias -->
+                <div class="materias-stats">
+                    <div class="materia-stat-card">
+                        <h5>Total Materias</h5>
+                        <div class="valor"><?php echo $total_materias; ?></div>
+                    </div>
+                    <div class="materia-stat-card">
+                        <h5>Con Asignaciones</h5>
+                        <div class="valor"><?php echo $materias_con_asignaciones; ?></div>
+                    </div>
+                    <div class="materia-stat-card">
+                        <h5>Sin Asignaciones</h5>
+                        <div class="valor"><?php echo $materias_sin_asignaciones; ?></div>
+                    </div>
+                    <div class="materia-stat-card">
+                        <h5>Total Asignaciones</h5>
+                        <div class="valor"><?php echo $total_asignaciones_materias; ?></div>
+                    </div>
+                </div>
+
+                <!-- Tabla detallada de materias -->
+                <div class="tabla-scroll">
+                    <div class="tabla-materias">
+                        <table class="table-fixed-header">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">📖 Materia</th>
+                                    <th style="width: 25%;">🏛️ Facultad</th>
+                                    <th style="width: 10%;">📅 Ciclo</th>
+                                    <th style="width: 12%;">📊 Total</th>
+                                    <th style="width: 12%;">✅ Activas</th>
+                                    <th style="width: 11%;">👨‍🏫 Docentes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($materias_stats)): ?>
+                                    <?php foreach ($materias_stats as $materia): ?>
+                                        <tr>
+                                            <td>
+                                                <strong style="color: #2c3e50;">
+                                                    <?php echo htmlspecialchars($materia['nombre_materia']); ?>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <div class="facultad-tag" title="<?php echo htmlspecialchars($materia['facultad']); ?>">
+                                                    <?php echo htmlspecialchars(substr($materia['facultad'], 0, 35)); ?>
+                                                    <?php echo strlen($materia['facultad']) > 35 ? '...' : ''; ?>
+                                                </div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?php if ($materia['ciclo_academico']): ?>
+                                                    <span class="materia-badge">
+                                                        <?php echo htmlspecialchars($materia['ciclo_academico']); ?>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span style="color: #666; font-style: italic;">General</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?php 
+                                                $total = $materia['total_asignaciones'];
+                                                $clase_count = 'cero';
+                                                if ($total > 0) $clase_count = 'bajo';
+                                                if ($total >= 3) $clase_count = 'medio';
+                                                if ($total >= 5) $clase_count = 'alto';
+                                                ?>
+                                                <span class="asignaciones-count <?php echo $clase_count; ?>">
+                                                    <?php echo $total; ?>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?php 
+                                                $activas = $materia['asignaciones_activas'];
+                                                $clase_activas = 'cero';
+                                                if ($activas > 0) $clase_activas = 'bajo';
+                                                if ($activas >= 3) $clase_activas = 'medio';
+                                                if ($activas >= 5) $clase_activas = 'alto';
+                                                ?>
+                                                <span class="asignaciones-count <?php echo $clase_activas; ?>">
+                                                    <?php echo $activas; ?>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span style="color: #667eea; font-weight: 600;">
+                                                    <?php echo $materia['docentes_diferentes']; ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 30px; color: #666;">
+                                            📚 No se encontraron materias registradas en el sistema
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div style="background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <p style="color: #2c3e50; margin: 0; font-size: 14px; text-align: center;">
+                        <strong>💡 Información:</strong> 
+                        Las materias con mayor número de asignaciones activas indican alta demanda. 
+                        Los códigos de color: 
+                        <span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px; margin: 0 3px;">0</span>
+                        <span style="background: #ffc107; color: #212529; padding: 2px 6px; border-radius: 3px; margin: 0 3px;">1-2</span>
+                        <span style="background: #17a2b8; color: white; padding: 2px 6px; border-radius: 3px; margin: 0 3px;">3-4</span>
+                        <span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 3px; margin: 0 3px;">5+</span>
+                        asignaciones
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN DISTRIBUCIÓN -->
         <section id="distribucion" class="dashboard-section fade-in">
             <h3>📈 Distribución por Tipo de Discapacidad (Criterios Principales AHP)</h3>
@@ -594,8 +889,7 @@
                     <div class="distribucion-card" style="background: linear-gradient(135deg, 
                         <?php 
                         echo $dist['peso_prioridad'] >= 0.3 ? '#e74c3c, #c0392b' :  
-                            ($dist['peso_prioridad'] >= 0.15 ? '#f39c12, #e67e22' :  
-                            '#95a5a6, #7f8c8d'); 
+                            ($dist['peso_prioridad'] >= 0.15 ? '#f39c12, #e67e22' : '#95a5a6, #7f8c8d'); 
                         ?> 100%);">
                         <h4><?php echo htmlspecialchars($dist['nombre_discapacidad']); ?></h4>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
@@ -638,8 +932,6 @@
                 </div>
             </div>
         </section>
-
-
 
         <?php } else { ?>
             <div class="alert alert-error">No se pudo conectar a la base de datos.</div>

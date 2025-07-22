@@ -216,7 +216,7 @@
     color: #7f8c8d !important;
 }
 
-/* NUEVOS ESTILOS PARA SELECCIÓN DE MATERIAS */
+/* ESTILOS SIMPLIFICADOS PARA SELECCIÓN DE MATERIAS */
 .materia-selector {
     min-width: 200px;
     padding: 8px;
@@ -252,22 +252,6 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.materia-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.materia-sugerida {
-    background: rgba(52, 152, 219, 0.1);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #2c3e50;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-}
-
 .form-actions {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -295,11 +279,6 @@
     
     .panel-header h4 {
         font-size: 14px;
-    }
-    
-    .materia-info {
-        flex-direction: column;
-        align-items: flex-start;
     }
     
     .form-actions .btn {
@@ -471,7 +450,7 @@
                     </div>
                 </div>
                 
-                <!-- Formulario con selección de materias -->
+                <!-- Formulario con selección de materias SIMPLIFICADO -->
                 <div class="preview-form-container">
                     <form action="../procesar/procesar_asignacion_automatica.php" method="POST" id="formAsignacionConMaterias">
                         <input type="hidden" name="confirm_with_materias" value="1">
@@ -487,7 +466,7 @@
                                 <input type="hidden" name="tipo_discapacidad_<?php echo $index; ?>" value="<?php echo $preview['id_tipo_discapacidad']; ?>">
                                 <input type="hidden" name="puntuacion_<?php echo $index; ?>" value="<?php echo $preview['puntuacion_ahp']; ?>">
                                 
-                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; align-items: center;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: center;">
                                     <div>
                                         <strong style="color: #2c3e50;"><?php echo htmlspecialchars($preview['estudiante']); ?></strong><br>
                                         <small style="color: #666;"><?php echo htmlspecialchars($preview['nombre_discapacidad']); ?></small>
@@ -503,36 +482,19 @@
                                     </div>
                                     
                                     <div>
-                                        <div class="materia-info">
-                                            <span class="materia-sugerida">
-                                                💡 Sugerida: <?php echo htmlspecialchars($preview['materia_sugerida']); ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
                                         <label style="font-size: 12px; color: #666; display: block; margin-bottom: 5px;">
                                             Seleccionar Materia:
                                         </label>
                                         <select name="materia_<?php echo $index; ?>" class="materia-selector" required>
                                             <option value="">-- Seleccione una materia --</option>
                                             
-                                            <!-- Materia sugerida primero -->
-                                            <?php if ($preview['id_materia_sugerida']): ?>
-                                                <option value="<?php echo $preview['id_materia_sugerida']; ?>" selected style="background: #e3f2fd;">
-                                                    🎯 <?php echo htmlspecialchars($preview['materia_sugerida']); ?> (Sugerida)
-                                                </option>
-                                            <?php endif; ?>
-                                            
-                                            <!-- Materias de la facultad del estudiante -->
+                                            <!-- Materias de la facultad del estudiante primero -->
                                             <?php if (isset($materias_data[$preview['facultad_estudiante']])): ?>
                                                 <optgroup label="📚 <?php echo htmlspecialchars($preview['facultad_estudiante']); ?>">
                                                     <?php foreach ($materias_data[$preview['facultad_estudiante']] as $materia): ?>
-                                                        <?php if ($materia['id_materia'] != $preview['id_materia_sugerida']): ?>
-                                                            <option value="<?php echo $materia['id_materia']; ?>">
-                                                                <?php echo htmlspecialchars($materia['nombre_materia']); ?>
-                                                            </option>
-                                                        <?php endif; ?>
+                                                        <option value="<?php echo $materia['id_materia']; ?>">
+                                                            <?php echo htmlspecialchars($materia['nombre_materia']); ?>
+                                                        </option>
                                                     <?php endforeach; ?>
                                                 </optgroup>
                                             <?php endif; ?>
@@ -557,10 +519,10 @@
                         
                         <!-- Acciones del formulario -->
                         <div class="form-actions">
-                            <button type="submit" class="btn bg-success">
+                            <button type="submit" class="btn" style="background: #28a745;">
                                 ✅ Confirmar Asignaciones con Materias Seleccionadas
                             </button>
-                            <a href="asignacion.php" class="btn bg-danger">
+                            <a href="asignacion.php" class="btn" style="background: #dc3545; color: white; text-decoration: none;">
                                 ❌ Cancelar y Volver
                             </a>
                         </div>
@@ -570,9 +532,9 @@
                 <div class="leyenda-box">
                     <p>
                         <strong>💡 Instrucciones:</strong> 
-                        Cada estudiante tiene una materia sugerida automáticamente basada en su facultad. 
-                        Puede mantener la sugerencia o seleccionar una materia diferente de la lista. 
+                        Seleccione una materia para cada asignación de la lista desplegable. 
                         Las materias están agrupadas por facultad para facilitar la selección.
+                        Las materias de la misma facultad del estudiante aparecen primero.
                     </p>
                 </div>
                 
@@ -582,11 +544,11 @@
         </div>
     <?php endif; ?>
     
-    <div class="d-flex justify-between align-center mb-20">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h3>Asignaciones Actuales</h3>
         <form action="../procesar/procesar_eliminar_asignacion.php" method="POST">
             <input type="hidden" name="eliminar_todas" value="1">
-            <button type="submit" class="btn bg-danger" onclick="return confirmarEliminacion('¿Está seguro de que desea eliminar TODAS las asignaciones? Esta acción no se puede deshacer.')">
+            <button type="submit" class="btn" style="background: #dc3545;" onclick="return confirmarEliminacion('¿Está seguro de que desea eliminar TODAS las asignaciones? Esta acción no se puede deshacer.')">
                 🗑️ Eliminar Todas las Asignaciones
             </button>
         </form>
@@ -661,21 +623,21 @@
                         <td><?php echo htmlspecialchars($asignacion['estudiante'] ?: 'No asignado'); ?></td>
                         <td><?php echo htmlspecialchars($asignacion['nombre_discapacidad']); ?></td>
                         <td><?php echo htmlspecialchars($asignacion['nombre_materia'] ?: 'No especificada'); ?></td>
-                        <td class="text-center">
+                        <td style="text-align: center;">
                             <?php if ($asignacion['tiene_experiencia_especifica']): ?>
-                                <span class="text-success">✅ <?php echo htmlspecialchars($asignacion['nivel_competencia']); ?></span>
+                                <span style="color: green;">✅ <?php echo htmlspecialchars($asignacion['nivel_competencia']); ?></span>
                             <?php else: ?>
-                                <span class="text-danger">❌ Sin experiencia</span>
+                                <span style="color: red;">❌ Sin experiencia</span>
                             <?php endif; ?>
                         </td>
-                        <td class="text-center font-small">
+                        <td style="text-align: center; font-size: 12px;">
                             <?php echo date('d/m/Y', strtotime($asignacion['fecha_asignacion'])); ?><br>
                             <?php echo date('H:i', strtotime($asignacion['fecha_asignacion'])); ?>
                         </td>
-                        <td class="text-center">
+                        <td style="text-align: center;">
                             <form action="../procesar/procesar_eliminar_asignacion.php" method="POST" style="display: inline;">
                                 <input type="hidden" name="id_asignacion" value="<?php echo $asignacion['id_asignacion']; ?>">
-                                <button type="submit" class="btn bg-danger" style="padding: 5px 10px; font-size: 12px;" onclick="return confirmarEliminacion('¿Está seguro de que desea cancelar esta asignación?')">
+                                <button type="submit" class="btn" style="background: #dc3545; padding: 5px 10px; font-size: 12px;" onclick="return confirmarEliminacion('¿Está seguro de que desea cancelar esta asignación?')">
                                     ❌ Cancelar
                                 </button>
                             </form>
@@ -771,21 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Función para filtrar materias por facultad (opcional)
-    window.filtrarMateriasPorFacultad = function(facultadSeleccionada, selectorId) {
-        const selector = document.getElementById(selectorId);
-        const opciones = selector.querySelectorAll('option');
-        
-        opciones.forEach(function(opcion) {
-            if (opcion.value === '' || opcion.textContent.includes(facultadSeleccionada)) {
-                opcion.style.display = 'block';
-            } else {
-                opcion.style.display = 'none';
-            }
-        });
-    };
-    
-    // Mejorar la UX con tooltips
+    // Mejorar la UX con efectos hover
     const materiasSelectores = document.querySelectorAll('.materia-selector');
     materiasSelectores.forEach(function(selector) {
         selector.addEventListener('focus', function() {
@@ -805,54 +753,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Función para seleccionar todas las materias sugeridas
-function seleccionarTodasLasSugeridas() {
-    const selectores = document.querySelectorAll('.materia-selector');
-    selectores.forEach(function(selector) {
-        const opcionSugerida = selector.querySelector('option[selected]');
-        if (opcionSugerida) {
-            selector.value = opcionSugerida.value;
-            selector.style.borderColor = '#28a745';
-            selector.style.backgroundColor = '#f8fff9';
-        }
-    });
-    
-    // Mostrar mensaje de confirmación
-    const totalSeleccionadas = document.querySelectorAll('.materia-selector option:checked').length;
-    if (totalSeleccionadas > 0) {
-        const mensaje = document.createElement('div');
-        mensaje.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px 20px; border-radius: 5px; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.3);';
-        mensaje.textContent = `✅ Se seleccionaron ${totalSeleccionadas} materias sugeridas automáticamente`;
-        document.body.appendChild(mensaje);
-        
-        setTimeout(() => {
-            mensaje.remove();
-        }, 3000);
-    }
-}
-
-// Función para limpiar todas las selecciones
-function limpiarSelecciones() {
-    if (confirm('¿Está seguro de que desea limpiar todas las selecciones de materias?')) {
-        const selectores = document.querySelectorAll('.materia-selector');
-        selectores.forEach(function(selector) {
-            selector.value = '';
-            selector.style.borderColor = '#dc3545';
-            selector.style.backgroundColor = '#fff8f8';
-        });
-    }
-}
 </script>
-
-<!-- Botones de ayuda adicionales -->
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <button onclick="seleccionarTodasLasSugeridas()" class="btn bg-info" style="margin-bottom: 10px; display: block;">
-        🎯 Usar Todas las Sugeridas
-    </button>
-    <button onclick="limpiarSelecciones()" class="btn bg-warning" style="display: block;">
-        🧹 Limpiar Selecciones
-    </button>
-</div>
 
 <?php include '../includes/footer.php'; ?>

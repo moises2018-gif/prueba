@@ -7295,3 +7295,2726 @@
 }
 [21-Jul-2025 17:31:50 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
 [21-Jul-2025 17:31:50 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 18:49:26 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 18:49:26 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 18:49:26 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 18:49:26 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 18:49:26 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 18:49:26 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 18:49:26 America/Guayaquil] {
+    "timestamp": "2025-07-21 18:49:26",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 18:49:26 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 18:49:26 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:28 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:28 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:28 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:28 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:28 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:28 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:28 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:28",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:28 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:28 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:34 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:34 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:34 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:34 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:34 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:34 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:34 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:34",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:34 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:34 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
+[21-Jul-2025 22:57:34 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:34 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:34 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:34 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:34 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:34 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:34 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:34",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:38 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:38 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:38 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:38 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:38 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:38 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:38 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:38",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:38 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:38 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[21-Jul-2025 22:57:38 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:38 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:38 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:38 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:38 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:38 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:38 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:38",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:38 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:38 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:58 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:57:58 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:57:58 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:57:58 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:57:58 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:57:58 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:57:58 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:57:58",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:57:58 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:57:58 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:58:00 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:58:00 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:58:00 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:58:00 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:58:00 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:58:00 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:58:00 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:58:00",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:58:00 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:58:00 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:58:03 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 22:58:03 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 22:58:03 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 22:58:03 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 22:58:03 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 22:58:03 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 22:58:03 America/Guayaquil] {
+    "timestamp": "2025-07-21 22:58:03",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 22:58:03 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 22:58:03 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:07 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:07 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:07 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:07 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:07 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:07 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:07 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:07",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:07 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:07 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:10 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:10 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:10 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:10 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:10 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:10 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:10 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:10",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:10 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:10 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:17 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:17 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:17 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:17 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:17 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:17 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:17 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:17",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:17 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:17 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:17 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:17 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:17 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:17 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:17 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:17 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:17",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:17 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:17 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:18 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:18 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:18 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:18 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:18 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:18 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:18 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:18",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:18 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:18 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:20 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:20 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:20 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:23 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:23 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:23 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:23 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:23 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:23 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:23 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:23",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:23 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:23 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:23 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:23 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:23 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:23 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:23 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:23",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Warning:  Undefined array key "materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 521
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:23 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:24 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:39 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:40 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:40 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:40 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:40 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:40 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:40 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:40",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:40 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:41 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:41 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:41 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:41 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:41 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:41 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:41 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:41",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:41 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:41 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:51 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:51 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:51 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:51 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:51 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:51 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:51 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:51",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:52 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:54 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:16:54 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:16:54 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:16:54 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:16:54 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:16:54 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:16:54 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:16:54",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:16:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 521
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:54 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 521
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:16:55 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:11 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:11 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:11 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:11 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:11 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:11 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:11 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:11",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:11 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:12 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:12 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:12 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:12 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:12 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:12 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:12 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:12",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:12 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:12 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:19 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:19 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:19 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:19 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:19 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:19 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:19 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:19",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:19 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:19 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:19 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:19 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:19 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:19 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:19 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:19 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:19",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:19 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:19 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:23 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:23 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:23 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:23 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:23 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:23 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:23 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:23",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:23 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:23 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:23 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:23 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:23 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:23 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:23 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:23",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:23 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:27 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:27 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:27 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:27 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:27 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:27 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:27 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:27",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:27 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:29 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:17:29 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:17:29 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:17:29 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:17:29 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:17:29 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:17:29 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:17:29",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:17:29 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:29 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 521
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 508
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 521
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:17:29 America/Guayaquil] PHP Warning:  Undefined array key "id_materia_sugerida" in C:\Users\CNT\Desktop\prueba\pages\asignacion.php on line 531
+[21-Jul-2025 23:29:39 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:29:39 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:29:39 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:29:39 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:29:39 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:29:39 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:29:39 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:29:39",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:29:39 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:29:39 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:29:54 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:29:54 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:29:54 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:29:54 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:29:54 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:29:54 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:29:54 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:29:54",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:29:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:29:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:38:42 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:38:42 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:38:42 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:38:42 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:38:42 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:38:42 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:38:42 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:38:42",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:38:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:38:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:39:15 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:39:15 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:39:15 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:39:15 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:39:15 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:39:15 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:39:15 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:39:15",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:39:15 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:39:15 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:39:20 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:39:20 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:39:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:39:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:39:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:39:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:39:20 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:39:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:39:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:39:20 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:39:20 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:39:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:39:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:39:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:39:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:39:20 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:39:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:39:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:39:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:06 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:06 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:06 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:06 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:06 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:06 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:06 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:06",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:06 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:06 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:12 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:12 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:12 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:12 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:12 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:12 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:12 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:12",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:12 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:14 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:14 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:14 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:14 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:14 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:14 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:14 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:14",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:14 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:14 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:25 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:25 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:25 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:25 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:25 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:25 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:25 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:25",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:25 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:25 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:25 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:25 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:25 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:25 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:25 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:25 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:25",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:25 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:25 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:29 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:29 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:29 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:29 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:29 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:29 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:29 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:29",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:29 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:29 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:45:29 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:45:29 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:45:29 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:45:29 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:45:29 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:45:29 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:45:29",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:45:29 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:45:29 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:54:42 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:54:42 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:54:42 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:54:42 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:54:42 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:54:42 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:54:42 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:54:42",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:54:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:54:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:17 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:17 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:17 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:17 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:17 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:17 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:17 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:17",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:17 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:17 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:33 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:33 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:33 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:33 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:33 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:33 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:33 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:33",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:33 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:33 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:44 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:44 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:44 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:44 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:44 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:44 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:44 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:44",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:44 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:44 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:48 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:48 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:48 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:48 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:48 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:48 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:48 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:48",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:48 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:49 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:49 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:49 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:49 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:49 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:49 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:49 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:49",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:49 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:49 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:55 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:55 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:55 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:55 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:55 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:55 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:55 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:55",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:55 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:55 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:55 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:55 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:55 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:55 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:55 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:55 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:55",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:55 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:55 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:55:59 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:55:59 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:55:59 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:55:59 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:55:59 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:55:59 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:55:59 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:55:59",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:55:59 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:00 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:00 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:00 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:00 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:00 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:00 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:00 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:00",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:00 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:00 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:04 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:04 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:04 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:04 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:04 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:04 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:04 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:04",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:04 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:05 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:05 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:05 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:05 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:05 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:05 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:05 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:05",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:20 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:20 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:20 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:20 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:20 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:20 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:25 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:25 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:25 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:25 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:25 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:25 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:25 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:25",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:25 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:27 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:27 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:27 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:27 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:27 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:27 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:27 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:27",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:27 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:27 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:43 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:43 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:43 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:43 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:43 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:43 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:43 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:43",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:56:43 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:56:43 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
+[21-Jul-2025 23:56:43 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:56:43 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:56:43 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:56:43 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:56:43 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:56:43 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:56:43 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:56:43",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:58:07 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:58:07 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:58:07 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:58:07 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:58:07 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:58:07 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:58:07 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:58:07",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:58:07 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:58:08 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[21-Jul-2025 23:58:08 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:58:08 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:58:08 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:58:08 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:58:08 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:58:08 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:58:08 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:58:08",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:58:08 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:58:08 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:58:59 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:58:59 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:58:59 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:58:59 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:58:59 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:58:59 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:58:59 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:58:59",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:58:59 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:58:59 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:59:15 America/Guayaquil] Configuración del sistema:
+[21-Jul-2025 23:59:15 America/Guayaquil] - Configuración completa: SÍ
+[21-Jul-2025 23:59:15 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[21-Jul-2025 23:59:15 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[21-Jul-2025 23:59:15 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[21-Jul-2025 23:59:15 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[21-Jul-2025 23:59:15 America/Guayaquil] {
+    "timestamp": "2025-07-21 23:59:15",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[21-Jul-2025 23:59:15 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[21-Jul-2025 23:59:15 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:00:33 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:00:33 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:00:33 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:00:33 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:00:33 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:00:33 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:00:33 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:00:33",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:00:33 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:00:33 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:00:50 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:00:50 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:00:50 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:00:50 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:00:50 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:00:50 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:00:50 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:00:50",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:00:50 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:00:50 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:01:43 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:01:43 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:01:43 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:01:43 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:01:43 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:01:43 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:01:43 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:01:43",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:01:43 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:01:43 America/Guayaquil] Logout exitoso - Usuario: admin (Administrador del Sistema) - IP: ::1
+[22-Jul-2025 00:01:44 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:01:44 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:01:44 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:01:44 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:01:44 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:01:44 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:01:44 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:01:44",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:41 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:03:41 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:03:41 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:03:41 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:03:41 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:03:41 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:03:41 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:03:41",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:41 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:42 America/Guayaquil] Login exitoso - Usuario: admin (Administrador del Sistema) - Rol: admin - IP: ::1
+[22-Jul-2025 00:03:42 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:03:42 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:03:42 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:03:42 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:03:42 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:03:42 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:03:42 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:03:42",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:42 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:51 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:03:51 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:03:51 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:03:51 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:03:51 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:03:51 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:03:51 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:03:51",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:51 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:51 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:54 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:03:54 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:03:54 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:03:54 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:03:54 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:03:54 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:03:54 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:03:54",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:57 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:03:57 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:03:57 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:03:57 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:03:57 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:03:57 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:03:57 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:03:57",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:03:57 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:03:57 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:02 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:04:02 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:04:02 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:04:02 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:04:02 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:04:02 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:04:02 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:04:02",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:04:02 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:02 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:05 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:04:05 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:04:05 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:04:05 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:04:05 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:04:05 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:04:05 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:04:05",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:04:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:53 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:04:53 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:04:53 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:04:53 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:04:53 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:04:53 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:04:53 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:04:53",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:04:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:04:54 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:05:24 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:05:24 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:05:24 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:05:24 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:05:24 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:05:24 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:05:24 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:05:24",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:05:24 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:05:25 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:05:49 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:05:49 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:05:49 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:05:49 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:05:49 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:05:49 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:05:49 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:05:49",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:05:49 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:05:49 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:02 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:06:02 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:06:02 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:06:02 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:06:02 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:06:02 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:06:02 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:06:02",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:06:02 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:05 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:06:05 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:06:05 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:06:05 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:06:05 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:06:05 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:06:05 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:06:05",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:06:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:05 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:45 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:06:45 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:06:45 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:06:45 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:06:45 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:06:45 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:06:45 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:06:45",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:06:45 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:46 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:06:46 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:06:46 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:06:46 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:06:46 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:06:46 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:06:46 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:06:46",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:06:46 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:06:46 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:07:06 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:07:06 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:07:06 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:07:06 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:07:06 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:07:06 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:07:06 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:07:06",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:07:06 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:07:06 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:07:06 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:07:06 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:07:06 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:07:06 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:07:06 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:07:06 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:07:06",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:07:06 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:07:06 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:07:20 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:07:20 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:07:20 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:07:20 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:07:20 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:07:20 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:07:20 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:07:20",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:07:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:07:20 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:08:22 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:08:22 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:08:22 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:08:22 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:08:22 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:08:22 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:08:22 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:08:22",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:08:22 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:10:28 America/Guayaquil] Configuración del sistema:
+[22-Jul-2025 00:10:28 America/Guayaquil] - Configuración completa: SÍ
+[22-Jul-2025 00:10:28 America/Guayaquil] - DEBUG_MODE: ACTIVADO
+[22-Jul-2025 00:10:28 America/Guayaquil] - LOG_ENABLED: ACTIVADO
+[22-Jul-2025 00:10:28 America/Guayaquil] - TIMEZONE: America/Guayaquil
+[22-Jul-2025 00:10:28 America/Guayaquil] === DIAGNÓSTICO DEL SISTEMA ===
+[22-Jul-2025 00:10:28 America/Guayaquil] {
+    "timestamp": "2025-07-22 00:10:28",
+    "configuracion": {
+        "completa": true,
+        "faltantes": [],
+        "debug_mode": true,
+        "log_enabled": true
+    },
+    "php_version": "8.2.12",
+    "extensions": {
+        "pdo": true,
+        "pdo_mysql": true,
+        "mbstring": true,
+        "json": true
+    },
+    "permisos": {
+        "logs_escribible": true,
+        "logs_existe": true
+    }
+}
+[22-Jul-2025 00:10:28 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
+[22-Jul-2025 00:10:28 America/Guayaquil] Conexión BD exitosa - Host: localhost, DB: asignacion_docente, User: moises
