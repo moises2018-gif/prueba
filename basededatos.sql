@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2025 a las 05:39:23
+-- Tiempo de generación: 23-07-2025 a las 04:17:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -479,97 +479,6 @@ CREATE TABLE `asignaciones` (
   `id_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `asignaciones`
---
-
-INSERT INTO `asignaciones` (`id_asignacion`, `id_docente`, `id_tipo_discapacidad`, `ciclo_academico`, `materia`, `numero_estudiantes`, `puntuacion_ahp`, `estado`, `fecha_asignacion`, `id_estudiante`, `id_materia`) VALUES
-(14, 10, 3, '2025-1', 'Álgebra Lineal', 1, 1.033, 'Cancelada', '2025-06-20 07:39:25', 13, 5),
-(15, 7, 3, '2025-1', 'Álgebra Lineal', 1, 1.010, 'Cancelada', '2025-06-20 07:39:25', 8, 5),
-(16, 7, 3, '2025-1', 'Álgebra Lineal', 1, 0.960, 'Cancelada', '2025-06-20 07:39:25', 3, 5),
-(17, 5, 4, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', 9, 5),
-(18, 9, 4, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', 19, 5),
-(19, 2, 4, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', 4, 5),
-(20, 8, 4, '2025-1', 'Álgebra Lineal', 1, 0.770, 'Cancelada', '2025-06-20 07:39:25', 14, 5),
-(21, 5, 2, '2025-1', 'Álgebra Lineal', 1, 0.751, 'Cancelada', '2025-06-20 07:39:25', 2, 5),
-(22, 9, 5, '2025-1', 'Álgebra Lineal', 1, 0.802, 'Cancelada', '2025-06-20 07:39:25', 10, 5),
-(23, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.802, 'Cancelada', '2025-06-20 07:39:25', 5, 5),
-(24, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.760, 'Cancelada', '2025-06-20 07:39:25', 20, 5),
-(25, 1, 1, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-04 16:48:28', 6, 5),
-(26, 1, 1, '2025-1', 'Álgebra Lineal', 1, 0.475, 'Cancelada', '2025-07-04 16:48:28', 16, 5),
-(27, 8, 1, '2025-1', 'Álgebra Lineal', 1, 0.475, 'Cancelada', '2025-07-04 16:48:28', 11, 5),
-(28, 2, 3, '2025-1', 'Álgebra Lineal', 1, 0.450, 'Cancelada', '2025-07-04 16:48:28', 18, 5),
-(29, 9, 2, '2025-1', 'Álgebra Lineal', 1, 0.450, 'Cancelada', '2025-07-04 16:48:28', 17, 5),
-(30, 7, 2, '2025-1', 'Álgebra Lineal', 1, 0.450, 'Cancelada', '2025-07-04 16:48:28', 12, 5),
-(31, 1, 2, '2025-1', 'Álgebra Lineal', 1, 0.450, 'Cancelada', '2025-07-04 16:48:28', 7, 5),
-(32, 8, 5, '2025-1', 'Álgebra Lineal', 1, 0.450, 'Cancelada', '2025-07-04 16:48:28', 15, 5),
-(33, 10, 1, '2025-1', 'Álgebra Lineal', 1, 1.036, 'Cancelada', '2025-07-04 17:16:26', 1, 5),
-(37, 61, 1, '2025-1', 'Álgebra Lineal', 1, 1.071, 'Cancelada', '2025-07-10 01:02:14', 25, 5),
-(38, 15, 1, '2025-1', 'Álgebra Lineal', 1, 1.071, 'Cancelada', '2025-07-10 01:02:14', 22, 5),
-(39, 11, 1, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-10 01:02:14', 46, 5),
-(40, 10, 3, '2025-1', 'Álgebra Lineal', 1, 1.021, 'Cancelada', '2025-07-10 01:02:14', 35, 5),
-(41, 45, 3, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-10 01:02:14', 48, 5),
-(42, 35, 3, '2025-1', 'Álgebra Lineal', 1, 1.020, 'Cancelada', '2025-07-10 01:02:14', 30, 5),
-(43, 43, 3, '2025-1', 'Álgebra Lineal', 1, 1.020, 'Cancelada', '2025-07-10 01:02:14', 31, 5),
-(44, 12, 3, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', 33, 5),
-(45, 46, 3, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', 34, 5),
-(46, 75, 3, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', 32, 5),
-(47, 14, 4, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-10 01:02:14', 49, 5),
-(48, 6, 4, '2025-1', 'Álgebra Lineal', 1, 0.847, 'Cancelada', '2025-07-10 01:02:14', 36, 5),
-(49, 34, 4, '2025-1', 'Álgebra Lineal', 1, 0.841, 'Cancelada', '2025-07-10 01:02:14', 39, 5),
-(50, 12, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', 38, 5),
-(51, 46, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', 37, 5),
-(52, 75, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', 40, 5),
-(53, 61, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', 29, 5),
-(54, 15, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', 28, 5),
-(55, 45, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', 26, 5),
-(56, 50, 2, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-10 01:02:14', 47, 5),
-(57, 35, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', 27, 5),
-(58, 6, 5, '2025-1', 'Álgebra Lineal', 1, 0.876, 'Cancelada', '2025-07-10 01:02:14', 45, 5),
-(59, 11, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Cancelada', '2025-07-10 01:02:14', 42, 5),
-(60, 43, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Cancelada', '2025-07-10 01:02:14', 41, 5),
-(61, 6, 5, '2025-1', 'Álgebra Lineal', 1, 0.836, 'Cancelada', '2025-07-10 01:02:14', 43, 5),
-(62, 13, 5, '2025-1', 'Álgebra Lineal', 1, 0.500, 'Cancelada', '2025-07-10 01:02:14', 50, 5),
-(63, 37, 5, '2025-1', 'Álgebra Lineal', 1, 0.806, 'Cancelada', '2025-07-10 01:02:14', 44, 5),
-(64, 12, 1, '2025-1', 'Álgebra Lineal', 1, 0.986, 'Cancelada', '2025-07-10 01:45:37', 23, 5),
-(65, 10, 1, '2025-1', 'Álgebra Lineal', 1, 1.120, 'Cancelada', '2025-07-14 16:42:46', 1, 5),
-(66, 46, 1, '2025-1', 'Álgebra Lineal', 1, 1.078, 'Activa', '2025-07-14 16:42:46', 23, 5),
-(67, 75, 1, '2025-1', 'Álgebra Lineal', 1, 1.078, 'Activa', '2025-07-14 16:42:46', 24, 5),
-(68, 12, 1, '2025-1', 'Álgebra Lineal', 1, 1.078, 'Activa', '2025-07-14 16:42:46', 21, 5),
-(69, 10, 1, '2025-1', 'Álgebra Lineal', 1, 1.072, 'Activa', '2025-07-14 16:42:46', 25, 5),
-(70, 35, 1, '2025-1', 'Álgebra Lineal', 1, 1.071, 'Activa', '2025-07-14 16:42:46', 22, 5),
-(71, 5, 3, '2025-1', 'Álgebra Lineal', 1, 1.068, 'Activa', '2025-07-14 16:42:46', 35, 5),
-(72, 9, 3, '2025-1', 'Álgebra Lineal', 1, 1.068, 'Activa', '2025-07-14 16:42:46', 30, 5),
-(73, 2, 3, '2025-1', 'Álgebra Lineal', 1, 1.068, 'Activa', '2025-07-14 16:42:46', 31, 5),
-(74, 5, 3, '2025-1', 'Álgebra Lineal', 1, 1.023, 'Activa', '2025-07-14 16:42:46', 33, 5),
-(75, 9, 3, '2025-1', 'Álgebra Lineal', 1, 1.023, 'Activa', '2025-07-14 16:42:46', 13, 5),
-(76, 2, 3, '2025-1', 'Álgebra Lineal', 1, 1.023, 'Activa', '2025-07-14 16:42:46', 34, 5),
-(77, 10, 3, '2025-1', 'Álgebra Lineal', 1, 1.021, 'Activa', '2025-07-14 16:42:46', 8, 5),
-(78, 43, 3, '2025-1', 'Álgebra Lineal', 1, 1.020, 'Activa', '2025-07-14 16:42:46', 32, 5),
-(79, 11, 3, '2025-1', 'Álgebra Lineal', 1, 1.020, 'Activa', '2025-07-14 16:42:46', 3, 5),
-(80, 46, 4, '2025-1', 'Álgebra Lineal', 1, 0.861, 'Activa', '2025-07-14 16:42:46', 9, 5),
-(81, 75, 4, '2025-1', 'Álgebra Lineal', 1, 0.861, 'Activa', '2025-07-14 16:42:46', 36, 5),
-(82, 12, 4, '2025-1', 'Álgebra Lineal', 1, 0.861, 'Activa', '2025-07-14 16:42:46', 19, 5),
-(83, 6, 4, '2025-1', 'Álgebra Lineal', 1, 0.847, 'Activa', '2025-07-14 16:42:46', 4, 5),
-(84, 34, 4, '2025-1', 'Álgebra Lineal', 1, 0.841, 'Activa', '2025-07-14 16:42:46', 39, 5),
-(85, 46, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Activa', '2025-07-14 16:42:46', 38, 5),
-(86, 75, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Activa', '2025-07-14 16:42:46', 37, 5),
-(87, 12, 4, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Activa', '2025-07-14 16:42:46', 14, 5),
-(88, 61, 4, '2025-1', 'Álgebra Lineal', 1, 0.818, 'Activa', '2025-07-14 16:42:46', 40, 5),
-(89, 15, 2, '2025-1', 'Álgebra Lineal', 1, 0.865, 'Activa', '2025-07-14 16:42:46', 2, 5),
-(90, 45, 2, '2025-1', 'Álgebra Lineal', 1, 0.865, 'Activa', '2025-07-14 16:42:46', 29, 5),
-(91, 35, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Activa', '2025-07-14 16:42:46', 28, 5),
-(92, 43, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Activa', '2025-07-14 16:42:46', 26, 5),
-(93, 11, 2, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Activa', '2025-07-14 16:42:46', 27, 5),
-(94, 6, 5, '2025-1', 'Álgebra Lineal', 1, 0.876, 'Activa', '2025-07-14 16:42:46', 45, 5),
-(95, 61, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Activa', '2025-07-14 16:42:46', 10, 5),
-(96, 15, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Activa', '2025-07-14 16:42:46', 42, 5),
-(97, 45, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Activa', '2025-07-14 16:42:46', 41, 5),
-(98, 6, 5, '2025-1', 'Álgebra Lineal', 1, 0.836, 'Activa', '2025-07-14 16:42:46', 5, 5),
-(99, 14, 5, '2025-1', 'Álgebra Lineal', 1, 0.816, 'Activa', '2025-07-14 16:42:46', 43, 5),
-(100, 7, 5, '2025-1', 'Álgebra Lineal', 1, 0.816, 'Activa', '2025-07-14 16:42:46', 20, 5),
-(101, 50, 5, '2025-1', 'Álgebra Lineal', 1, 0.816, 'Activa', '2025-07-14 16:42:46', 44, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -591,61 +500,6 @@ CREATE TABLE `asignaciones_historial` (
   `fecha_asignacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_eliminacion` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `asignaciones_historial`
---
-
-INSERT INTO `asignaciones_historial` (`id_historial`, `id_asignacion`, `id_docente`, `id_estudiante`, `id_tipo_discapacidad`, `id_materia`, `ciclo_academico`, `materia`, `numero_estudiantes`, `puntuacion_ahp`, `estado`, `fecha_asignacion`, `fecha_eliminacion`) VALUES
-(17, 37, 61, 25, 1, 5, '2025-1', 'Álgebra Lineal', 1, 1.071, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:41'),
-(18, 14, 10, 13, 3, 5, '2025-1', 'Álgebra Lineal', 1, 1.033, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(19, 15, 7, 8, 3, 5, '2025-1', 'Álgebra Lineal', 1, 1.01, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(20, 16, 7, 3, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.96, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(21, 17, 5, 9, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(22, 18, 9, 19, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(23, 19, 2, 4, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.784, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(24, 20, 8, 14, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.77, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(25, 21, 5, 2, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.751, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(26, 22, 9, 10, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.802, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(27, 23, 2, 5, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.802, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(28, 24, 5, 20, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.76, 'Cancelada', '2025-06-20 07:39:25', '2025-07-10 04:48:45'),
-(29, 25, 1, 6, 1, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(30, 26, 1, 16, 1, 5, '2025-1', 'Álgebra Lineal', 1, 0.475, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(31, 27, 8, 11, 1, 5, '2025-1', 'Álgebra Lineal', 1, 0.475, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(32, 28, 2, 18, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.45, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(33, 29, 9, 17, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.45, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(34, 30, 7, 12, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.45, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(35, 31, 1, 7, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.45, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(36, 32, 8, 15, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.45, 'Cancelada', '2025-07-04 16:48:28', '2025-07-10 04:48:45'),
-(37, 33, 10, 1, 1, 5, '2025-1', 'Álgebra Lineal', 1, 1.036, 'Cancelada', '2025-07-04 17:16:26', '2025-07-10 04:48:45'),
-(38, 38, 15, 22, 1, 5, '2025-1', 'Álgebra Lineal', 1, 1.071, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(39, 39, 11, 46, 1, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(40, 40, 10, 35, 3, 5, '2025-1', 'Álgebra Lineal', 1, 1.021, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(41, 41, 45, 48, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(42, 42, 35, 30, 3, 5, '2025-1', 'Álgebra Lineal', 1, 1.02, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(43, 43, 43, 31, 3, 5, '2025-1', 'Álgebra Lineal', 1, 1.02, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(44, 44, 12, 33, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(45, 45, 46, 34, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(46, 46, 75, 32, 3, 5, '2025-1', 'Álgebra Lineal', 1, 0.985, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(47, 47, 14, 49, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(48, 48, 6, 36, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.847, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(49, 49, 34, 39, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.841, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(50, 50, 12, 38, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(51, 51, 46, 37, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(52, 52, 75, 40, 4, 5, '2025-1', 'Álgebra Lineal', 1, 0.823, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(53, 53, 61, 29, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(54, 54, 15, 28, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(55, 55, 45, 26, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(56, 56, 50, 47, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(57, 57, 35, 27, 2, 5, '2025-1', 'Álgebra Lineal', 1, 0.828, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(58, 58, 6, 45, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.876, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(59, 59, 11, 42, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(60, 60, 43, 41, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.839, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(61, 61, 6, 43, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.836, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(62, 62, 13, 50, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.5, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(63, 63, 37, 44, 5, 5, '2025-1', 'Álgebra Lineal', 1, 0.806, 'Cancelada', '2025-07-10 01:02:14', '2025-07-10 04:48:45'),
-(64, 64, 12, 23, 1, 5, '2025-1', 'Álgebra Lineal', 1, 0.986, 'Cancelada', '2025-07-10 01:45:37', '2025-07-10 04:48:45'),
-(65, 65, 10, 1, 1, 5, '2025-1', 'Álgebra Lineal', 1, 1.12, 'Cancelada', '2025-07-14 16:42:46', '2025-07-14 16:42:54');
 
 -- --------------------------------------------------------
 
@@ -2479,7 +2333,15 @@ CREATE TABLE `sesiones_usuario` (
 
 INSERT INTO `sesiones_usuario` (`id_sesion`, `id_usuario`, `token_sesion`, `ip_address`, `user_agent`, `fecha_creacion`, `fecha_expiracion`, `activa`) VALUES
 (1, 6, '220a418788688151b288393bd9dc351085c99427f27e4cda579a7cf92fa9052c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:36:11', '2025-07-17 03:36:11', 0),
-(2, 6, '95761a2793fe8b9ada222e9ee5a200352237defc643e5e43ef87d146aa4fa3bc', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:37:22', '2025-07-17 03:37:22', 1);
+(2, 6, '95761a2793fe8b9ada222e9ee5a200352237defc643e5e43ef87d146aa4fa3bc', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:37:22', '2025-07-17 03:37:22', 0),
+(3, 6, '6df9aaede69839352a0315aba3b141a36ed7544ab449a988862d371b57c4e11b', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 03:47:47', '2025-07-17 03:47:47', 0),
+(4, 6, 'eacbfc56668494bb69ec95d012ea8b4d4744e21275386950cbbd71a8ab87afff', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-16 18:05:43', '2025-07-17 18:05:43', 0),
+(5, 6, 'e6b96f5a7dc9435a0b24af97a47e5ea13fa978ac7348eab1bf8bd8adc7d1cfd9', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-17 15:15:47', '2025-07-18 15:15:47', 0),
+(6, 6, '0e0ca505faadf4fa4ff0a5be1e8fe9e2df500714680de6b0c4019d0bf2522474', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-21 22:29:18', '2025-07-22 22:29:18', 0),
+(7, 6, '0197e8ba0351ddf13f748a04f14465aa66a382ca7c725be7aec357b294d44e7c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-22 03:57:38', '2025-07-23 03:57:38', 0),
+(8, 6, 'dd80684a3aec9cea88a79384f24fac38b6c19463d0c87a8f93b423d4b158344a', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-22 04:58:08', '2025-07-23 04:58:08', 0),
+(9, 6, 'a8fac54db0b583f948ea1b9d623d9b31015d17e62460fc7d454a7497d38d94cb', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-22 05:03:42', '2025-07-23 05:03:42', 1),
+(10, 6, 'a7955fa8284f1dfb6ae7072b0d57fd3549904d3e59e703b4828f04847a425c44', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '2025-07-23 02:15:31', '2025-07-24 02:15:31', 1);
 
 -- --------------------------------------------------------
 
@@ -2530,7 +2392,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `email`, `password`, `nombre_completo`, `rol`, `activo`, `ultimo_acceso`, `fecha_creacion`, `fecha_actualizacion`) VALUES
-(6, 'admin', 'admin@sistema.com', '$2y$10$7IcWZnbPDQfRh5uoqsH2/ekhlGU0Mz/jsVje672Fn0WYsfpPs6ua2', 'Administrador del Sistema', 'admin', 1, '2025-07-16 03:37:22', '2025-07-16 03:35:59', '2025-07-16 03:37:22');
+(6, 'admin', 'admin@sistema.com', '$2y$10$7IcWZnbPDQfRh5uoqsH2/ekhlGU0Mz/jsVje672Fn0WYsfpPs6ua2', 'Administrador del Sistema', 'admin', 1, '2025-07-23 02:15:31', '2025-07-16 03:35:59', '2025-07-23 02:15:31');
 
 -- --------------------------------------------------------
 
@@ -2874,13 +2736,13 @@ ALTER TABLE `adaptaciones_metodologicas`
 -- AUTO_INCREMENT de la tabla `asignaciones`
 --
 ALTER TABLE `asignaciones`
-  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT de la tabla `asignaciones_historial`
 --
 ALTER TABLE `asignaciones_historial`
-  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
 
 --
 -- AUTO_INCREMENT de la tabla `cache_puntuaciones_ahp`
@@ -2952,7 +2814,7 @@ ALTER TABLE `pesos_criterios_discapacidad`
 -- AUTO_INCREMENT de la tabla `sesiones_usuario`
 --
 ALTER TABLE `sesiones_usuario`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_discapacidad`
