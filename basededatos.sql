@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-07-2025 a las 04:17:09
+-- Tiempo de generación: 23-07-2025 a las 08:39:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -68,6 +68,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `asignar_estudiante_automatico` (IN 
     -- y hacer la inserción en asignaciones
     
     SELECT 'Funcionalidad en desarrollo - usar recomendar_docente_equilibrado' AS mensaje;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_materias_docente` (IN `p_id_docente` INT, IN `p_ciclo` VARCHAR(20))   BEGIN
+    SELECT 
+        m.id_materia,
+        m.nombre_materia,
+        m.facultad,
+        dm.observaciones
+    FROM docente_materias dm
+    JOIN materias m ON dm.id_materia = m.id_materia
+    WHERE dm.id_docente = p_id_docente 
+    AND dm.ciclo_academico = p_ciclo 
+    AND dm.activo = 1
+    ORDER BY m.nombre_materia;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recalcular_cache_completo` ()   BEGIN
@@ -292,6 +306,19 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `mejor_docente_por_discapacidad` (`p_
     RETURN COALESCE(v_nombre_docente, 'No encontrado');
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `puede_ensenar_materia` (`p_id_docente` INT, `p_id_materia` INT, `p_ciclo` VARCHAR(20)) RETURNS TINYINT(1) DETERMINISTIC READS SQL DATA BEGIN
+    DECLARE puede_ensenar BOOLEAN DEFAULT FALSE;
+    
+    SELECT COUNT(*) > 0 INTO puede_ensenar
+    FROM docente_materias 
+    WHERE id_docente = p_id_docente 
+    AND id_materia = p_id_materia 
+    AND ciclo_academico = p_ciclo 
+    AND activo = 1;
+    
+    RETURN puede_ensenar;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `verificar_triggers_activos` () RETURNS VARCHAR(500) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC READS SQL DATA BEGIN
     DECLARE total_triggers INT;
     DECLARE trigger_insert INT DEFAULT 0;
@@ -442,7 +469,8 @@ INSERT INTO `adaptaciones_metodologicas` (`id_adaptacion`, `id_docente`, `modifi
 (82, 82, 1, 1, 1, 1, 'Adaptaciones automáticas por formación en inclusión'),
 (83, 83, 0, 0, 0, 0, 'Sin adaptaciones específicas - actualizar según corresponda'),
 (84, 84, 1, 1, 1, 1, 'Adaptaciones automáticas por formación en inclusión'),
-(85, 85, 0, 0, 0, 0, 'Sin adaptaciones específicas - actualizar según corresponda');
+(85, 85, 0, 0, 0, 0, 'Sin adaptaciones específicas - actualizar según corresponda'),
+(86, 86, 1, 1, 1, 1, 'Adaptaciones automáticas por formación en inclusión');
 
 --
 -- Disparadores `adaptaciones_metodologicas`
@@ -478,6 +506,29 @@ CREATE TABLE `asignaciones` (
   `id_estudiante` int(11) DEFAULT NULL,
   `id_materia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Disparadores `asignaciones`
+--
+DELIMITER $$
+CREATE TRIGGER `trigger_validar_asignacion_materia` BEFORE INSERT ON `asignaciones` FOR EACH ROW BEGIN
+    DECLARE puede_ensenar BOOLEAN DEFAULT FALSE;
+    DECLARE mensaje_error VARCHAR(500);
+    
+    -- Solo validar si se especifica una materia
+    IF NEW.id_materia IS NOT NULL THEN
+        SET puede_ensenar = puede_ensenar_materia(NEW.id_docente, NEW.id_materia, NEW.ciclo_academico);
+        
+        IF NOT puede_ensenar THEN
+            SELECT CONCAT('El docente con ID ', NEW.id_docente, ' no puede enseñar la materia con ID ', NEW.id_materia, ' en el ciclo ', NEW.ciclo_academico) 
+            INTO mensaje_error;
+            
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = mensaje_error;
+        END IF;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1225,7 +1276,8 @@ INSERT INTO `docentes` (`id_docente`, `nombres_completos`, `facultad`, `modalida
 (82, 'TEJADA YEPEZ SILVIA LILIANA', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Híbrida', '6 a 10 años', 'Ingeniera en Sistemas', 'Master en Seguridad de la Información', 1, '1 a 5 estudiantes', 4, 5, '2025-07-10 01:00:45', '2025-07-10 01:00:45'),
 (83, 'PATIÑO PEREZ DARWIN', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Virtual', '1 a 5 años', 'Ingeniero en Software', 'Master en Inteligencia Artificial', 0, 'Ninguno', 2, 2, '2025-07-10 01:00:45', '2025-07-10 01:00:45'),
 (84, 'BENAVIDES LOPEZ DAVID GONZALO', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '6 a 10 años', 'Ingeniero en Sistemas', 'Master en Auditoría de Sistemas', 1, '1 a 5 estudiantes', 3, 4, '2025-07-10 01:00:45', '2025-07-10 01:00:45'),
-(85, 'GUAMAN TUMBACO ANA LOURDES', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '1 a 5 años', 'Licenciada en Lenguas Extranjeras', 'Master en Enseñanza del Inglés', 0, 'Ninguno', 1, 1, '2025-07-10 01:00:45', '2025-07-10 01:00:45');
+(85, 'GUAMAN TUMBACO ANA LOURDES', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '1 a 5 años', 'Licenciada en Lenguas Extranjeras', 'Master en Enseñanza del Inglés', 0, 'Ninguno', 1, 1, '2025-07-10 01:00:45', '2025-07-10 01:00:45'),
+(86, 'PEREZ LOPEZ MARIA FERNANDA', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', 'Presencial', '6 a 10 años', 'Ingeniera en Software', 'Master en Desarrollo Web', 1, '1 a 5 estudiantes', 4, 5, '2025-07-23 06:38:19', '2025-07-23 06:38:19');
 
 --
 -- Disparadores `docentes`
@@ -1402,6 +1454,189 @@ CREATE TRIGGER `trigger_nuevo_docente` AFTER INSERT ON `docentes` FOR EACH ROW B
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docente_materias`
+--
+
+CREATE TABLE `docente_materias` (
+  `id_docente_materia` int(11) NOT NULL,
+  `id_docente` int(11) NOT NULL,
+  `id_materia` int(11) NOT NULL,
+  `activo` tinyint(1) DEFAULT 1,
+  `ciclo_academico` varchar(20) DEFAULT '2025-1',
+  `observaciones` text DEFAULT NULL,
+  `fecha_asignacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `docente_materias`
+--
+
+INSERT INTO `docente_materias` (`id_docente_materia`, `id_docente`, `id_materia`, `activo`, `ciclo_academico`, `observaciones`, `fecha_asignacion`) VALUES
+(1, 11, 11, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(2, 12, 12, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(3, 13, 13, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(4, 14, 14, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(5, 14, 12, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(6, 15, 15, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(7, 15, 22, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(8, 15, 45, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(9, 16, 11, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(10, 16, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(11, 17, 14, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(12, 17, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(13, 17, 42, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(14, 18, 13, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(15, 18, 16, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(16, 18, 18, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(17, 18, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(18, 19, 14, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(19, 19, 31, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(20, 20, 15, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(21, 20, 16, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(22, 20, 22, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(23, 20, 21, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(24, 20, 28, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(25, 21, 17, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(26, 21, 24, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(27, 22, 12, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(28, 22, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(29, 22, 34, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(30, 23, 13, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(31, 23, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(32, 23, 31, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(33, 23, 56, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(34, 24, 16, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(35, 24, 21, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(36, 25, 17, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(37, 26, 11, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(38, 26, 26, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(39, 27, 14, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(40, 27, 28, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(41, 27, 33, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(42, 27, 42, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(43, 3, 15, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(44, 3, 36, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(45, 4, 19, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(46, 4, 16, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(47, 4, 18, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(48, 4, 13, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(49, 4, 37, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(50, 30, 11, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(51, 30, 15, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(52, 31, 13, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(53, 31, 19, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(54, 31, 37, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(55, 32, 14, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(56, 32, 26, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(57, 32, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(58, 32, 36, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(59, 33, 19, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(60, 33, 37, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(61, 34, 21, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(62, 34, 22, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(63, 35, 23, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(64, 35, 48, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(65, 36, 23, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(66, 36, 44, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(67, 36, 47, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(68, 36, 46, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(69, 37, 18, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(70, 37, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(71, 38, 21, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(72, 38, 49, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(73, 39, 23, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(74, 40, 18, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(75, 40, 55, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(76, 41, 20, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(77, 41, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(78, 42, 21, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(79, 42, 39, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(80, 5, 22, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(81, 5, 31, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(82, 5, 54, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(83, 44, 23, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(84, 44, 56, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(85, 45, 25, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(86, 46, 26, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(87, 46, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(88, 46, 42, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(89, 46, 51, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(90, 47, 28, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(91, 47, 35, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(92, 48, 29, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(93, 49, 29, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(94, 50, 26, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(95, 50, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(96, 50, 36, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(97, 50, 32, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(98, 51, 29, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(99, 51, 34, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(100, 52, 25, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(101, 52, 28, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(102, 52, 32, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(103, 52, 48, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(104, 53, 26, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(105, 54, 27, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(106, 55, 29, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(107, 55, 38, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(108, 56, 25, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(109, 57, 28, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(110, 57, 54, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(111, 58, 29, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(112, 58, 34, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(113, 1, 32, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(114, 60, 33, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(115, 60, 41, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(116, 2, 35, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(117, 62, 33, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(118, 62, 40, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(119, 62, 47, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(120, 63, 35, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(121, 63, 60, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(122, 64, 33, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(123, 64, 55, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(124, 64, 59, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(125, 65, 38, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(126, 65, 45, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(127, 66, 38, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(128, 66, 53, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(129, 66, 57, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(130, 67, 39, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(131, 68, 39, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(132, 69, 40, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(133, 69, 53, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(134, 70, 40, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(135, 70, 60, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(136, 71, 38, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(137, 71, 58, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(138, 6, 41, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(139, 6, 52, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(140, 73, 43, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(141, 73, 56, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(142, 74, 44, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(143, 74, 48, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(144, 75, 43, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(145, 75, 46, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(146, 76, 42, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(147, 76, 51, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(148, 77, 43, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(149, 77, 45, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(150, 78, 44, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(151, 78, 50, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(152, 79, 46, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(153, 80, 50, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(154, 80, 47, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(155, 81, 51, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(156, 82, 52, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(157, 82, 48, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(158, 83, 57, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(159, 84, 58, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(160, 84, 59, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41'),
+(161, 85, 30, 1, '2025-1', 'Asignación inicial', '2025-07-23 06:38:41');
 
 -- --------------------------------------------------------
 
@@ -1919,7 +2154,12 @@ INSERT INTO `experiencia_docente_discapacidad` (`id_experiencia`, `id_docente`, 
 (422, 85, 2, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (423, 85, 3, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
 (424, 85, 4, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
-(425, 85, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger');
+(425, 85, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
+(426, 86, 1, 1, 3, 'Avanzado', 'Generado automáticamente por trigger'),
+(427, 86, 2, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
+(428, 86, 3, 1, 2, 'Intermedio', 'Generado automáticamente por trigger'),
+(429, 86, 4, 0, 0, 'Básico', 'Generado automáticamente por trigger'),
+(430, 86, 5, 0, 0, 'Básico', 'Generado automáticamente por trigger');
 
 --
 -- Disparadores `experiencia_docente_discapacidad`
@@ -2041,7 +2281,8 @@ INSERT INTO `limites_asignacion` (`id_limite`, `id_docente`, `maximo_estudiantes
 (82, 82, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=5 años', '2025-07-10 01:00:45'),
 (83, 83, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=2 años', '2025-07-10 01:00:45'),
 (84, 84, 5, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=4 años', '2025-07-10 01:00:45'),
-(85, 85, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=1 años', '2025-07-10 01:00:45');
+(85, 85, 3, 2, NULL, 'Límites automáticos basados en perfil: formación=0, experiencia=1 años', '2025-07-10 01:00:45'),
+(86, 86, 7, 3, NULL, 'Límites automáticos basados en perfil: formación=1, experiencia=5 años', '2025-07-23 06:38:19');
 
 -- --------------------------------------------------------
 
@@ -2182,7 +2423,8 @@ INSERT INTO `log_actualizaciones_cache` (`id_log`, `tabla_afectada`, `id_registr
 (116, 'docentes', 9, 'UPDATE', 'Docente modificado: CASTRO MORALES MARÍA FERNANDA', 'root@localhost', '2025-07-10 01:00:46'),
 (117, 'adaptaciones_metodologicas', 10, 'UPDATE', 'Adaptaciones metodológicas modificadas', 'root@localhost', '2025-07-10 01:00:46'),
 (118, 'docentes', 10, 'UPDATE', 'Docente modificado: GILCES TUTIVEN WILSON', 'root@localhost', '2025-07-10 01:00:46'),
-(119, 'cache_completo', 0, 'UPDATE', 'Recálculo completo de caché ejecutado', 'root@localhost', '2025-07-10 01:00:47');
+(119, 'cache_completo', 0, 'UPDATE', 'Recálculo completo de caché ejecutado', 'root@localhost', '2025-07-10 01:00:47'),
+(120, 'docentes', 86, 'INSERT', 'Nuevo docente insertado: PEREZ LOPEZ MARIA FERNANDA', 'root@localhost', '2025-07-23 06:38:19');
 
 -- --------------------------------------------------------
 
@@ -2206,13 +2448,8 @@ INSERT INTO `materias` (`id_materia`, `nombre_materia`, `facultad`, `ciclo_acade
 (1, 'Matemáticas Discretas', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
 (2, 'Programación I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
 (3, 'Física I', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
-(4, 'Cálculo Diferencial', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
-(5, 'Álgebra Lineal', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
-(6, 'Base de Datos', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
-(7, 'Estadística', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
 (8, 'Química', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
 (9, 'Programación II', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
-(10, 'Cálculo Integral', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-06-20 06:06:58'),
 (11, 'ALGORITMOS Y LÓGICA DE PROGRAMACIÓN', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-07-10 01:00:45'),
 (12, 'CÁLCULO DIFERENCIAL', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-07-10 01:00:45'),
 (13, 'DEMOCRACIA, CIUDADANÍA Y GLOBALIZACIÓN', 'FACULTAD DE CIENCIAS MATEMATICAS Y FISICAS', '2025-1', '2025-07-10 01:00:45'),
@@ -2421,6 +2658,22 @@ CREATE TABLE `vista_distribucion_carga` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `vista_docente_materias`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_docente_materias` (
+`id_docente` int(11)
+,`nombres_completos` varchar(255)
+,`id_materia` int(11)
+,`nombre_materia` varchar(255)
+,`ciclo_academico` varchar(20)
+,`activo` tinyint(1)
+,`observaciones` text
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `vista_estadisticas_sistema`
 -- (Véase abajo para la vista actual)
 --
@@ -2537,6 +2790,15 @@ CREATE TABLE `vista_ranking_rapido` (
 DROP TABLE IF EXISTS `vista_distribucion_carga`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_distribucion_carga`  AS SELECT `d`.`id_docente` AS `id_docente`, `d`.`nombres_completos` AS `nombres_completos`, `d`.`formacion_inclusion` AS `formacion_inclusion`, `d`.`experiencia_nee_años` AS `experiencia_nee_años`, `la`.`maximo_estudiantes_nee` AS `maximo_estudiantes_nee`, `la`.`maximo_por_tipo_discapacidad` AS `maximo_por_tipo_discapacidad`, count(`a`.`id_asignacion`) AS `asignaciones_actuales`, count(case when `a`.`id_tipo_discapacidad` = 1 then 1 end) AS `psicosocial_actual`, count(case when `a`.`id_tipo_discapacidad` = 2 then 1 end) AS `auditiva_actual`, count(case when `a`.`id_tipo_discapacidad` = 3 then 1 end) AS `intelectual_actual`, count(case when `a`.`id_tipo_discapacidad` = 4 then 1 end) AS `visual_actual`, count(case when `a`.`id_tipo_discapacidad` = 5 then 1 end) AS `fisica_actual`, `la`.`maximo_estudiantes_nee`- count(`a`.`id_asignacion`) AS `capacidad_restante`, round(count(`a`.`id_asignacion`) / `la`.`maximo_estudiantes_nee` * 100,1) AS `porcentaje_carga`, CASE WHEN count(`a`.`id_asignacion`) >= `la`.`maximo_estudiantes_nee` THEN 'SOBRECARGADO' WHEN count(`a`.`id_asignacion`) >= `la`.`maximo_estudiantes_nee` * 0.8 THEN 'ALTA CARGA' WHEN count(`a`.`id_asignacion`) >= `la`.`maximo_estudiantes_nee` * 0.5 THEN 'CARGA MEDIA' WHEN count(`a`.`id_asignacion`) > 0 THEN 'CARGA BAJA' ELSE 'SIN CARGA' END AS `estado_carga` FROM ((`docentes` `d` left join `limites_asignacion` `la` on(`d`.`id_docente` = `la`.`id_docente`)) left join `asignaciones` `a` on(`d`.`id_docente` = `a`.`id_docente` and `a`.`estado` = 'Activa')) GROUP BY `d`.`id_docente`, `d`.`nombres_completos`, `d`.`formacion_inclusion`, `d`.`experiencia_nee_años`, `la`.`maximo_estudiantes_nee`, `la`.`maximo_por_tipo_discapacidad` ORDER BY round(count(`a`.`id_asignacion`) / `la`.`maximo_estudiantes_nee` * 100,1) DESC ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_docente_materias`
+--
+DROP TABLE IF EXISTS `vista_docente_materias`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_docente_materias`  AS SELECT `d`.`id_docente` AS `id_docente`, `d`.`nombres_completos` AS `nombres_completos`, `m`.`id_materia` AS `id_materia`, `m`.`nombre_materia` AS `nombre_materia`, `dm`.`ciclo_academico` AS `ciclo_academico`, `dm`.`activo` AS `activo`, `dm`.`observaciones` AS `observaciones` FROM ((`docente_materias` `dm` join `docentes` `d` on(`dm`.`id_docente` = `d`.`id_docente`)) join `materias` `m` on(`dm`.`id_materia` = `m`.`id_materia`)) WHERE `dm`.`activo` = 1 ORDER BY `d`.`nombres_completos` ASC, `m`.`nombre_materia` ASC ;
 
 -- --------------------------------------------------------
 
@@ -2659,6 +2921,16 @@ ALTER TABLE `docentes`
   ADD PRIMARY KEY (`id_docente`);
 
 --
+-- Indices de la tabla `docente_materias`
+--
+ALTER TABLE `docente_materias`
+  ADD PRIMARY KEY (`id_docente_materia`),
+  ADD UNIQUE KEY `unique_docente_materia_ciclo` (`id_docente`,`id_materia`,`ciclo_academico`),
+  ADD KEY `idx_docente` (`id_docente`),
+  ADD KEY `idx_materia` (`id_materia`),
+  ADD KEY `idx_ciclo_activo` (`ciclo_academico`,`activo`);
+
+--
 -- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
@@ -2730,7 +3002,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `adaptaciones_metodologicas`
 --
 ALTER TABLE `adaptaciones_metodologicas`
-  MODIFY `id_adaptacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_adaptacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `asignaciones`
@@ -2742,7 +3014,7 @@ ALTER TABLE `asignaciones`
 -- AUTO_INCREMENT de la tabla `asignaciones_historial`
 --
 ALTER TABLE `asignaciones_historial`
-  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT de la tabla `cache_puntuaciones_ahp`
@@ -2772,7 +3044,13 @@ ALTER TABLE `criterios_ahp`
 -- AUTO_INCREMENT de la tabla `docentes`
 --
 ALTER TABLE `docentes`
-  MODIFY `id_docente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_docente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT de la tabla `docente_materias`
+--
+ALTER TABLE `docente_materias`
+  MODIFY `id_docente_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
@@ -2784,19 +3062,19 @@ ALTER TABLE `estudiantes`
 -- AUTO_INCREMENT de la tabla `experiencia_docente_discapacidad`
 --
 ALTER TABLE `experiencia_docente_discapacidad`
-  MODIFY `id_experiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=426;
+  MODIFY `id_experiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
 
 --
 -- AUTO_INCREMENT de la tabla `limites_asignacion`
 --
 ALTER TABLE `limites_asignacion`
-  MODIFY `id_limite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_limite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `log_actualizaciones_cache`
 --
 ALTER TABLE `log_actualizaciones_cache`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`
@@ -2874,6 +3152,13 @@ ALTER TABLE `cache_puntuaciones_especificas`
 --
 ALTER TABLE `capacitaciones_nee`
   ADD CONSTRAINT `capacitaciones_nee_ibfk_1` FOREIGN KEY (`id_docente`) REFERENCES `docentes` (`id_docente`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `docente_materias`
+--
+ALTER TABLE `docente_materias`
+  ADD CONSTRAINT `fk_docente_materias_docente` FOREIGN KEY (`id_docente`) REFERENCES `docentes` (`id_docente`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_docente_materias_materia` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `estudiantes`
